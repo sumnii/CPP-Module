@@ -6,7 +6,7 @@ RM			=	rm -f
 
 HEADER		=	./
 SRC_DIR		=	./
-SRCS		=	main.cpp PhoneBook.cpp
+SRCS		=	main.cpp PhoneBook.cpp Contact.cpp
 SRC			=	$(addprefix $(SRC_DIR), $(SRCS))
 OBJ			=	$(SRC:.cpp=.o)
 
