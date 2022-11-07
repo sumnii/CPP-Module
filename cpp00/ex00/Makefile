@@ -4,7 +4,10 @@ CC			=	c++
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -f
 
-SRC			=	megaphone.cpp
+HEADER		=	./
+SRC_DIR		=	./
+SRCS		=	megaphone.cpp
+SRC			=	$(addprefix $(SRC_DIR), $(SRCS))
 OBJ			=	$(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -18,9 +21,9 @@ fclean: clean
 re: fclean all
 
 .cpp.o:
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -I $(HEADER) -o $@ -c $<
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OBJ)
+	$(CC) $(CFLAGS) -I $(HEADER) -o $@ $(OBJ)
 
 PHONY: all clean fclean re
