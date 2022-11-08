@@ -2,11 +2,18 @@
 #define CPP_MODULE_PHONEBOOK_H
 
 #include "Contact.h"
+#include "iomanip"
 
 #define CMD_ELSE	0
 #define CMD_ADD		1
 #define CMD_SEARCH	2
 #define CMD_EXIT	3
+
+#define FIRST_NAME	0
+#define LAST_NAME	1
+#define NICKNAME	2
+#define PHONE		3
+#define SECRET		4
 
 class PhoneBook {
 private:
@@ -15,7 +22,8 @@ private:
 
 public:
 	void add_contact();
-	void print_contact();
+	void search_contact();
+	void print_contact(int i);
 	PhoneBook();
 };
 
