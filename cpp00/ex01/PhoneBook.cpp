@@ -10,8 +10,8 @@ void PhoneBook::add_contact() {
 	std::string nickname;
 	std::string phone;
 	std::string secret;
-
-
+	int i = save_cnt >= 8 ? save_cnt % 8 : save_cnt;
+	
 	std::cout << std::endl << "이름을 입력하세요." << std::endl << "> ";
 	std::getline(std::cin, first_name);
 	std::cout << "성을 입력하세요." << std::endl << "> ";
@@ -23,11 +23,11 @@ void PhoneBook::add_contact() {
 	std::cout << "비밀을 입력하세요." << std::endl << "> ";
 	std::getline(std::cin, secret);
 	std::cout << std::endl;
-	contacts[save_cnt].setContact(FIRST_NAME, first_name);
-	contacts[save_cnt].setContact(LAST_NAME, last_name);
-	contacts[save_cnt].setContact(NICKNAME, nickname);
-	contacts[save_cnt].setContact(PHONE, phone);
-	contacts[save_cnt].setContact(SECRET, secret);
+	contacts[i].setContact(FIRST_NAME, first_name);
+	contacts[i].setContact(LAST_NAME, last_name);
+	contacts[i].setContact(NICKNAME, nickname);
+	contacts[i].setContact(PHONE, phone);
+	contacts[i].setContact(SECRET, secret);
 	++save_cnt;
 }
 
@@ -41,7 +41,8 @@ void PhoneBook::search_contact() {
 		return;
 	}
 	std::cout << std::setw(12) << "FIST NAME" << std::setw(11) << "LAST NAME" << std::setw(11) << "NICKNAME" << std::setw(11) << "PHONE" << std::endl;
-	for (int i = 0; i < save_cnt; ++i) {
+	int cnt = save_cnt > 8 ? 8 : save_cnt;
+	for (int i = 0; i < cnt; ++i) {
 		std::cout << i << "|";
 		for (int column = 0; column < 4; ++column) {
 			field = contacts[i].getContact(column);
@@ -55,17 +56,22 @@ void PhoneBook::search_contact() {
 				std::cout << std::setw(10) << field << "|";
 		}
 	}
-	while (true) {
-		std::cout << std::endl << "인덱스를 입력하세요." << std::endl << "> ";
-		std::getline(std::cin, idx);
-		std::cout << std::endl;
-		if (std::stoi(idx) >= save_cnt || std::stoi(idx) < 0 || std::stoi(idx) > 4) {
-			std::cout << " 유효하지 않은 인덱스입니다." << std::endl << std::endl;
-			continue;
-		}
-		print_contact(std::stoi(idx));
-		break;
+	std::cout << std::endl << "인덱스를 입력하세요." << std::endl << "> ";
+	std::getline(std::cin, idx);
+	std::cout << std::endl;
+	if (is_valid_index(idx) == false || std::stoi(idx) >= save_cnt) {
+		std::cout << " 유효하지 않은 인덱스입니다." << std::endl << std::endl;
+		return;
 	}
+	print_contact(std::stoi(idx));
+}
+
+bool PhoneBook::is_valid_index(std::string str) {
+	for (size_t i = 0; i < str.length(); ++i) {
+		if (isdigit(str[i]) == 0)
+			return (false);
+	}
+	return (true);
 }
 
 void PhoneBook::print_contact(int i) {

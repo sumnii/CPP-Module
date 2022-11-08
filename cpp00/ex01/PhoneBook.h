@@ -3,6 +3,7 @@
 
 #include "Contact.h"
 #include "iomanip"
+#include "cctype"
 
 #define CMD_ELSE	0
 #define CMD_ADD		1
@@ -23,6 +24,7 @@ private:
 public:
 	void add_contact();
 	void search_contact();
+	bool is_valid_index(std::string str);
 	void print_contact(int i);
 	PhoneBook();
 };
