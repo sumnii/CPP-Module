@@ -4,6 +4,44 @@ PhoneBook::PhoneBook() {
 	save_cnt = 0;
 }
 
+bool PhoneBook::is_valid_field(std::string content) {
+	for (size_t i = 0; i < content.length(); ++i) {
+		if (isspace(content[i]) == 0)
+			return (true);
+	}
+	return (false);
+}
+
+std::string PhoneBook::get_input_contact(int field) {
+	std::string content;
+
+	while (true) {
+		switch (field)
+		{
+			case FIRST_NAME:
+				std::cout << std::endl << "이름을 입력하세요." << std::endl << "> ";
+				break;
+			case LAST_NAME:
+				std::cout << std::endl << "성을 입력하세요." << std::endl << "> ";
+				break;
+			case PHONE:
+				std::cout << std::endl << "전화번호를 입력하세요." << std::endl << "> ";
+				break;
+			case NICKNAME:
+				std::cout << std::endl << "닉네임을 입력하세요." << std::endl << "> ";
+				break;
+			case SECRET:
+				std::cout << std::endl << "비밀을 입력하세요." << std::endl << "> ";
+				break;
+		}
+		std::getline(std::cin, content);
+		if (is_valid_field(content))
+			break;
+		std::cout << std::endl << " !! 필수 입력입니다 !!" << std::endl;
+	}
+	return (content);
+}
+
 void PhoneBook::add_contact() {
 	std::string first_name;
 	std::string last_name;
@@ -11,17 +49,12 @@ void PhoneBook::add_contact() {
 	std::string phone;
 	std::string secret;
 	int i = save_cnt >= 8 ? save_cnt % 8 : save_cnt;
-	
-	std::cout << std::endl << "이름을 입력하세요." << std::endl << "> ";
-	std::getline(std::cin, first_name);
-	std::cout << "성을 입력하세요." << std::endl << "> ";
-	std::getline(std::cin, last_name);
-	std::cout << "닉네임을 입력하세요." << std::endl << "> ";
-	std::getline(std::cin, nickname);
-	std::cout << "전화번호를 입력하세요." << std::endl << "> ";
-	std::getline(std::cin, phone);
-	std::cout << "비밀을 입력하세요." << std::endl << "> ";
-	std::getline(std::cin, secret);
+
+	first_name = get_input_contact(FIRST_NAME);
+	last_name = get_input_contact(LAST_NAME);
+	nickname = get_input_contact(NICKNAME);
+	phone = get_input_contact(PHONE);
+	secret = get_input_contact(SECRET);
 	std::cout << std::endl;
 	contacts[i].setContact(FIRST_NAME, first_name);
 	contacts[i].setContact(LAST_NAME, last_name);
@@ -37,7 +70,7 @@ void PhoneBook::search_contact() {
 
 	std::cout << std::endl;
 	if (save_cnt == 0) {
-		std::cout << "저장된 연락처가 없습니다." << std::endl << std::endl;
+		std::cout << " !! 저장된 연락처가 없습니다 !!" << std::endl << std::endl;
 		return;
 	}
 	std::cout << std::setw(12) << "FIST NAME" << std::setw(11) << "LAST NAME" << std::setw(11) << "NICKNAME" << std::setw(11) << "PHONE" << std::endl;
@@ -60,7 +93,7 @@ void PhoneBook::search_contact() {
 	std::getline(std::cin, idx);
 	std::cout << std::endl;
 	if (is_valid_index(idx) == false || std::stoi(idx) >= save_cnt) {
-		std::cout << " 유효하지 않은 인덱스입니다." << std::endl << std::endl;
+		std::cout << " !! 유효하지 않은 인덱스입니다 !!" << std::endl << std::endl;
 		return;
 	}
 	print_contact(std::stoi(idx));

@@ -23,6 +23,8 @@ private:
 
 public:
 	void add_contact();
+	std::string get_input_contact(int field);
+	bool is_valid_field(std::string content);
 	void search_contact();
 	bool is_valid_index(std::string str);
 	void print_contact(int i);
