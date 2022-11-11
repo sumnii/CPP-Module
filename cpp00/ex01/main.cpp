@@ -8,7 +8,7 @@ int cmd_type(std::string cmd){
 	else if (cmd == "EXIT")
 		return (CMD_EXIT);
 	else
-	return (CMD_ELSE);
+		return (CMD_ELSE);
 }
 
 int main() {
@@ -16,9 +16,9 @@ int main() {
 	std::string cmd;
 
 	while (true) {
-		std::cout << "--------------------" << std::endl;
-		std::cout << "명령을 입력하세요.\nADD | SEARCH | EXIT\n";
-		std::cout << "--------------------" << std::endl;
+		std::cout << "------------------------" << std::endl;
+		std::cout << "   명령을 입력하세요.\n  ADD | SEARCH | EXIT\n";
+		std::cout << "------------------------" << std::endl;
 		std::cout << "> ";
 		getline(std::cin, cmd);
 		switch (cmd_type(cmd)) {
@@ -31,7 +31,7 @@ int main() {
 			case CMD_EXIT:
 				exit(0);
 			case CMD_ELSE:
-				std::cout << "다시 ";
+				std::cout << std::endl;
 		}
 	}
 }

@@ -63,6 +63,7 @@ void PhoneBook::add_contact() {
 	contacts[i].setContact(PHONE, phone);
 	contacts[i].setContact(SECRET, secret);
 	++save_cnt;
+	std::cout << " ~ 연락처가 추가되었습니다 ~" << std::endl << std::endl;
 }
 
 void PhoneBook::search_contact() {
