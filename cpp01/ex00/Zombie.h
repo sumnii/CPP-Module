@@ -8,8 +8,8 @@ private:
 	std::string name;
 
 public:
-	void Announce(void);
-	void setName(const std::string name);
+	void	Announce(void);
+	void	setName(const std::string name);
 };
 
 Zombie*	newZombie(std::string name);
