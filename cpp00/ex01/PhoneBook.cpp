@@ -74,7 +74,7 @@ void PhoneBook::search_contact() {
 		std::cout << " !! 저장된 연락처가 없습니다 !!" << std::endl << std::endl;
 		return;
 	}
-	std::cout << std::setw(12) << "FIST NAME" << std::setw(11) << "LAST NAME" << std::setw(11) << "NICKNAME" << std::setw(11) << "PHONE" << std::endl;
+	std::cout << std::setw(12) << "FIRST NAME" << std::setw(11) << "LAST NAME" << std::setw(11) << "NICKNAME" << std::setw(11) << "PHONE" << std::endl;
 	int cnt = save_cnt > 8 ? 8 : save_cnt;
 	for (int i = 0; i < cnt; ++i) {
 		std::cout << i << "|";
@@ -84,11 +84,9 @@ void PhoneBook::search_contact() {
 				field.resize(10);
 				field.replace(9, 1, ".");
 			}
-			if (column == 3)
-				std::cout << std::setw(10) << field << std::endl;
-			else
-				std::cout << std::setw(10) << field << "|";
+			std::cout << std::setw(10) << field << "|";
 		}
+		std::cout << std::endl;
 	}
 	std::cout << std::endl << "인덱스를 입력하세요." << std::endl << "> ";
 	std::getline(std::cin, idx);

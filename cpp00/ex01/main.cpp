@@ -16,7 +16,10 @@ int main() {
 	std::string cmd;
 
 	while (true) {
+		std::cout << "--------------------" << std::endl;
 		std::cout << "명령을 입력하세요.\nADD | SEARCH | EXIT\n";
+		std::cout << "--------------------" << std::endl;
+		std::cout << "> ";
 		getline(std::cin, cmd);
 		switch (cmd_type(cmd)) {
 			case CMD_ADD:
