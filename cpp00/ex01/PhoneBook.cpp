@@ -2,6 +2,7 @@
 
 PhoneBook::PhoneBook() {
 	save_cnt = 0;
+	std::cout << std::endl << "  ~ WELCOME TO SUMSONG'S PHONEBOOK ~  " << std::endl << std::endl;
 }
 
 bool PhoneBook::is_valid_field(std::string content) {
@@ -48,8 +49,8 @@ void PhoneBook::add_contact() {
 	std::string nickname;
 	std::string phone;
 	std::string secret;
-	int i = save_cnt >= 8 ? save_cnt % 8 : save_cnt;
 
+	int i = save_cnt >= 8 ? save_cnt % 8 : save_cnt;
 	first_name = get_input_contact(FIRST_NAME);
 	last_name = get_input_contact(LAST_NAME);
 	nickname = get_input_contact(NICKNAME);
@@ -100,6 +101,8 @@ void PhoneBook::search_contact() {
 }
 
 bool PhoneBook::is_valid_index(std::string str) {
+	if (str.size() == 0)
+		return (false);
 	for (size_t i = 0; i < str.length(); ++i) {
 		if (isdigit(str[i]) == 0)
 			return (false);
