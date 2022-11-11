@@ -1,3 +1,8 @@
-//
-// Created by Sumin Song on 2022/11/11.
-//
+#include "Zombie.h"
+
+Zombie* newZombie(std::string name) {
+	Zombie *new_zombie = new Zombie;
+
+	new_zombie->setName(name);
+	return (new_zombie);
+}

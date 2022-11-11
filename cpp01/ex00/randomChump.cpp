@@ -1,3 +1,5 @@
+#include "Zombie.h"
+
+//void randomChump( std::string name ) {
 //
-// Created by Sumin Song on 2022/11/11.
-//
+//}

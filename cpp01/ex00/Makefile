@@ -1,4 +1,4 @@
-NAME		=	phonebook
+NAME		=	zombie
 
 CC			=	c++
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
@@ -6,7 +6,7 @@ RM			=	rm -f
 
 HEADER		=	./
 SRC_DIR		=	./
-SRC_LIST	=	main.cpp PhoneBook.cpp Contact.cpp
+SRC_LIST	=	main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 OBJ			=	$(SRC:.cpp=.o)
 
