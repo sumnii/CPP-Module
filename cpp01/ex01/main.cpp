@@ -1,15 +1,10 @@
 #include "Zombie.h"
 
 int main(void) {
-	Zombie *foo;
-	Zombie *halo;
+	Zombie *horde;
 
-	foo = newZombie("Foo");
-	foo->Announce();
-	randomChump("Ola");
-	halo = newZombie("HALO");
-	halo->Announce();
-	randomChump("Random");
-	delete foo;
-	delete halo;
+	horde = zombieHorde(3, "Immotal");
+	for (int i = 0; i < 3; ++i)
+		horde[i].Announce();
+	delete[] horde;
 }
