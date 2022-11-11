@@ -7,3 +7,7 @@ void Zombie::Announce(void) {
 void Zombie::setName(const std::string name){
 	this->name = name;
 }
+
+Zombie::~Zombie() {
+	std::cout << this->name << " is gone.." << std::endl;
+};

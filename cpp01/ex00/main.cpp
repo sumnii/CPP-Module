@@ -5,8 +5,11 @@ int main(void) {
 	Zombie *halo;
 
 	foo = newZombie("Foo");
-	halo = newZombie("HALO");
 	foo->Announce();
+	randomChump("Ola");
+	halo = newZombie("HALO");
 	halo->Announce();
 	randomChump("Random");
+	delete foo;
+	delete halo;
 }
