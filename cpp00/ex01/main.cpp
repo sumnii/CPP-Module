@@ -1,11 +1,11 @@
 #include "PhoneBook.h"
 
 int cmd_type(std::string cmd){
-	if (cmd == "a")
+	if (cmd == "ADD")
 		return (CMD_ADD);
-	else if (cmd == "s")
+	else if (cmd == "SEARCH")
 		return (CMD_SEARCH);
-	else if (cmd == "e")
+	else if (cmd == "EXIT")
 		return (CMD_EXIT);
 	else
 	return (CMD_ELSE);
