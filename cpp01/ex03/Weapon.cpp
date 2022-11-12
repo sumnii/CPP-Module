@@ -4,11 +4,13 @@
 
 #include "Weapon.h"
 
+Weapon::Weapon() {};
+
 Weapon::Weapon(std::string weapon) {
-	setType(weapon);
+	this->type = weapon;
 }
 
-const std::string &Weapon::getType() const {
+const std::string &Weapon::getType() {
 	return (this->type);
 }
 
