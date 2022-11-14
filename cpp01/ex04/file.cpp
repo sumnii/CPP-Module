@@ -17,11 +17,17 @@ e_bool replace_file(const std::string &file_name, const std::string &s1, const s
 	std::ifstream in(file_name);
 	std::ofstream out(file_name + ".replace", std::ios::trunc);
 	std::string line;
+	bool first = true;
 
 	if (in.is_open()) {
-		while (getline(in, line)) {
+		while (in.eof() == false) {
+			getline(in, line);
+			if (line.size() == 0) {
+				out << std::endl;
+				break;
+			}
 			std::string sed = sed_s1_to_s2(line, s1, s2);
-			out << sed;
+			write_outfile(first, out, sed);
 		}
 	} else {
 		std::cout << "  !! Wrong filename !!" << std::endl;
@@ -34,14 +40,25 @@ std::string sed_s1_to_s2(std::string line, std::string s1, std::string s2) {
 	size_t idx = line.find(s1);
 	std::string front = line.substr(0, idx);
 	std::string back = line.substr(idx + s1.size());
+	bool find = (idx != std::string::npos);
 
-	if (idx != std::string::npos) {
-		while ((idx = back.find(s1)) != std::string::npos) {
+	if (find) {
+		find = ((idx = back.find(s1)) != std::string::npos);
+		while (find) {
 			front = front + s2 + back.substr(0, idx);
 			back = back.substr(idx + s1.size());
+			find = ((idx = back.find(s1)) != std::string::npos);
 		}
 		return (front + s2 + back);
 	} else {
 		return (line);
 	}
+}
+
+void write_outfile(bool &first, std::ofstream &out, std::string line) {
+	if (first) {
+		out << line;
+		first = false;
+	} else
+		out << std::endl << line;
 }
