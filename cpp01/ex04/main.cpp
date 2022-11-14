@@ -3,17 +3,7 @@
 int main(int argc, char **argv) {
 	if (check_arg(argc, argv) == KO)
 		return 1;
-	std::ifstream file(argv[1]);
-	std::ofstream out("tmp.replace", std::ios::trunc);
-	std::string str;
-	if (file.is_open()) {
-		while (file) {
-			getline(file, str);
-			std::cout << "string : " << str << std::endl;
-			out << str << std::endl;
-		}
-	} else {
-		std::cout << "  !! Wrong filename !!" << std::endl;
-	}
+	if (replace_file(argv[1], argv[2], argv[3]) == KO)
+		return 1;
 	return 0;
 }
