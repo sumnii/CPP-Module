@@ -1,15 +1,11 @@
-#include "iostream"
-#include "fstream"
+#include "file.h"
 
-int	main(int argc, char **argv) {
+int main(int argc, char **argv) {
+	if (check_arg(argc, argv) == KO)
+		return 1;
 	std::ifstream file(argv[1]);
-	std::ofstream out((std::string)argv[1] + ".replace", std::ios::trunc);
+	std::ofstream out("tmp.replace", std::ios::trunc);
 	std::string str;
-
-	if (argc != 4) {
-		std::cout << "  !! This program needs a filename, and two strings !!" << std::endl;
-		return 0;
-	}
 	if (file.is_open()) {
 		while (file) {
 			getline(file, str);
