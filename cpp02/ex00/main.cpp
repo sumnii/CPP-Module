@@ -1,11 +1,11 @@
 #include "Fixed.h"
 
 int main(void) {
-	Fixed a; // 생성자
-	Fixed b( a ); // 복사생성자
-	Fixed c; // 생성자
+	Fixed a;
+	Fixed b( a );
+	Fixed c;
 
-	c = b; // 복사생성자
+	c = b;
 
 	std::cout << a.getRawBits() << std::endl;
 	std::cout << b.getRawBits() << std::endl;
