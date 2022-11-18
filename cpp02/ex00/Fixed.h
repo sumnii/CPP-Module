@@ -1,11 +1,12 @@
 #ifndef CPP_MODULE_FIXED_H
 #define CPP_MODULE_FIXED_H
 
+#include "iostream"
 
 class Fixed {
 private:
-	int fixed_point_num;
-	const int bit;
+	int num;
+	const static int bit = 8;
 
 public:
 	Fixed();

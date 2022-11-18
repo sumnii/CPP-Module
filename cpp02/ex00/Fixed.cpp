@@ -1,4 +1,6 @@
 #include "Fixed.h"
 
-Fixed::Fixed() : fixed_point_num(0), bit(8) {
+Fixed::Fixed() {
+	num = 0;
+	std::cout << "Default constructor called" << std::endl;
 };
