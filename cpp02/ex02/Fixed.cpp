@@ -75,3 +75,23 @@ bool Fixed::operator==(const Fixed &ref) {
 bool Fixed::operator!=(const Fixed &ref) {
 	return (this->num != ref.num);
 };
+
+Fixed Fixed::operator+(const Fixed &ref) {
+	Fixed result(this->toFloat() + ref.toFloat());
+	return result;
+};
+
+Fixed Fixed::operator-(const Fixed &ref) {
+	Fixed result(this->toFloat() - ref.toFloat());
+	return result;
+};
+
+Fixed Fixed::operator*(const Fixed &ref) {
+	Fixed result(this->toFloat() * ref.toFloat());
+	return result;
+};
+
+Fixed Fixed::operator/(const Fixed &ref) {
+	Fixed result(this->toFloat() / ref.toFloat());
+	return result;
+};

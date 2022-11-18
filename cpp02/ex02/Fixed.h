@@ -28,6 +28,11 @@ public:
 	bool operator<=(const Fixed &ref);
 	bool operator==(const Fixed &ref);
 	bool operator!=(const Fixed &ref);
+
+	Fixed operator+(const Fixed &ref);
+	Fixed operator-(const Fixed &ref);
+	Fixed operator*(const Fixed &ref);
+	Fixed operator/(const Fixed &ref);
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &f);
