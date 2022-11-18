@@ -18,3 +18,8 @@ Fixed &Fixed::operator = (const Fixed &copy) {
 	this->num = copy.num;
 	std::cout << "Copy assignment operator called" << std::endl;
 }
+
+int Fixed::getRawBits(void) const {
+	std::cout << "getRawBits member function called" << std::endl;
+	return (this->num);
+};
