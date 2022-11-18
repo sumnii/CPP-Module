@@ -12,7 +12,7 @@ Fixed::Fixed(const int int_num) {
 
 Fixed::Fixed(const float float_num) {
 	std::cout << "Float constructor called" << std::endl;
-	this->setRawBits(float_num * (1 << this->bit));
+	this->setRawBits(roundf(float_num * (1 << this->bit)));
 };
 
 Fixed::~Fixed() {
@@ -21,7 +21,7 @@ Fixed::~Fixed() {
 
 Fixed::Fixed(const Fixed &copy) {
 	std::cout << "Copy constructor called" << std::endl;
-	this->num = copy.getRawBits();
+	this->num = copy.num;
 };
 
 Fixed &Fixed::operator=(const Fixed &copy) {
@@ -40,7 +40,7 @@ void Fixed::setRawBits(int const raw) {
 };
 
 float Fixed::toFloat(void) const {
-	return ((float) this->num / (1 << this->bit));
+	return ((float)this->num / (1 << this->bit));
 };
 
 int Fixed::toInt(void) const {

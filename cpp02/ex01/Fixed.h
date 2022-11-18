@@ -2,6 +2,7 @@
 #define CPP_MODULE_FIXED_H
 
 #include "iostream"
+#include "math.h"
 
 class Fixed {
 private:
