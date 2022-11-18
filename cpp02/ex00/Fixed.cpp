@@ -1,8 +1,8 @@
 #include "Fixed.h"
 
 Fixed::Fixed() {
-	num = 0;
 	std::cout << "Default constructor called" << std::endl;
+	num = 0;
 };
 
 Fixed::~Fixed() {
@@ -10,13 +10,14 @@ Fixed::~Fixed() {
 };
 
 Fixed::Fixed(const Fixed &copy) {
-	this->num = copy.num;
 	std::cout << "Copy constructor called" << std::endl;
+	this->num = copy.num;
 };
 
 Fixed &Fixed::operator = (const Fixed &copy) {
-	this->num = copy.num;
 	std::cout << "Copy assignment operator called" << std::endl;
+	this->num = copy.num;
+	return *this;
 }
 
 int Fixed::getRawBits(void) const {
