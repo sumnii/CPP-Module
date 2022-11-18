@@ -8,3 +8,8 @@ Fixed::Fixed() {
 Fixed::~Fixed() {
 	std::cout << "Destructor called" << std::endl;
 };
+
+Fixed::Fixed(const Fixed &copy) {
+	this->num = copy.num;
+	std::cout << "Copy constructor called" << std::endl;
+};
