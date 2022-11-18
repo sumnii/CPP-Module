@@ -24,7 +24,7 @@ Fixed::Fixed(const Fixed &copy) {
 	this->num = copy.getRawBits();
 };
 
-Fixed &Fixed::operator = (const Fixed &copy) {
+Fixed &Fixed::operator=(const Fixed &copy) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->num = copy.getRawBits();
 	return *this;
@@ -38,3 +38,8 @@ int Fixed::getRawBits(void) const {
 void Fixed::setRawBits(int const raw) {
 	this->num = raw;
 };
+
+std::ostream &operator<<(std::ostream &out, const Fixed &f) {
+	out << f.getRawBits();
+	return out;
+}
