@@ -5,10 +5,15 @@ Fixed::Fixed() {
 	num = 0;
 };
 
-Fixed::Fixed(const int integer) {
+Fixed::Fixed(const int int_num) {
 	std::cout << "Int constructor called" << std::endl;
-	num = integer;
+	this->setRawBits(int_num);
 }
+
+Fixed::Fixed(const float float_num) {
+	std::cout << "Float constructor called" << std::endl;
+	this->setRawBits(float_num);
+};
 
 Fixed::~Fixed() {
 	std::cout << "Destructor called" << std::endl;
@@ -28,4 +33,8 @@ Fixed &Fixed::operator = (const Fixed &copy) {
 int Fixed::getRawBits(void) const {
 	std::cout << "getRawBits member function called" << std::endl;
 	return (this->num);
+};
+
+void Fixed::setRawBits(int const raw) {
+	this->num = raw;
 };

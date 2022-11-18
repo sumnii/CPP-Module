@@ -10,12 +10,15 @@ private:
 
 public:
 	Fixed();
-	Fixed(const int integer);
+	Fixed(const int int_num);
+	Fixed(const float float_num);
 	~Fixed();
 	Fixed(const Fixed &copy);
 	Fixed &operator = (const Fixed &copy);
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
+	float toFloat(void) const;
+	int toInt(void) const;
 };
 
 
