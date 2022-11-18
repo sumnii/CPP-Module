@@ -22,17 +22,37 @@ public:
 	float toFloat(void) const;
 	int toInt(void) const;
 
-	bool operator>(const Fixed &ref);
-	bool operator<(const Fixed &ref);
-	bool operator>=(const Fixed &ref);
-	bool operator<=(const Fixed &ref);
-	bool operator==(const Fixed &ref);
-	bool operator!=(const Fixed &ref);
+	bool operator>(Fixed const &ref) const;
+	bool operator<(Fixed const &ref) const;
+	bool operator>=(Fixed const &ref) const;
+	bool operator<=(Fixed const &ref) const;
+	bool operator==(Fixed const &ref) const;
+	bool operator!=(Fixed const &ref) const;
 
 	Fixed operator+(const Fixed &ref);
 	Fixed operator-(const Fixed &ref);
 	Fixed operator*(const Fixed &ref);
 	Fixed operator/(const Fixed &ref);
+
+	static Fixed &min(Fixed &a, Fixed &b) {
+		if (a>b) return b;
+		return a;
+	};
+
+	const static Fixed &min(Fixed const &a, Fixed const &b) {
+		if (a>b) return b;
+		return a;
+	};
+
+	static Fixed &max(Fixed &a, Fixed &b) {
+		if (a<b) return b;
+		return a;
+	};
+
+	const static Fixed &max(Fixed const &a, Fixed const &b) {
+		if (a<b) return b;
+		return a;
+	};
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &f);
