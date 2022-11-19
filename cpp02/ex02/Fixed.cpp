@@ -8,7 +8,7 @@ Fixed::Fixed() {
 Fixed::Fixed(const int int_num) {
 	std::cout << "Int constructor called" << std::endl;
 	this->setRawBits(int_num << this->bit);
-}
+};
 
 Fixed::Fixed(const float float_num) {
 	std::cout << "Float constructor called" << std::endl;
@@ -28,7 +28,7 @@ Fixed &Fixed::operator=(const Fixed &copy) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->num = copy.num;
 	return *this;
-}
+};
 
 int Fixed::getRawBits() const {
 	std::cout << "getRawBits member function called" << std::endl;
@@ -45,12 +45,12 @@ float Fixed::toFloat() const {
 
 int Fixed::toInt() const {
 	return (this->num >> this->bit);
-}
+};
 
 std::ostream &operator<<(std::ostream &out, const Fixed &f) {
 	out << f.toFloat();
 	return out;
-}
+};
 
 bool Fixed::operator>(const Fixed &ref) const {
 	return (this->num > ref.num);
@@ -79,13 +79,13 @@ bool Fixed::operator!=(const Fixed &ref) const {
 Fixed &Fixed::operator++() {
 	this->num += 1;
 	return (*this);
-}
+};
 
 const Fixed Fixed::operator++(int) {
-	Fixed tmp(this->toFloat());
+	const Fixed tmp(*this);
 	this->num += 1;
 	return (tmp);
-}
+};
 
 Fixed &Fixed::operator--() {
 	this->num -= 1;
@@ -93,7 +93,7 @@ Fixed &Fixed::operator--() {
 };
 
 const Fixed Fixed::operator--(int) {
-	Fixed tmp(this->toFloat());
+	const Fixed tmp(*this);
 	this->num -= 1;
 	return (tmp);
 };
