@@ -30,7 +30,7 @@ Fixed &Fixed::operator=(const Fixed &copy) {
 	return *this;
 }
 
-int Fixed::getRawBits(void) const {
+int Fixed::getRawBits() const {
 	std::cout << "getRawBits member function called" << std::endl;
 	return (this->num);
 };
@@ -39,11 +39,11 @@ void Fixed::setRawBits(int const raw) {
 	this->num = raw;
 };
 
-float Fixed::toFloat(void) const {
+float Fixed::toFloat() const {
 	return ((float)this->num / (1 << this->bit));
 };
 
-int Fixed::toInt(void) const {
+int Fixed::toInt() const {
 	return (this->num >> this->bit);
 }
 
@@ -76,7 +76,7 @@ bool Fixed::operator!=(const Fixed &ref) const {
 	return (this->num != ref.num);
 };
 
-Fixed &Fixed::operator++(void) {
+Fixed &Fixed::operator++() {
 	this->num += 1;
 	return (*this);
 }
@@ -87,7 +87,7 @@ const Fixed Fixed::operator++(int) {
 	return (tmp);
 }
 
-Fixed &Fixed::operator--(void) {
+Fixed &Fixed::operator--() {
 	this->num -= 1;
 	return (*this);
 };
