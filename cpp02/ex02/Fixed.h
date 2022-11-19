@@ -22,12 +22,17 @@ public:
 	float toFloat(void) const;
 	int toInt(void) const;
 
-	bool operator>(Fixed const &ref) const;
-	bool operator<(Fixed const &ref) const;
-	bool operator>=(Fixed const &ref) const;
-	bool operator<=(Fixed const &ref) const;
-	bool operator==(Fixed const &ref) const;
-	bool operator!=(Fixed const &ref) const;
+	bool operator>(const Fixed &ref) const;
+	bool operator<(const Fixed &ref) const;
+	bool operator>=(const Fixed &ref) const;
+	bool operator<=(const Fixed &ref) const;
+	bool operator==(const Fixed &ref) const;
+	bool operator!=(const Fixed &ref) const;
+
+	Fixed &operator++(void);
+	const Fixed operator++(int);
+	Fixed &operator--(void);
+	const Fixed operator--(int);
 
 	Fixed operator+(const Fixed &ref);
 	Fixed operator-(const Fixed &ref);

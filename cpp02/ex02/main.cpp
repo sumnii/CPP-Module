@@ -7,6 +7,7 @@ int main(void) {
 	Fixed d(42.0f);
 	Fixed e(42.1f);
 
+	std::cout << std::endl;
 	std::cout << "===== my test =====" << std::endl;
 	std::cout << "c " << c << std::endl;
 	std::cout << "d " << d << std::endl;
@@ -18,17 +19,26 @@ int main(void) {
 
 	std::cout << "===== 42 test =====" << std::endl;
 	std::cout << a << std::endl;
-//	std::cout << ++a << std::endl;
-//	std::cout << a << std::endl;
-//	std::cout << a++ << std::endl;
-//	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
 
 	std::cout << b << std::endl;
 
+	std::cout << Fixed::max(a, b) << std::endl << std::endl;
+
+	std::cout << "===== my test =====" << std::endl;
+	std::cout << b << std::endl;
+	std::cout << --b << std::endl;
+	std::cout << b << std::endl;
+	std::cout << b-- << std::endl;
+	std::cout << b << std::endl << std::endl;
+
+	std::cout << "[min] a(" << a << "),b(" << b << ")" << std::endl;
 	std::cout << Fixed::min(a, b) << std::endl;
+	std::cout << "[min] c(" << c << "),d(" << d << ")" << std::endl;
 	std::cout << Fixed::min(c, d) << std::endl;
-	std::cout << Fixed::max(a, b) << std::endl;
-	std::cout << Fixed::max(d, e) << std::endl;
 
 	return 0;
 }

@@ -52,28 +52,50 @@ std::ostream &operator<<(std::ostream &out, const Fixed &f) {
 	return out;
 }
 
-bool Fixed::operator>(Fixed const &ref) const {
+bool Fixed::operator>(const Fixed &ref) const {
 	return (this->num > ref.num);
 };
 
-bool Fixed::operator<(Fixed const &ref) const {
+bool Fixed::operator<(const Fixed &ref) const {
 	return (this->num < ref.num);
 };
 
-bool Fixed::operator>=(Fixed const &ref) const {
+bool Fixed::operator>=(const Fixed &ref) const {
 	return (this->num >= ref.num);
 };
 
-bool Fixed::operator<=(Fixed const &ref) const {
+bool Fixed::operator<=(const Fixed &ref) const {
 	return (this->num <= ref.num);
 };
 
-bool Fixed::operator==(Fixed const &ref) const {
+bool Fixed::operator==(const Fixed &ref) const {
 	return (this->num == ref.num);
 };
 
-bool Fixed::operator!=(Fixed const &ref) const {
+bool Fixed::operator!=(const Fixed &ref) const {
 	return (this->num != ref.num);
+};
+
+Fixed &Fixed::operator++(void) {
+	this->num += 1;
+	return (*this);
+}
+
+const Fixed Fixed::operator++(int) {
+	Fixed tmp(this->toFloat());
+	this->num += 1;
+	return (tmp);
+}
+
+Fixed &Fixed::operator--(void) {
+	this->num -= 1;
+	return (*this);
+};
+
+const Fixed Fixed::operator--(int) {
+	Fixed tmp(this->toFloat());
+	this->num -= 1;
+	return (tmp);
 };
 
 Fixed Fixed::operator+(const Fixed &ref) {
