@@ -8,7 +8,7 @@ private:
 	std::string _name;
 	int _hit_point;
 	int _energy_point;
-	static int _attack_damage;
+	int _attack_damage;
 
 public:
 	ClapTrap();

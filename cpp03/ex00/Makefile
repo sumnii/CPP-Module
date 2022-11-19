@@ -6,7 +6,7 @@ RM			=	rm -f
 
 HEADER		=	./
 SRC_DIR		=	./
-SRC_LIST	=	main.cpp Fixed.cpp
+SRC_LIST	=	main.cpp ClapTrap.cpp
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 OBJ			=	$(SRC:.cpp=.o)
 
