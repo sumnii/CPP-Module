@@ -15,7 +15,7 @@ ClapTrap::~ClapTrap() {
 }
 
 ClapTrap::ClapTrap(const ClapTrap &ref) {
-	std::cout << "Copy ClapTrap " << name << "!" << std::endl;
+	std::cout << "Copy ClapTrap " << ref.name << "!" << std::endl;
 	name = ref.name;
 	hit_point = ref.hit_point;
 	energy_point = ref.energy_point;
@@ -23,7 +23,7 @@ ClapTrap::ClapTrap(const ClapTrap &ref) {
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &ref) {
-	std::cout << "Copy Assignment ClapTrap " << this->name << "!" << std::endl;
+	std::cout << "Copy Assignment ClapTrap " << ref.name << "!" << std::endl;
 	this->name = ref.name;
 	this->hit_point = ref.hit_point;
 	this->energy_point = ref.energy_point;
