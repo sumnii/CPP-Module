@@ -35,3 +35,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &ref) {
 	this->attack_damage = ref.attack_damage;
 	return (*this);
 }
+
+void ScavTrap::guardGate() {
+	std::cout << "ScavTrap " << this->name << " is now in Gate keeper mode." << std::endl;
+}
