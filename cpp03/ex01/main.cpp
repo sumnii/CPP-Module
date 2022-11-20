@@ -3,9 +3,14 @@
 int main() {
 	ClapTrap tmp;
 	ClapTrap one = ClapTrap("ONE");
-	ClapTrap two = ClapTrap("TWO");
+	std::cout << std::endl;
+
 	ScavTrap tmp2;
-	ScavTrap three = ScavTrap("THREE");
+	ScavTrap two = ScavTrap("TWO");
+	ScavTrap three(two);
+	std::cout << std::endl;
+
+	three.attack("one");
 
 	std::cout << std::endl;
 }

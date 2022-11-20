@@ -18,3 +18,20 @@ ScavTrap::ScavTrap(std::string name) {
 ScavTrap::~ScavTrap() {
 	std::cout << "Bye ScavTrap " << name << "!" << std::endl;
 }
+
+ScavTrap::ScavTrap(const ScavTrap &ref) {
+	std::cout << "Copy ScavTrap " << ref.name << "!" << std::endl;
+	name = ref.name;
+	hit_point = ref.hit_point;
+	energy_point = ref.energy_point;
+	attack_damage = ref.attack_damage;
+}
+
+ScavTrap &ScavTrap::operator=(const ScavTrap &ref) {
+	std::cout << "Copy Assignment ScavTrap " << ref.name << "!" << std::endl;
+	this->name = ref.name;
+	this->hit_point = ref.hit_point;
+	this->energy_point = ref.energy_point;
+	this->attack_damage = ref.attack_damage;
+	return (*this);
+}
