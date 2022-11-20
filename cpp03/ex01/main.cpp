@@ -4,29 +4,29 @@ int main() {
 	ClapTrap tmp;
 	std::cout << std::endl;
 
-	ClapTrap one = ClapTrap("ONE");
+	ClapTrap clap = ClapTrap("CLAP");
 	std::cout << std::endl;
 
 	ScavTrap tmp2;
 	std::cout << std::endl;
 
-	ScavTrap two = ScavTrap("TWO");
+	ScavTrap scav = ScavTrap("SCAV");
 	std::cout << std::endl;
 
-	ScavTrap three(two);
+	ScavTrap scav_cp(scav);
 	std::cout << std::endl;
 	std::cout << std::endl;
 
-	three.attack("one");
-	one.takeDamage(20);
+	scav_cp.attack("CLAP");
+	clap.takeDamage(20);
 	std::cout << std::endl;
 
-	two.attack("three");
-	three.takeDamage(20);
+	scav.attack("SCAV_CP");
+	scav_cp.takeDamage(20);
 	std::cout << std::endl;
 
-	three.beRepaired(10);
-	two.guardGate();
+	scav_cp.beRepaired(10);
+	scav.guardGate();
 	std::cout << std::endl;
 	std::cout << std::endl;
 }

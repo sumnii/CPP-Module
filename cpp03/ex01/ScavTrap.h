@@ -12,6 +12,10 @@ public:
 	ScavTrap &operator=(const ScavTrap &ref);
 
 	void guardGate();
+
+	void attack(const std::string &target);
+	void takeDamage(unsigned int amount);
+	void beRepaired(unsigned int amount);
 };
 
 
