@@ -62,8 +62,8 @@ std::string PhoneBook::get_input_contact(int field) {
 }
 
 bool PhoneBook::is_valid_field(std::string content) {
-	for (char c : content) {
-		if (isspace(c) == 0)
+	for (size_t i = 0; i < content.size(); ++i) {
+		if (isspace(content[i]) == 0)
 			return (true);
 	}
 	return (false);
@@ -72,8 +72,8 @@ bool PhoneBook::is_valid_field(std::string content) {
 bool PhoneBook::is_valid_phone_number(std::string str) {
 	if (str.empty())
 		return (false);
-	for (char c : str) {
-		if (isdigit(c) == 0 && c != '-')
+	for (size_t i = 0; i < str.size(); ++i) {
+		if (isdigit(str[i]) == 0 && str[i] != '-')
 			return (false);
 	}
 	return (true);
@@ -116,8 +116,8 @@ void PhoneBook::search_contact() {
 bool PhoneBook::is_valid_index(std::string str) {
 	if (str.empty())
 		return (false);
-	for (char c : str) {
-		if (isdigit(c) == 0)
+	for (size_t i = 0; i < str.size(); ++i) {
+		if (isdigit(str[i]) == 0)
 			return (false);
 	}
 	return (true);
