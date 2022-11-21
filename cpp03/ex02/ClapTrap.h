@@ -18,8 +18,8 @@ public:
 	ClapTrap &operator=(const ClapTrap &ref);
 
 	virtual void attack(const std::string &target);
-	virtual void takeDamage(unsigned int amount);
-	virtual void beRepaired(unsigned int amount);
+	void takeDamage(unsigned int amount);
+	void beRepaired(unsigned int amount);
 };
 
 #endif //EX00_CLAPTRAP_H
