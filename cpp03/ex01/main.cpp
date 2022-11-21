@@ -17,15 +17,15 @@ int main() {
 	std::cout << std::endl;
 	std::cout << std::endl;
 
-	scav_cp.attack("CLAP");
+	clap.attack("SCAV");
+	scav.takeDamage(0);
+	std::cout << std::endl;
+
+	scav.attack("CLAP");
 	clap.takeDamage(20);
 	std::cout << std::endl;
 
-	scav.attack("SCAV_CP");
-	scav_cp.takeDamage(20);
-	std::cout << std::endl;
-
-	scav_cp.beRepaired(10);
+	scav.beRepaired(10);
 	scav.guardGate();
 	std::cout << std::endl;
 	std::cout << std::endl;

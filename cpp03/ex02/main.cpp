@@ -23,7 +23,7 @@ int main() {
 	scav.takeDamage(30);
 	std::cout << std::endl;
 
-	frag.beRepaired(10);
+	frag.beRepaired(20);
 	frag.highFivesGuys();
 	std::cout << std::endl;
 	std::cout << std::endl;
