@@ -2,9 +2,11 @@
 #define EX00_ANIMAL_H
 
 
+#include "iostream"
+
 class Animal {
 protected:
-	std::string type;
+	std::string _type;
 public:
 	Animal();
 	virtual ~Animal();
