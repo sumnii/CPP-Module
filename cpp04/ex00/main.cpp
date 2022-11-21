@@ -1,11 +1,13 @@
-#include "Animal.h"
+#include "Dog.h"
 
 int main() {
-	Animal ani1;
-	Animal ani2(ani1);
+	Animal ani;
+	Dog dog;
 
-	ani1.makeSound();
-	ani2.makeSound();
-	std::cout << ani1.getType() << std::endl;
-	std::cout << ani2.getType() << std::endl;
+	std::cout << std::endl;
+	std::cout << ani.getType() << std::endl;
+	ani.makeSound();
+	std::cout << dog.getType() << std::endl;
+	dog.makeSound();
+	std::cout << std::endl;
 }
