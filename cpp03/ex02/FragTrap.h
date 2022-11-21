@@ -10,6 +10,8 @@ public:
 	~FragTrap();
 	FragTrap(const FragTrap &ref);
 	FragTrap &operator=(const FragTrap &ref);
+
+	void highFivesGuys(void);
 };
 
 #endif //EX02_FRAGTRAP_H
