@@ -10,7 +10,7 @@ public:
 	WrongCat(const WrongCat &ref);
 	WrongCat &operator=(const WrongCat &ref);
 
-	void makeSound();
+	void makeSound() const;
 };
 
 

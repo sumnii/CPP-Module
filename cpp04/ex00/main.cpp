@@ -22,4 +22,10 @@ int main() {
 	std::cout << w_cat->getType() << std::endl;
 	w_cat->makeSound();
 	std::cout << std::endl;
+
+	delete(meta);
+	delete(dog);
+	delete(cat);
+	delete(w_meta);
+	delete(w_cat);
 }

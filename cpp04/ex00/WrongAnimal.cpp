@@ -22,6 +22,6 @@ const std::string WrongAnimal::getType() const {
 	return (_type);
 }
 
-void WrongAnimal::makeSound() {
+void WrongAnimal::makeSound() const {
 	std::cout << "WrongAnimal sounds 🔕 &#!" << std::endl;
 }

@@ -18,6 +18,6 @@ Cat &Cat::operator=(const Cat &ref) {
 	return (*this);
 }
 
-void Cat::makeSound() {
+void Cat::makeSound() const {
 	std::cout << "Cat sounds 🐱 야옹" << std::endl;
 }
