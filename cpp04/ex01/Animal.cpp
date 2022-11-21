@@ -25,3 +25,7 @@ const std::string Animal::getType() const {
 void Animal::makeSound() const {
 	std::cout << "Animal sounds 🔕 ..." << std::endl;
 }
+
+Brain Animal::getBrain() {
+	return (*brain);
+}

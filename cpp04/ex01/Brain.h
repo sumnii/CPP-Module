@@ -14,7 +14,7 @@ public:
 	Brain &operator=(const Brain &ref);
 
 	const std::string getIdeas(size_t i) const;
-	void setIdeas(const size_t i, const std::string idea);
+	void setIdeas(size_t i, std::string idea);
 };
 
 

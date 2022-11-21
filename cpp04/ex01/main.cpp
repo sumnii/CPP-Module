@@ -3,8 +3,8 @@
 #include "WrongCat.h"
 
 int main() {
-	const Animal *dog = new Dog();
-	const Animal *cat = new Cat();
+	Animal *dog = new Dog();
+	Animal *cat = new Cat();
 	Animal *animals[4];
 
 	std::cout << std::endl;
@@ -15,6 +15,10 @@ int main() {
 			animals[i] = new Cat();
 	}
 	std::cout << std::endl;
+	dog->getBrain().setIdeas(0, "dog's brain");
+	std::cout << dog->getBrain().getIdeas(0) << std::endl;
+	Animal *dog2(dog);
+	std::cout << dog2->getBrain().getIdeas(0) << std::endl;
 	std::cout << std::endl;
 	std::cout << std::endl;
 

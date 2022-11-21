@@ -23,6 +23,6 @@ const std::string Brain::getIdeas(size_t i) const {
 	return (ideas[i]);
 }
 
-void Brain::setIdeas(const size_t i, const std::string idea) {
+void Brain::setIdeas(size_t i, std::string idea) {
 	ideas[i] = idea;
 }
