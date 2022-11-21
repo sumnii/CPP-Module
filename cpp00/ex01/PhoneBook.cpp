@@ -5,44 +5,6 @@ PhoneBook::PhoneBook() {
 	std::cout << std::endl << "  ~ WELCOME TO SUMSONG'S PHONEBOOK ~  " << std::endl << std::endl;
 }
 
-bool PhoneBook::is_valid_field(std::string content) {
-	for (size_t i = 0; i < content.length(); ++i) {
-		if (isspace(content[i]) == 0)
-			return (true);
-	}
-	return (false);
-}
-
-std::string PhoneBook::get_input_contact(int field) {
-	std::string content;
-
-	while (true) {
-		switch (field)
-		{
-			case FIRST_NAME:
-				std::cout << std::endl << "이름을 입력하세요." << std::endl << "> ";
-				break;
-			case LAST_NAME:
-				std::cout << std::endl << "성을 입력하세요." << std::endl << "> ";
-				break;
-			case PHONE:
-				std::cout << std::endl << "전화번호를 입력하세요." << std::endl << "> ";
-				break;
-			case NICKNAME:
-				std::cout << std::endl << "닉네임을 입력하세요." << std::endl << "> ";
-				break;
-			case SECRET:
-				std::cout << std::endl << "비밀을 입력하세요." << std::endl << "> ";
-				break;
-		}
-		std::getline(std::cin, content);
-		if (is_valid_field(content))
-			break;
-		std::cout << std::endl << " !! 필수 입력입니다 !!" << std::endl;
-	}
-	return (content);
-}
-
 void PhoneBook::add_contact() {
 	std::string first_name;
 	std::string last_name;
@@ -66,6 +28,57 @@ void PhoneBook::add_contact() {
 	std::cout << " ~ 연락처가 추가되었습니다 ~" << std::endl << std::endl;
 }
 
+std::string PhoneBook::get_input_contact(int field) {
+	std::string content;
+
+	while (true) {
+		switch (field) {
+			case FIRST_NAME:
+				std::cout << std::endl << "이름을 입력하세요." << std::endl << "> ";
+				break;
+			case LAST_NAME:
+				std::cout << std::endl << "성을 입력하세요." << std::endl << "> ";
+				break;
+			case PHONE:
+				std::cout << std::endl << "전화번호를 입력하세요." << std::endl << "> ";
+				break;
+			case NICKNAME:
+				std::cout << std::endl << "닉네임을 입력하세요." << std::endl << "> ";
+				break;
+			case SECRET:
+				std::cout << std::endl << "비밀을 입력하세요." << std::endl << "> ";
+				break;
+		}
+		std::getline(std::cin, content);
+		if ((field == PHONE && is_valid_phone_number(content))
+			|| (field != PHONE && is_valid_field(content)))
+			break;
+		if (!is_valid_phone_number(content))
+			std::cout << std::endl << " !! 전화번호는 숫자, '-'만 입력할 수 있습니다 !!" << std::endl;
+		else
+			std::cout << std::endl << " !! 필수 입력입니다 !!" << std::endl;
+	}
+	return (content);
+}
+
+bool PhoneBook::is_valid_field(std::string content) {
+	for (char c : content) {
+		if (isspace(c) == 0)
+			return (true);
+	}
+	return (false);
+}
+
+bool PhoneBook::is_valid_phone_number(std::string str) {
+	if (str.empty())
+		return (false);
+	for (char c : str) {
+		if (isdigit(c) == 0 && c != '-')
+			return (false);
+	}
+	return (true);
+}
+
 void PhoneBook::search_contact() {
 	std::string idx;
 	std::string field;
@@ -75,7 +88,8 @@ void PhoneBook::search_contact() {
 		std::cout << " !! 저장된 연락처가 없습니다 !!" << std::endl << std::endl;
 		return;
 	}
-	std::cout << std::setw(12) << "FIRST NAME" << std::setw(11) << "LAST NAME" << std::setw(11) << "NICKNAME" << std::setw(11) << "PHONE" << std::endl;
+	std::cout << std::setw(12) << "FIRST NAME" << std::setw(11) << "LAST NAME" << std::setw(11) << "NICKNAME"
+			  << std::setw(11) << "PHONE" << std::endl;
 	int cnt = save_cnt > 8 ? 8 : save_cnt;
 	for (int i = 0; i < cnt; ++i) {
 		std::cout << i << "|";
@@ -92,7 +106,7 @@ void PhoneBook::search_contact() {
 	std::cout << std::endl << "인덱스를 입력하세요." << std::endl << "> ";
 	std::getline(std::cin, idx);
 	std::cout << std::endl;
-	if (is_valid_index(idx) == false || std::stoi(idx) >= save_cnt) {
+	if (!is_valid_index(idx) || std::stoi(idx) >= save_cnt) {
 		std::cout << " !! 유효하지 않은 인덱스입니다 !!" << std::endl << std::endl;
 		return;
 	}
@@ -100,10 +114,10 @@ void PhoneBook::search_contact() {
 }
 
 bool PhoneBook::is_valid_index(std::string str) {
-	if (str.size() == 0)
+	if (str.empty())
 		return (false);
-	for (size_t i = 0; i < str.length(); ++i) {
-		if (isdigit(str[i]) == 0)
+	for (char c : str) {
+		if (isdigit(c) == 0)
 			return (false);
 	}
 	return (true);
@@ -131,4 +145,4 @@ void PhoneBook::print_contact(int i) {
 		std::cout << contacts[i].getContact(column) << std::endl;
 	}
 	std::cout << std::endl;
-};
+}

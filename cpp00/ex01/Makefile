@@ -1,8 +1,8 @@
 NAME		=	phonebook
 
 CC			=	c++
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
-RM			=	rm -f
+CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors
+RM			=	rm -vf
 
 HEADER		=	./
 SRC_DIR		=	./
@@ -18,7 +18,9 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean all
+re:
+	make fclean
+	make all
 
 .cpp.o:
 	$(CC) $(CFLAGS) -I $(HEADER) -o $@ -c $<

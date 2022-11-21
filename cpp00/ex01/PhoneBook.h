@@ -22,13 +22,15 @@ private:
 	int save_cnt;
 
 public:
-	void add_contact();
-	std::string get_input_contact(int field);
-	bool is_valid_field(std::string content);
-	void search_contact();
-	bool is_valid_index(std::string str);
-	void print_contact(int i);
 	PhoneBook();
+
+	std::string get_input_contact(int field);
+	bool is_valid_phone_number(std::string str);
+	static bool is_valid_field(std::string content);
+	void add_contact();
+	void search_contact();
+	static bool is_valid_index(std::string str);
+	void print_contact(int i);
 };
 
 #endif //CPP_MODULE_PHONEBOOK_H
