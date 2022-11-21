@@ -19,5 +19,5 @@ Cat &Cat::operator=(const Cat &ref) {
 }
 
 void Cat::makeSound() {
-	std::cout << "Cat sounds 😺 야옹" << std::endl;
+	std::cout << "Cat sounds 🐱 야옹" << std::endl;
 }
