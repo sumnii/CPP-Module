@@ -1,11 +1,11 @@
 #include "Brain.h"
 
 Brain::Brain() {
-	std::cout << "~ Animal constructor called ~" << std::endl;
+	std::cout << "~ Brain constructor called ~" << std::endl;
 }
 
 Brain::~Brain() {
-	std::cout << "~ Animal destructor called ~" << std::endl;
+	std::cout << "~ Brain destructor called ~" << std::endl;
 }
 
 Brain::Brain(const Brain &ref) {
