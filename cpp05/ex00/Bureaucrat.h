@@ -19,12 +19,15 @@ public:
 	int getGrade() const;
 
 	class GradeTooHighException : public std::exception {
-		const char *what() const;
+	public:
+		const char *what() const throw();
 	};
 	class GradeTooLowException  : public std::exception {
-		const char *what() const;
+	public:
+		const char *what() const throw();
 	};
 };
 
+std::ostream &operator<<(std::ostream &out, Bureaucrat b);
 
 #endif //EX00_BUREAUCRAT_H
