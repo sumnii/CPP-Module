@@ -12,11 +12,17 @@ Cat::~Cat() {
 }
 
 Cat::Cat(const Cat &ref) {
+	std::cout << "~ Cat copy constructor called ~" << std::endl;
 	_type = ref._type;
+	brain = new Brain(*ref.brain);
+	*brain = *(ref.brain);
 }
 
 Cat &Cat::operator=(const Cat &ref) {
+	std::cout << "~ Cat copy assignment operator called ~" << std::endl;
 	this->_type = ref._type;
+	delete brain;
+	this->brain = new Brain(*ref.brain);
 	return (*this);
 }
 
