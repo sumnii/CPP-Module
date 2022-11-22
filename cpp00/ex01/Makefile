@@ -6,7 +6,7 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 17:10:15 by sumsong           #+#    #+#              #
-#    Updated: 2022/11/22 19:46:01 by sumsong          ###   ########.fr        #
+#    Updated: 2022/11/22 19:53:32 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,7 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re:
-	make fclean
+re: fclean
 	make all
 
 .cpp.o:

@@ -6,7 +6,7 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 17:11:47 by sumsong           #+#    #+#              #
-#    Updated: 2022/11/21 17:11:47 by sumsong          ###   ########seoul.kr   #
+#    Updated: 2022/11/22 19:54:31 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	brain
 
 CC			=	c++
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
-RM			=	rm -f
+RM			=	rm -vf
 
 HEADER		=	./
 SRC_DIR		=	./
@@ -30,7 +30,8 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean all
+re: fclean
+	make all
 
 .cpp.o:
 	$(CC) $(CFLAGS) -I $(HEADER) -o $@ -c $<
