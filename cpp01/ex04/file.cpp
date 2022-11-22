@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumsong   <sumsong@student.42seoul.k>      +#+  +:+       +#+        */
+/*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 08:35:30 by sumsong           #+#    #+#             */
-/*   Updated: 2022/11/21 16:53:42 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/11/22 15:58:51 by sumsong          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ e_bool check_arg(int argc, char **argv) {
 		std::cout << "  !! This program needs a filename, and two strings !!" << std::endl;
 		return KO;
 	} else if (((std::string) argv[1]).empty()
-			   || ((std::string) argv[2]).empty()
-			   || ((std::string) argv[3]).empty()) {
+			   || ((std::string) argv[2]).empty()) {
 		std::cout << "  !! Parameters are empty !!" << std::endl;
 		return KO;
 	}
