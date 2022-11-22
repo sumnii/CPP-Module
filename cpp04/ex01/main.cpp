@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 		std::cout << std::endl;
 		dog->getBrain().setIdeas(0, "original dog's brain");
 		std::cout << "original[0] : " << dog->getBrain().getIdeas(0) << std::endl;
-		Animal *deep_copy_dog = new Dog();
+		Dog *deep_copy_dog = new Dog();
 		std::cout << "copy dog[0] : " << deep_copy_dog->getBrain().getIdeas(0) << std::endl;
 		*deep_copy_dog = *dog;
 		std::cout << "copy dog[0] : " << deep_copy_dog->getBrain().getIdeas(0) << std::endl;
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 		std::cout << std::endl;
 		cat->getBrain().setIdeas(3, "original cat's brain");
 		std::cout << "original[3] : " << cat->getBrain().getIdeas(3) << std::endl;
-		Animal *deep_copy_cat = new Cat();
+		Cat *deep_copy_cat = new Cat();
 		*deep_copy_cat = *cat;
 		std::cout << "copy cat[3] : " << deep_copy_cat->getBrain().getIdeas(3) << std::endl;
 		deep_copy_cat->getBrain().setIdeas(3, "copy cat's brain");

@@ -12,16 +12,11 @@ Animal::~Animal() {
 Animal::Animal(const Animal &ref) {
 	std::cout << "~ Animal copy constructor called ~" << std::endl;
 	_type = ref._type;
-	brain = new Brain(*ref.brain);
 }
 
 Animal &Animal::operator=(const Animal &ref) {
 	std::cout << "~ Animal copy assignment operator called ~" << std::endl;
 	this->_type = ref._type;
-	if (this->brain != ref.brain) {
-		delete brain;
-		this->brain = new Brain(*ref.brain);
-	}
 	return (*this);
 }
 
@@ -31,8 +26,4 @@ const std::string &Animal::getType() const {
 
 void Animal::makeSound() const {
 	std::cout << "Animal sounds 🔕 ..." << std::endl;
-}
-
-Brain &Animal::getBrain() {
-	return *brain;
 }

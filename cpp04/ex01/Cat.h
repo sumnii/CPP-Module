@@ -5,6 +5,9 @@
 #include "Animal.h"
 
 class Cat : public Animal {
+private:
+	Brain *brain;
+
 public:
 	Cat();
 	~Cat();
@@ -12,6 +15,7 @@ public:
 	Cat &operator=(const Cat &ref);
 
 	void makeSound() const;
+	Brain &getBrain();
 };
 
 
