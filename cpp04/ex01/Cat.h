@@ -15,6 +15,7 @@ public:
 	Cat &operator=(const Cat &ref);
 
 	void makeSound() const;
+	Brain &getBrain();
 };
 
 

@@ -9,20 +9,22 @@ Brain::~Brain() {
 }
 
 Brain::Brain(const Brain &ref) {
+	std::cout << "~ Brain copy constructor called ~" << std::endl;
 	for (size_t i = 0; i < 100; ++i)
 		ideas[i] = ref.ideas[i];
 }
 
 Brain &Brain::operator=(const Brain &ref) {
+	std::cout << "~ Brain copy assignment operator called ~" << std::endl;
 	for (size_t i = 0; i < 100; ++i)
 		this->ideas[i] = ref.ideas[i];
-	return (*this);
+	return *this;
 }
 
 const std::string Brain::getIdeas(size_t i) const {
-	return (ideas[i]);
+	return ideas[i];
 }
 
-void Brain::setIdeas(const size_t i, const std::string idea) {
+void Brain::setIdeas(size_t i, std::string idea) {
 	ideas[i] = idea;
 }
