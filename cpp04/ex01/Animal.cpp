@@ -18,12 +18,14 @@ Animal::Animal(const Animal &ref) {
 Animal &Animal::operator=(const Animal &ref) {
 	std::cout << "~ Animal copy assignment operator called ~" << std::endl;
 	this->_type = ref._type;
-	delete brain;
-	brain = new Brain(*ref.brain);
+	if (this->brain != ref.brain) {
+		delete brain;
+		this->brain = new Brain(*ref.brain);
+	}
 	return (*this);
 }
 
-const std::string Animal::getType() const {
+const std::string &Animal::getType() const {
 	return (_type);
 }
 
