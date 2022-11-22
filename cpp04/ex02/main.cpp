@@ -1,7 +1,6 @@
 #include "Dog.h"
 #include "Cat.h"
 #include "WrongCat.h"
-#include "unistd.h"
 
 int main(int argc, char *argv[]) {
 	if (argc == 1) {
@@ -57,6 +56,11 @@ int main(int argc, char *argv[]) {
 		delete(cat);
 		delete(deep_copy_cat);
 	}
+//	if ((std::string) argv[1] == "error") {
+//		Animal animal;
+//
+//		std::cout << animal.getType() << std::endl;
+//	}
 	while (1) {
 		system("leaks animal");
 		break;
