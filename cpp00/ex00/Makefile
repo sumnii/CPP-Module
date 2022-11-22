@@ -6,7 +6,7 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 17:09:54 by sumsong           #+#    #+#              #
-#    Updated: 2022/11/21 17:09:57 by sumsong          ###   ########seoul.kr   #
+#    Updated: 2022/11/22 19:50:48 by sumsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,12 @@ NAME		=	megaphone
 
 CC			=	c++
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
-RM			=	rm -f
+RM			=	rm -vf
 
 HEADER		=	./
 SRC_DIR		=	./
-SRCS		=	megaphone.cpp
-SRC			=	$(addprefix $(SRC_DIR), $(SRCS))
+SRC_LIST	=	megaphone.cpp
+SRC			=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 OBJ			=	$(SRC:.cpp=.o)
 
 all: $(NAME)
