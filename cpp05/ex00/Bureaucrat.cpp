@@ -1,28 +1,33 @@
 #include "Bureaucrat.h"
 
-Bureaucrat::Bureaucrat() : name("Unknown"), grade(1) {}
+Bureaucrat::Bureaucrat() : name("Unknown"), grade(10) {}
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : name(name) {
-	this->grade = grade;
-	if (grade < 1)
+	if (1 <= grade && grade <= 150)
+		this->grade = grade;
+	else if (grade < 1)
 		throw GradeTooLowException();
-	else if (grade > 150)
+	else
 		throw GradeTooHighException();
 }
 
-Bureaucrat::~Bureaucrat() {}
+Bureaucrat::~Bureaucrat() {
+	std::cout << "destructor called" << std::endl;
+}
 
 Bureaucrat::Bureaucrat(const Bureaucrat &ref) : name(ref.name) {
-	grade = ref.grade;
-	if (grade < 1)
+	if (1 <= ref.grade && ref.grade <= 150)
+		grade = ref.grade;
+	else if (ref.grade < 1)
 		throw GradeTooLowException();
-	else if (grade > 150)
+	else if (ref.grade > 150)
 		throw GradeTooHighException();
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &ref) {
-	grade = ref.grade;
-	if (ref.grade < 1)
+	if (1 <= ref.grade && ref.grade <= 150)
+		grade = ref.grade;
+	else if (ref.grade < 1)
 		throw GradeTooLowException();
 	else if (ref.grade > 150)
 		throw GradeTooHighException();
@@ -38,15 +43,14 @@ int Bureaucrat::getGrade() const {
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
-	return ("Grade is too High!\n");
+	return ("Grade is too High!");
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
-	return ("Grade is too Low!\n");
+	return ("Grade is too Low!");
 }
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat b) {
-	std::cout << "!!";
 	out << b.getName() << ", bureaucrat grade " << b.getGrade() << "." << std::endl;
 	return (out);
 }

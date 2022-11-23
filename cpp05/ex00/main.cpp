@@ -1,12 +1,11 @@
 #include "Bureaucrat.h"
 
 int main () {
-	Bureaucrat *br;
+	Bureaucrat br;
 	try {
-		br = new Bureaucrat("MAN", 0);
+		br = Bureaucrat("MAN", 0);
 	} catch (std::exception &e) {
-		std::cout << e.what();
-		delete br;
+		std::cout << e.what() << std::endl;
 	}
-	std::cout << *br << std::endl;
+	std::cout << br << std::endl;
 }
