@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 08:35:30 by sumsong           #+#    #+#             */
-/*   Updated: 2022/11/22 19:46:03 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/11/23 19:03:08 by sumsong          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ std::string PhoneBook::get_input_contact(int field) {
 		if ((field == PHONE && is_valid_phone_number(content))
 			|| (field != PHONE && is_valid_field(content)))
 			break;
-		if (!is_valid_phone_number(content))
+		if (field == PHONE && !is_valid_phone_number(content))
 			std::cout << std::endl << " !! 전화번호는 숫자, '-'만 입력할 수 있습니다 !!" << std::endl;
 		else
 			std::cout << std::endl << " !! 필수 입력입니다 !!" << std::endl;
