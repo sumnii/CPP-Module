@@ -17,6 +17,8 @@ public:
 
 	const std::string &getName() const;
 	int getGrade() const;
+	void increaseGrade();
+	void DecreaseGrade();
 
 	class GradeTooHighException : public std::exception {
 	public:
@@ -28,6 +30,6 @@ public:
 	};
 };
 
-std::ostream &operator<<(std::ostream &out, Bureaucrat b);
+std::ostream &operator<<(std::ostream &out, Bureaucrat &b);
 
 #endif //EX00_BUREAUCRAT_H
