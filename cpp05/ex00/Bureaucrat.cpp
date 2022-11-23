@@ -3,30 +3,29 @@
 Bureaucrat::Bureaucrat() : name("Unknown"), grade(1) {}
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : name(name) {
-	if (grade < 1) {
+	this->grade = grade;
+	if (grade < 1)
 		throw GradeTooLowException();
-	}
 	else if (grade > 150)
 		throw GradeTooHighException();
-	this->grade = grade;
 }
 
 Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat::Bureaucrat(const Bureaucrat &ref) : name(ref.name) {
+	grade = ref.grade;
 	if (grade < 1)
 		throw GradeTooLowException();
 	else if (grade > 150)
 		throw GradeTooHighException();
-	grade = ref.grade;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &ref) {
+	grade = ref.grade;
 	if (ref.grade < 1)
 		throw GradeTooLowException();
 	else if (ref.grade > 150)
 		throw GradeTooHighException();
-	grade = ref.grade;
 	return (*this);
 }
 
