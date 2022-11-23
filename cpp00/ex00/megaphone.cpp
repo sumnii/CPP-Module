@@ -6,7 +6,7 @@
 /*   By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:32:47 by sumsong           #+#    #+#             */
-/*   Updated: 2022/11/22 19:45:56 by sumsong          ###   ########.fr       */
+/*   Updated: 2022/11/23 19:01:11 by sumsong          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
 		for (int i = 1; i < argc; i++) {
 			std::string str;
 			str = argv[i];
-			for (int j = 0; j < str[j]; j++)
+			for (size_t j = 0; j < str.length(); j++)
 				str[j] = toupper(str[j]);
 			std::cout << str;
 		}
