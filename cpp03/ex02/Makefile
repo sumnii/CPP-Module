@@ -6,26 +6,26 @@
 #    By: sumsong <sumsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 17:12:37 by sumsong           #+#    #+#              #
-#    Updated: 2022/11/22 19:59:07 by sumsong          ###   ########.fr        #
+#    Updated: 2022/11/23 19:22:02 by sumsong          ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	fragtrap
 
-CC			=	c++
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CXX			=	c++
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -vf
 
 HEADER		=	./
 SRC_DIR		=	./
 SRC_LIST	=	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
-SRC			=	$(addprefix $(SRC_DIR), $(SRC_LIST))
-OBJ			=	$(SRC:.cpp=.o)
+SRCS		=	$(addprefix $(SRC_DIR), $(SRC_LIST))
+OBJS		=	$(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
@@ -34,9 +34,9 @@ re: fclean
 	make all
 
 .cpp.o:
-	$(CC) $(CFLAGS) -I $(HEADER) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) -I $(HEADER) -o $@ -c $<
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -I $(HEADER) -o $@ $(OBJ)
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) -I $(HEADER) -o $@ $(OBJS)
 
 PHONY: all clean fclean re
