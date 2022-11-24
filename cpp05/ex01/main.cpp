@@ -13,7 +13,14 @@ int main() {
 
 	std::cout << std::endl;
 	Form f2("BUY LAPTOP", 1, 1);
-	std::cout << f2 << std::endl;
+	std::cout << f2 << std::endl << std::endl;
+
+	try {
+		f2.beSigned(sum);
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	f2.beSigned(top_sum);
 
 	std::cout << std::endl;
 }
