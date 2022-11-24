@@ -14,9 +14,10 @@
 
 int main(void) {
 	Zombie *horde;
+	int 	N = 5;
 
-	horde = zombieHorde(3, "Immotal");
-	for (int i = 0; i < 3; ++i)
+	horde = zombieHorde(N, "zommy");
+	for (int i = 0; i < N; ++i)
 		horde[i].Announce();
 	delete[] horde;
 }
