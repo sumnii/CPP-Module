@@ -12,23 +12,24 @@ private:
 
 public:
 	Form();
+	Form(std::string name, int access_to_sign, int access_to_execute);
 	Form(const Form &ref);
 	Form &operator=(const Form &ref);
 	~Form();
 
 	const std::string getName() const;
 	bool getIsSigned() const;
-	const int getAccessToSign() const;
-	const int getAccessToExecute() const;
+	int getAccessToSign() const;
+	int getAccessToExecute() const;
 
 	void beSigned(Bureaucrat &bur);
 
-	class GradeTooHighException : std::exception {
+	class GradeTooHighException : public std::exception {
 	public:
 		const char *what() const throw();
 	};
 
-	class GradeTooLowException : std::exception {
+	class GradeTooLowException : public std::exception {
 	public:
 		const char *what() const throw();
 	};

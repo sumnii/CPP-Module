@@ -6,6 +6,26 @@ Form::Form()
 	std::cout << "New Form <" << name << ">" << std::endl;
 }
 
+Form::Form(std::string name, int access_to_sign, int access_to_execute)
+		: name(name), is_signed(false),
+		access_to_sign(access_to_sign), access_to_execute(access_to_execute) {
+	std::cout << "New Form <" << name << ">";
+	if (access_to_sign < 1) {
+		std::cout << std::endl << "For sign ";
+		throw GradeTooHighException();
+	} else if (access_to_sign > 150) {
+		std::cout << std::endl << "For sign ";
+		throw GradeTooLowException();
+	} else if (access_to_execute < 1) {
+		std::cout << std::endl << "For execute ";
+		throw GradeTooHighException();
+	} else if (access_to_execute > 150) {
+		std::cout << std::endl << "For execute ";
+		throw GradeTooLowException();
+	} else
+		std::cout << " created." << std::endl;
+}
+
 Form::Form(const Form &ref)
 		: name(ref.name),
 		  is_signed(ref.is_signed),
@@ -15,7 +35,8 @@ Form::Form(const Form &ref)
 }
 
 Form &Form::operator=(const Form &ref) {
-	is_signed = ref.is_signed;
+	this->is_signed = ref.is_signed;
+	return (*this);
 }
 
 Form::~Form() {
@@ -31,11 +52,11 @@ bool Form::getIsSigned() const {
 	return is_signed;
 }
 
-const int Form::getAccessToSign() const {
+int Form::getAccessToSign() const {
 	return access_to_sign;
 }
 
-const int Form::getAccessToExecute() const {
+int Form::getAccessToExecute() const {
 	return access_to_execute;
 }
 
@@ -59,9 +80,9 @@ std::ostream &operator<<(std::ostream &out, Form &f) {
 	out << "< " << f.getName() << " >" << std::endl;
 	out << "| grade required to SIGN : " << f.getAccessToSign() << std::endl;
 	out << "| grade required to EXECUTE : " << f.getAccessToSign() << std::endl;
-	if (f.getIsSigned() == true)
-		out << "| this form is SIGNED." << std::endl;
+	if (f.getIsSigned())
+		out << "| this form is SIGNED.";
 	else
-		out << "| this form is UNSIGNED." << std::endl;
+		out << "| this form is UNSIGNED.";
 	return (out);
 }
