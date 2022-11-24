@@ -10,6 +10,16 @@ private:
 	const int 			access_to_sign;
 	const int 			access_to_execute;
 
+	class GradeTooHighException : public std::exception {
+	public:
+		const char *what() const throw();
+	};
+
+	class GradeTooLowException : public std::exception {
+	public:
+		const char *what() const throw();
+	};
+
 public:
 	Form();
 	Form(std::string name, int access_to_sign, int access_to_execute);
@@ -23,16 +33,6 @@ public:
 	int getAccessToExecute() const;
 
 	void beSigned(Bureaucrat &bur);
-
-	class GradeTooHighException : public std::exception {
-	public:
-		const char *what() const throw();
-	};
-
-	class GradeTooLowException : public std::exception {
-	public:
-		const char *what() const throw();
-	};
 };
 
 std::ostream &operator<<(std::ostream &out, Form &f);
