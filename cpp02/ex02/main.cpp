@@ -41,11 +41,11 @@ int main(void) {
 	std::cout << Fixed::max(a, b) << std::endl << std::endl;
 
 	std::cout << "===== my test =====" << std::endl;
-	std::cout << c << std::endl;
-	std::cout << --c << std::endl;
-	std::cout << c << std::endl;
-	std::cout << c-- << std::endl;
-	std::cout << c << std::endl << std::endl;
+	std::cout << "c   " << c << std::endl;
+	std::cout << "--c " << --c << std::endl;
+	std::cout << "c   " << c << std::endl;
+	std::cout << "c-- " << c-- << std::endl;
+	std::cout << "c   " << c << std::endl << std::endl;
 
 	std::cout << "[min] a(" << a << "),b(" << b << ")" << std::endl;
 	std::cout << Fixed::min(a, b) << std::endl;
