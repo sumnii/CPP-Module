@@ -11,6 +11,11 @@ private:
 	const int 			access_to_execute;
 
 public:
+	Form();
+	Form(const Form &ref);
+	Form &operator=(const Form &ref);
+	~Form();
+
 	const std::string getName() const;
 	bool getIsSigned() const;
 	const int getAccessToSign() const;
