@@ -21,5 +21,5 @@ void Zombie::setName(const std::string name){
 }
 
 Zombie::~Zombie() {
-	std::cout << this->name << " is gone.." << std::endl;
+	std::cout << " ~ " << this->name << " is gone.. ~" << std::endl;
 }
