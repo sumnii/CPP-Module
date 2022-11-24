@@ -25,5 +25,6 @@ int main() {
 	f2.beSigned(top_sum);
 
 	std::cout << std::endl;
+
 	atexit(leaks);
 }

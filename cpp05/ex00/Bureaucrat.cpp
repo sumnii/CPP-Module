@@ -8,8 +8,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : name(name) {
 	else if (grade > 150) {
 		std::cout << name << ", ";
 		throw GradeTooLowException();
-	}
-	else {
+	} else {
 		std::cout << name << ", ";
 		throw GradeTooHighException();
 	}
@@ -25,8 +24,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &ref) : name(ref.name) {
 	else if (ref.grade > 150) {
 		std::cout << name << ", ";
 		throw GradeTooLowException();
-	}
-	else {
+	} else {
 		std::cout << name << ", ";
 		throw GradeTooHighException();
 	}
@@ -38,8 +36,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &ref) {
 	else if (ref.grade > 150) {
 		std::cout << name << ", ";
 		throw GradeTooLowException();
-	}
-	else {
+	} else {
 		std::cout << name << ", ";
 		throw GradeTooHighException();
 	}

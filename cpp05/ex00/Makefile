@@ -13,7 +13,7 @@
 NAME		=	bureaucrat
 
 CXX			=	c++
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors -g3
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors
 RM			=	rm -vf
 
 HEADER		=	./

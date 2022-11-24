@@ -1,32 +1,39 @@
 #include "Bureaucrat.h"
 
-int main () {
-	Bureaucrat br;
-	try {
-		br = Bureaucrat("MAN", 0);
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-	std::cout << br << std::endl;
-	try {
-		br.increaseGrade();
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-	std::cout << br << std::endl;
-	br.DecreaseGrade();
-	std::cout << br << std::endl;
-	br.DecreaseGrade();
-	std::cout << br << std::endl << std::endl;
+void leaks() { system("leaks bureaucrat"); }
 
-	Bureaucrat sum("sumin", 150);
-	std::cout << sum << std::endl;
+int main () {
+	Bureaucrat man;
 	try {
-		sum.DecreaseGrade();
-		std::cout << sum << std::endl;
+		man = Bureaucrat("MAN", 0);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-	sum.increaseGrade();
-	std::cout << sum << std::endl;
+	std::cout << man << std::endl << std::endl;
+
+	Bureaucrat sum1("SUMIN", 1);
+	std::cout << sum1 << std::endl;
+	try {
+		sum1.increaseGrade();
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	std::cout << sum1 << std::endl;
+	sum1.DecreaseGrade();
+	std::cout << sum1 << std::endl;
+	sum1.DecreaseGrade();
+	std::cout << sum1 << std::endl << std::endl;
+
+	Bureaucrat sum2("sumin", 150);
+	std::cout << sum2 << std::endl;
+	try {
+		sum2.DecreaseGrade();
+		std::cout << sum2 << std::endl;
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	sum2.increaseGrade();
+	std::cout << sum2 << std::endl;
+
+	atexit(leaks);
 }

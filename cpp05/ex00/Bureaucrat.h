@@ -8,6 +8,15 @@ private:
 	const std::string name;
 	int grade;
 
+	class GradeTooHighException : public std::exception {
+	public:
+		const char *what() const throw();
+	};
+	class GradeTooLowException  : public std::exception {
+	public:
+		const char *what() const throw();
+	};
+
 public:
 	Bureaucrat();
 	Bureaucrat(const std::string &name, int grade);
@@ -19,15 +28,6 @@ public:
 	int getGrade() const;
 	void increaseGrade();
 	void DecreaseGrade();
-
-	class GradeTooHighException : public std::exception {
-	public:
-		const char *what() const throw();
-	};
-	class GradeTooLowException  : public std::exception {
-	public:
-		const char *what() const throw();
-	};
 };
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat &b);
