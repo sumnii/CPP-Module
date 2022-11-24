@@ -5,32 +5,44 @@ Bureaucrat::Bureaucrat() : name("Unknown"), grade(1) {}
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : name(name) {
 	if (1 <= grade && grade <= 150)
 		this->grade = grade;
-	else if (grade < 1)
+	else if (grade > 150) {
+		std::cout << name << ", ";
 		throw GradeTooLowException();
-	else
+	}
+	else {
+		std::cout << name << ", ";
 		throw GradeTooHighException();
+	}
 }
 
 Bureaucrat::~Bureaucrat() {
-	std::cout << "destructor called" << std::endl;
+	std::cout << " ~ destructor called ~" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &ref) : name(ref.name) {
 	if (1 <= ref.grade && ref.grade <= 150)
 		grade = ref.grade;
-	else if (ref.grade < 1)
+	else if (ref.grade > 150) {
+		std::cout << name << ", ";
 		throw GradeTooLowException();
-	else if (ref.grade > 150)
+	}
+	else {
+		std::cout << name << ", ";
 		throw GradeTooHighException();
+	}
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &ref) {
 	if (1 <= ref.grade && ref.grade <= 150)
 		grade = ref.grade;
-	else if (ref.grade < 1)
+	else if (ref.grade > 150) {
+		std::cout << name << ", ";
 		throw GradeTooLowException();
-	else if (ref.grade > 150)
+	}
+	else {
+		std::cout << name << ", ";
 		throw GradeTooHighException();
+	}
 	return (*this);
 }
 
@@ -43,28 +55,22 @@ int Bureaucrat::getGrade() const {
 }
 
 void Bureaucrat::increaseGrade() {
-	std::cout << name << "bureaucrat grade UP!" << std::endl;
+	std::cout << name << ", bureaucrat grade UP!" << std::endl;
 	--grade;
 	if (grade < 1) {
 		++grade;
-		throw GradeTooLowException();
-	}
-	else if (grade > 150) {
-		++grade;
+		std::cout << name << ", ";
 		throw GradeTooHighException();
 	}
 }
 
 void Bureaucrat::DecreaseGrade() {
-	std::cout << name << " bureaucrat grade DOWN!" << std::endl;
+	std::cout << name << ", bureaucrat grade DOWN!" << std::endl;
 	++grade;
-	if (grade < 1) {
+	if (grade > 150) {
 		--grade;
+		std::cout << name << ", ";
 		throw GradeTooLowException();
-	}
-	else if (grade > 150) {
-		--grade;
-		throw GradeTooHighException();
 	}
 }
 
