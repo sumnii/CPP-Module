@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	bureaucrat
+NAME		=	form
 
 CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors -g3
@@ -18,7 +18,7 @@ RM			=	rm -vf
 
 HEADER		=	./
 SRC_DIR		=	./
-SRC_LIST	=	main.cpp Bureaucrat.cpp
+SRC_LIST	=	main.cpp Bureaucrat.cpp Form.cpp
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 OBJS		=	$(SRCS:.cpp=.o)
 
