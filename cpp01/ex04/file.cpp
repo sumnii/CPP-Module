@@ -14,7 +14,7 @@
 
 e_bool check_arg(int argc, char **argv) {
 	if (argc != 4) {
-		std::cout << "  !! This program needs a filename, and two strings !!" << std::endl;
+		std::cout << "  !! This program needs a filename and two strings !!" << std::endl;
 		return KO;
 	} else if (((std::string) argv[1]).empty()
 			   || ((std::string) argv[2]).empty()) {
@@ -51,10 +51,14 @@ std::string sed_s1_to_s2(std::string line, std::string s1, std::string s2) {
 	size_t idx = line.find(s1);
 	std::string front = line.substr(0, idx);
 	std::string back = line.substr(idx + s1.size());
-	bool find = (idx != std::string::npos);
+	bool find = SUCCESS;
 
+	if (idx == std::string::npos)
+		find = FAIL;
 	if (find) {
-		find = ((idx = back.find(s1)) != std::string::npos);
+		idx = back.find(s1);
+		if (idx == std::string::npos)
+			find = FAIL;
 		while (find) {
 			front = front + s2 + back.substr(0, idx);
 			back = back.substr(idx + s1.size());
