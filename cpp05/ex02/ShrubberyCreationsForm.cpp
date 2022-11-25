@@ -22,16 +22,17 @@ void ShrubberyCreationsForm::execute(Bureaucrat const &executor) const {
 		std::cout << "<" << this->getName() << "> ";
 		throw IsNotSignedException();
 	} else if (this->getAccessToExecute() < executor.getGrade()) {
-		std::cout << executor.getName() << " ";
+		std::cout << executor.getName() << " couldn't execute <" << this->getName() << "> because ";
 		throw GradeTooLowException();
 	} else {
 		std::ofstream out(this->target + "_shrubbery", std::ios::trunc);
 		writeAsciiTrees(out);
+		std::cout << executor.getName() << " executed <" << this->getName() << ">" << std::endl;
 	}
 }
 
 const char *ShrubberyCreationsForm::IsNotSignedException::what() const throw() {
-	return ("is not signed!");
+	return ("is not signed!!");
 }
 
 void ShrubberyCreationsForm::writeAsciiTrees(std::ofstream &out) {
