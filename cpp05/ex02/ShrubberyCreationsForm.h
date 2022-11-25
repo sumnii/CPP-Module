@@ -1,0 +1,12 @@
+#ifndef EX02_SHRUBBERYCREATIONSFORM_H
+#define EX02_SHRUBBERYCREATIONSFORM_H
+
+
+
+class ShrubberyCreationsForm {
+
+};
+
+
+
+#endif //EX02_SHRUBBERYCREATIONSFORM_H
