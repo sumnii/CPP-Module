@@ -7,13 +7,7 @@
 class ShrubberyCreationsForm : public Form {
 private:
 	std::string target;
-
 	static void writeAsciiTrees(std::ofstream &out);
-
-	class IsNotSignedException : public std::exception {
-	public:
-		const char *what() const throw();
-	};
 
 public:
 	ShrubberyCreationsForm(std::string target);

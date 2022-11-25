@@ -10,7 +10,8 @@ int main() {
 	ShrubberyCreationsForm tree("Abies");
 	std::cout << tree << std::endl;
 	try {
-		tree.execute(sum);
+//		tree.execute(sum);
+		sum.executeForm(tree);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
@@ -25,11 +26,13 @@ int main() {
 	std::cout << tree << std::endl << std::endl;
 
 	try {
-		tree.execute(sum);
+//		tree.execute(sum);
+		sum.executeForm(tree);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-	tree.execute(top_sum);
+//	tree.execute(top_sum);
+	top_sum.executeForm(tree);
 	std::cout << std::endl;
 
 	atexit(leaks);

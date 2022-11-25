@@ -18,21 +18,9 @@ ShrubberyCreationsForm &ShrubberyCreationsForm::operator=(ShrubberyCreationsForm
 ShrubberyCreationsForm::~ShrubberyCreationsForm() {}
 
 void ShrubberyCreationsForm::execute(Bureaucrat const &executor) const {
-	if (this->getIsSigned() == false) {
-		std::cout << "<" << this->getName() << "> ";
-		throw IsNotSignedException();
-	} else if (this->getAccessToExecute() < executor.getGrade()) {
-		std::cout << executor.getName() << " couldn't execute <" << this->getName() << "> because ";
-		throw GradeTooLowException();
-	} else {
-		std::ofstream out(this->target + "_shrubbery", std::ios::trunc);
-		writeAsciiTrees(out);
-		std::cout << executor.getName() << " executed <" << this->getName() << ">" << std::endl;
-	}
-}
-
-const char *ShrubberyCreationsForm::IsNotSignedException::what() const throw() {
-	return ("is not signed!!");
+	std::ofstream out(this->target + "_shrubbery", std::ios::trunc);
+	writeAsciiTrees(out);
+	std::cout << executor.getName() << " executed <" << this->getName() << ">" << std::endl;
 }
 
 void ShrubberyCreationsForm::writeAsciiTrees(std::ofstream &out) {
@@ -47,5 +35,5 @@ void ShrubberyCreationsForm::writeAsciiTrees(std::ofstream &out) {
 		<< "             }}{" << std::endl
 		<< "             {{}" << std::endl
 		<< "       , -=-~{ .-^- _" << std::endl
-		<< "              `}" << std::endl;
+		<< "              `}";
 }

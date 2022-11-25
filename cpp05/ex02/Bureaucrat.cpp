@@ -1,4 +1,5 @@
 #include "Bureaucrat.h"
+#include "Form.h"
 
 Bureaucrat::Bureaucrat() : name("Unknown"), grade(1) {}
 
@@ -80,6 +81,17 @@ const char *Bureaucrat::GradeTooHighException::what() const throw() {
 
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
 	return ("Grade is too Low!");
+}
+
+void Bureaucrat::executeForm(Form const &form) {
+	if (form.getIsSigned() == false) {
+		std::cout << "<" << form.getName() << "> ";
+		throw Form::IsUnsignedException();
+	} else if (form.getAccessToExecute() < this->grade) {
+		std::cout << this->name << " couldn't execute <" << form.getName() << "> because ";
+		throw GradeTooLowException();
+	} else
+		form.execute(*this);
 }
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat &b) {
