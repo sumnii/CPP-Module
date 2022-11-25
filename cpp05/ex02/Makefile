@@ -6,7 +6,9 @@ RM			=	rm -vf
 
 HEADER		=	./
 SRC_DIR		=	./
-SRC_LIST	=	main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationsForm.cpp
+SRC_LIST	=	main.cpp Bureaucrat.cpp Form.cpp \
+				ShrubberyCreationsForm.cpp \
+				RobotomyRequestForm.cpp
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 OBJS		=	$(SRCS:.cpp=.o)
 
