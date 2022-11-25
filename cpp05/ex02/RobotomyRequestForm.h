@@ -6,7 +6,6 @@
 class RobotomyRequestForm : public Form {
 private:
 	std::string target;
-	static void writeAsciiTrees(std::ofstream &out);
 
 public:
 	RobotomyRequestForm(std::string target);
