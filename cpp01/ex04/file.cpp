@@ -15,19 +15,15 @@ e_bool check_arg(int argc, char **argv) {
 e_bool replace_file(const std::string &file_name, const std::string &s1, const std::string &s2) {
 	std::ifstream in(file_name);
 	std::ofstream out(file_name + ".replace", std::ios::trunc);
-	std::string line;
-	bool first = true;
+	std::string file_content;
 
 	if (in.is_open()) {
-		while (in.eof() == false) {
-			getline(in, line);
-			if (line.size() == 0) {
-				out << std::endl;
-				break;
-			}
-			std::string sed = sed_s1_to_s2(line, s1, s2);
-			write_outfile(first, out, sed);
+		getline(in, file_content, '\0');
+		if (file_content.size() == 0) {
+			return OK;
 		}
+		std::string sed = sed_s1_to_s2(file_content, s1, s2);
+		out << sed;
 	} else {
 		std::cout << "  !! Wrong filename !!" << std::endl;
 		return KO;
@@ -56,12 +52,4 @@ std::string sed_s1_to_s2(std::string line, std::string s1, std::string s2) {
 	} else {
 		return (line);
 	}
-}
-
-void write_outfile(bool &first, std::ofstream &out, std::string line) {
-	if (first) {
-		out << line;
-		first = false;
-	} else
-		out << std::endl << line;
 }
