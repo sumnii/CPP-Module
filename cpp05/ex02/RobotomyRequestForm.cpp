@@ -1,12 +1,12 @@
 #include "RobotomyRequestForm.h"
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
-		: Form("Shrubbery Creations Form", 72, 45) {
+		: Form("Robotomy Request Form", 72, 45) {
 	this->target = target;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm &ref)
-		: Form("Shrubbery Creations Form", 72, 45) {
+		: Form("Robotomy Request Form", 72, 45) {
 	this->target = ref.target;
 }
 

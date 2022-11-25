@@ -1,12 +1,12 @@
 #include "PresidentialPardonForm.h"
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
-		: Form("Shrubbery Creations Form", 25, 5) {
+		: Form("Presidential Pardon Form", 25, 5) {
 	this->target = target;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm &ref)
-		: Form("Shrubbery Creations Form", 25, 5) {
+		: Form("Presidential Pardon Form", 25, 5) {
 	this->target = ref.target;
 }
 
