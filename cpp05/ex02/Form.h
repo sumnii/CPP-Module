@@ -15,17 +15,12 @@ private:
 		const char *what() const throw();
 	};
 
-	class GradeTooLowException : public std::exception {
-	public:
-		const char *what() const throw();
-	};
-
 public:
 	Form();
 	Form(std::string name, int access_to_sign, int access_to_execute);
 	Form(const Form &ref);
 	Form &operator=(const Form &ref);
-	~Form();
+	virtual ~Form();
 
 	const std::string getName() const;
 	bool getIsSigned() const;
@@ -34,7 +29,12 @@ public:
 
 	void beSigned(Bureaucrat &bur);
 
-	virtual void execute(Bureaucrat const & executor) const = 0;
+	virtual void execute(Bureaucrat const &executor) const = 0;
+
+	class GradeTooLowException : public std::exception {
+	public:
+		const char *what() const throw();
+	};
 };
 
 std::ostream &operator<<(std::ostream &out, Form &f);
