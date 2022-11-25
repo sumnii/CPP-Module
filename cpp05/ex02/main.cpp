@@ -1,5 +1,7 @@
 #include "Form.h"
 #include "ShrubberyCreationsForm.h"
+#include "RobotomyRequestForm.h"
+#include "PresidentialPardonForm.h"
 
 void leaks() { system("leaks form"); }
 
@@ -10,7 +12,6 @@ int main() {
 	ShrubberyCreationsForm tree("Abies");
 	std::cout << tree << std::endl;
 	try {
-//		tree.execute(sum);
 		sum.executeForm(tree);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
@@ -26,13 +27,23 @@ int main() {
 	std::cout << tree << std::endl << std::endl;
 
 	try {
-//		tree.execute(sum);
 		sum.executeForm(tree);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-//	tree.execute(top_sum);
 	top_sum.executeForm(tree);
+	std::cout << std::endl << std::endl;
+
+	RobotomyRequestForm robo("genie");
+	robo.beSigned(top_sum);
+	std::cout << robo << std::endl;
+	top_sum.executeForm(robo);
+	std::cout << std::endl << std::endl;
+
+	PresidentialPardonForm pardon("Bad person");
+	pardon.beSigned(top_sum);
+	std::cout << pardon << std::endl;
+	top_sum.executeForm(pardon);
 	std::cout << std::endl;
 
 	atexit(leaks);

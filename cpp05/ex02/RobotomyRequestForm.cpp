@@ -18,5 +18,6 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm &ref) {
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
+	std::cout << executor.getName() << " executed <" << this->getName() << ">" << std::endl;
 	std::cout << "Drrrrrrrrrrrriiiiiiillllllllllll......" << std::endl;
 }

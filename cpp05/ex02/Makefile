@@ -8,7 +8,8 @@ HEADER		=	./
 SRC_DIR		=	./
 SRC_LIST	=	main.cpp Bureaucrat.cpp Form.cpp \
 				ShrubberyCreationsForm.cpp \
-				RobotomyRequestForm.cpp
+				RobotomyRequestForm.cpp \
+				PresidentialPardonForm.cpp
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 OBJS		=	$(SRCS:.cpp=.o)
 
