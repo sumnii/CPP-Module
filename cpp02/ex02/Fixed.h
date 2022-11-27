@@ -39,25 +39,10 @@ public:
 	Fixed operator*(const Fixed &ref);
 	Fixed operator/(const Fixed &ref);
 
-	static Fixed &min(Fixed &a, Fixed &b) {
-		if (a>b) return b;
-		return a;
-	};
-
-	const static Fixed &min(Fixed const &a, Fixed const &b) {
-		if (a>b) return b;
-		return a;
-	};
-
-	static Fixed &max(Fixed &a, Fixed &b) {
-		if (a<b) return b;
-		return a;
-	};
-
-	const static Fixed &max(Fixed const &a, Fixed const &b) {
-		if (a<b) return b;
-		return a;
-	};
+	static Fixed &min(Fixed &a, Fixed &b);
+	const static Fixed &min(Fixed const &a, Fixed const &b);
+	static Fixed &max(Fixed &a, Fixed &b);
+	const static Fixed &max(Fixed const &a, Fixed const &b);
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &f);

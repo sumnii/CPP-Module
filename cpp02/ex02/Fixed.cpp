@@ -47,11 +47,6 @@ int Fixed::toInt() const {
 	return (this->num >> this->bit);
 }
 
-std::ostream &operator<<(std::ostream &out, const Fixed &f) {
-	out << f.toFloat();
-	return out;
-}
-
 bool Fixed::operator>(const Fixed &ref) const {
 	return (this->num > ref.num);
 }
@@ -116,4 +111,29 @@ Fixed Fixed::operator*(const Fixed &ref) {
 Fixed Fixed::operator/(const Fixed &ref) {
 	Fixed result(this->toFloat() / ref.toFloat());
 	return result;
+}
+
+Fixed &Fixed::min(Fixed &a, Fixed &b) {
+	if (a > b) return b;
+	return a;
+}
+
+const Fixed &Fixed::min(Fixed const &a, Fixed const &b) {
+	if (a > b) return b;
+	return a;
+}
+
+Fixed &Fixed::max(Fixed &a, Fixed &b) {
+	if (a < b) return b;
+	return a;
+}
+
+const Fixed &Fixed::max(Fixed const &a, Fixed const &b) {
+	if (a < b) return b;
+	return a;
+}
+
+std::ostream &operator<<(std::ostream &out, const Fixed &f) {
+	out << f.toFloat();
+	return out;
 }
