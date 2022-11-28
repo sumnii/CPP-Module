@@ -14,6 +14,7 @@ public:
 	~RobotomyRequestForm();
 
 	void execute(Bureaucrat const &executor) const;
+	void robotomize() const;
 };
 
 

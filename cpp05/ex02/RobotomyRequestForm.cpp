@@ -20,4 +20,14 @@ RobotomyRequestForm::~RobotomyRequestForm() {}
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 	std::cout << executor.getName() << " executed <" << this->getName() << ">" << std::endl;
 	std::cout << "Drrrrrrrrrrrriiiiiiillllllllllll......" << std::endl;
+	this->robotomize();
+}
+
+void RobotomyRequestForm::robotomize() const {
+	int rand = time(NULL) % 2;
+
+	if (rand)
+		std::cout << target << " has been robotomized successfully!" << std::endl;
+	else
+		std::cout << target << " robotomy failed.." << std::endl;
 }
