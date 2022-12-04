@@ -7,9 +7,6 @@ int main() {
 	ScavTrap scav("SCAV");
 	std::cout << std::endl;
 
-	FragTrap tmp;
-	std::cout << std::endl;
-
 	FragTrap frag("FRAG");
 	std::cout << std::endl;
 	std::cout << std::endl;

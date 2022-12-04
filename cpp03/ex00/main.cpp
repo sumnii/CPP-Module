@@ -1,10 +1,9 @@
 #include "ClapTrap.h"
 
 int main() {
-	ClapTrap tmp;
 	ClapTrap one = ClapTrap("ONE");
 	ClapTrap two = ClapTrap("TWO");
-	ClapTrap three = ClapTrap(two);
+	ClapTrap three = ClapTrap("THREE");
 
 	std::cout << std::endl;
 	one.attack("TWO");
@@ -20,7 +19,7 @@ int main() {
 	std::cout << std::endl;
 
 	two.beRepaired(5);
-	two.attack("TWO-COPY");
+	two.attack("THREE");
 	three.takeDamage(10);
 	std::cout << std::endl;
 }

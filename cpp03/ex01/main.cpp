@@ -1,13 +1,7 @@
 #include "ScavTrap.h"
 
 int main() {
-	ClapTrap tmp;
-	std::cout << std::endl;
-
 	ClapTrap clap = ClapTrap("CLAP");
-	std::cout << std::endl;
-
-	ScavTrap tmp2;
 	std::cout << std::endl;
 
 	ScavTrap scav = ScavTrap("SCAV");
