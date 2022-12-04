@@ -1,6 +1,8 @@
 #include "Bureaucrat.h"
 
-void leaks() { system("leaks bureaucrat"); }
+void leaks() {
+	std::cout << std::endl << "-------------------[ leaks test ]-------------------" << std::endl;
+	system("leaks bureaucrat"); }
 
 int main () {
 	Bureaucrat man;

@@ -1,7 +1,9 @@
 #include "Form.h"
 
-void leaks() { system("leaks form"); }
-
+void leaks() {
+	std::cout << std::endl << "-------------------[ leaks test ]-------------------" << std::endl;
+	system("leaks form"); }
+	
 int main() {
 	Bureaucrat sum("👶SUMIN", 150);
 	Bureaucrat top_sum("👑SUMIN", 1);
