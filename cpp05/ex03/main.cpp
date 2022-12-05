@@ -26,14 +26,14 @@ int main() {
 	delete rrf;
 	std::cout << std::endl << std::endl;
 
-	rrf = someRandomIntern.makeForm("shrubbery creations", "Bender");
+	rrf = someRandomIntern.makeForm("shrubbery creations", "Tree");
 	rrf->beSigned(top_sum);
 	std::cout << *rrf << std::endl;
 	top_sum.executeForm(*rrf);
 	delete rrf;
 	std::cout << std::endl << std::endl;
 
-	rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
+	rrf = someRandomIntern.makeForm("presidential pardon", "Bad person");
 	rrf->beSigned(top_sum);
 	std::cout << *rrf << std::endl;
 	top_sum.executeForm(*rrf);

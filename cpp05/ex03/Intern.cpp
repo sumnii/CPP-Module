@@ -33,7 +33,7 @@ int Intern::findForm(std::string form_name) {
 	std::string form[3] = {"presidential pardon", "robotomy request", "shrubbery creations"};
 
 	for (int i = 0; i < 3; ++i) {
-		if (form_name == form[i])
+		if (strcasecmp(form_name.c_str(), form[i].c_str()) == 0)
 			return (i);
 	}
 	return (-1);

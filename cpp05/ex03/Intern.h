@@ -4,6 +4,7 @@
 #include "PresidentialPardonForm.h"
 #include "RobotomyRequestForm.h"
 #include "ShrubberyCreationsForm.h"
+#include "cstring"
 
 enum e_form {
 
