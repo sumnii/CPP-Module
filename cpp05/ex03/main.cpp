@@ -4,7 +4,9 @@
 #include "PresidentialPardonForm.h"
 #include "Intern.h"
 
-void leaks() { system("leaks intern"); }
+void leaks() {
+	std::cout << std::endl << "-------------------[ leaks test ]-------------------" << std::endl;
+	system("leaks form"); }
 
 int main() {
 	Bureaucrat top_sum("👑 SUMIN", 1);
