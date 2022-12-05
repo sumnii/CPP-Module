@@ -13,6 +13,7 @@ Form *Intern::makeForm(std::string form_name, std::string form_target) {
 
 	switch (findForm(form_name)) {
 		case -1:
+			std::cout << "<" << form_name << "> ";
 			throw InvalidFormException();
 		case 0:
 			new_form = new PresidentialPardonForm(form_target);

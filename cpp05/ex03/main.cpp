@@ -6,13 +6,19 @@
 
 void leaks() {
 	std::cout << std::endl << "-------------------[ leaks test ]-------------------" << std::endl;
-	system("leaks form"); }
+	system("leaks intern"); }
 
 int main() {
 	Bureaucrat top_sum("👑 SUMIN", 1);
 	Intern someRandomIntern;
 	Form* rrf;
 
+	try {
+		rrf = someRandomIntern.makeForm("any wrong form", "Sumin");
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl << std::endl;
+	}
+	
 	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 	std::cout << *rrf << std::endl;
 	rrf->beSigned(top_sum);
