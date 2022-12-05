@@ -26,16 +26,18 @@ int main() {
 	delete rrf;
 	std::cout << std::endl << std::endl;
 
-	ShrubberyCreationsForm tree("Abies");
-	tree.beSigned(top_sum);
-	std::cout << tree << std::endl;
-	top_sum.executeForm(tree);
+	rrf = someRandomIntern.makeForm("shrubbery creations", "Bender");
+	rrf->beSigned(top_sum);
+	std::cout << *rrf << std::endl;
+	top_sum.executeForm(*rrf);
+	delete rrf;
 	std::cout << std::endl << std::endl;
 
-	PresidentialPardonForm pardon("Bad person");
-	pardon.beSigned(top_sum);
-	std::cout << pardon << std::endl;
-	top_sum.executeForm(pardon);
+	rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
+	rrf->beSigned(top_sum);
+	std::cout << *rrf << std::endl;
+	top_sum.executeForm(*rrf);
+	delete rrf;
 	std::cout << std::endl;
 
 	atexit(leaks);
