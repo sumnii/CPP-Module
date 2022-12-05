@@ -2,6 +2,10 @@
 #include "Cat.h"
 #include "WrongCat.h"
 
+void leaks() {
+	std::cout << std::endl << "-------------------[ leaks test ]-------------------" << std::endl;
+	system("leaks animal"); }
+
 int main() {
 	const Animal *meta = new Animal();
 	const Animal *dog = new Dog();
@@ -28,4 +32,6 @@ int main() {
 	delete(cat);
 	delete(w_meta);
 	delete(w_cat);
+
+	atexit(leaks);
 }

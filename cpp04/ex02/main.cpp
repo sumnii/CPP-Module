@@ -2,6 +2,10 @@
 #include "Cat.h"
 #include "WrongCat.h"
 
+void leaks() {
+	std::cout << std::endl << "-------------------[ leaks test ]-------------------" << std::endl;
+	system("leaks animal"); }
+
 int main(int argc, char *argv[]) {
 	if (argc == 1) {
 		std::cout << "TEST > ./animal [1 | 2 | 3]" << std::endl;
@@ -56,14 +60,6 @@ int main(int argc, char *argv[]) {
 		delete(cat);
 		delete(deep_copy_cat);
 	}
-//	if ((std::string) argv[1] == "error") {
-//		Animal animal;
-//
-//		std::cout << animal.getType() << std::endl;
-//	}
-	while (1) {
-		system("leaks animal");
-		break;
-	}
-	return 0;
+	
+	atexit(leaks);
 }

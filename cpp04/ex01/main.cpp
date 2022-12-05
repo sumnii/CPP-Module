@@ -3,6 +3,10 @@
 #include "WrongCat.h"
 #include "unistd.h"
 
+void leaks() {
+	std::cout << std::endl << "-------------------[ leaks test ]-------------------" << std::endl;
+	system("leaks animal"); }
+
 int main(int argc, char *argv[]) {
 	if (argc == 1) {
 		std::cout << "TEST > ./animal [1 | 2 | 3]" << std::endl;
@@ -57,9 +61,6 @@ int main(int argc, char *argv[]) {
 		delete(cat);
 		delete(deep_copy_cat);
 	}
-	while (1) {
-		system("leaks animal");
-		break;
-	}
-	return 0;
+	
+	atexit(leaks);
 }
