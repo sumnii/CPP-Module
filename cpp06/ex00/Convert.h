@@ -24,15 +24,15 @@ private:
 	float f;
 	double d;
 
-	static int isChar(char argv[]);
+	static int isCharOrFloat(const std::string& arg);
 
 public:
 	Convert();
 	Convert(Convert &ref);
-	Convert &operator=(Convert &ref);
+	Convert &operator=(const Convert &ref);
 	~Convert();
 
-	void detectTheType(char argv[]);
+	void detectTheType(std::string arg);
 //	void printChar();
 //	void printInt();
 //	void printFloat();
