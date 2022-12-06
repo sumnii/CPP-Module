@@ -3,6 +3,7 @@
 
 #include "iostream"
 #include "sstream"
+#include <string>
 
 enum e_type {
 	CHAR,
@@ -24,7 +25,8 @@ private:
 	float f;
 	double d;
 
-	static int isCharOrFloat(const std::string& arg);
+	int isCharOrFloat(const std::string &arg);
+	int isHaveDot(std::string &arg);
 
 public:
 	Convert();
