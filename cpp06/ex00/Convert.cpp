@@ -34,16 +34,15 @@ int Convert::isHaveDot(std::string &arg) {
 	i = arg.find(".");
 	if (i == std::string::npos
 		|| arg.length() == 1) {
-		type = CHAR;
-		c = arg[0];
 		return (NO);
 	} else {
-		type = FLOAT;
-		arg.resize(arg.length() - 1);
-		float f = 0.0;
-		std::stringstream ssFloat(arg);
-		ssFloat >> f;
-		this->f = f;
+		i = arg.find("f");
+		if (i != std::string::npos)
+			arg.resize(arg.length() - 1);
+		double d = 0.0;
+		std::stringstream ssDouble(arg);
+		ssDouble >> d;
+		this->d = d;
 		return (YES);
 	}
 }
@@ -53,24 +52,37 @@ void Convert::detectTheType(std::string arg) {
 		case YES:
 			std::cout << " < " << arg << " >" << std::endl;
 			if (isHaveDot(arg) == NO) {
+				type = CHAR;
+				this->c = arg[0];
 				std::cout << "type is " << type << std::endl;
 				std::cout << "char : " << c << std::endl;
 				std::cout << "float : " << (float)c << "f" << std::endl;
+				std::cout << "int : " << (int)c << std::endl;
+				std::cout << "double : " << (double)c << std::endl;
 			} else {
+				type = FLOAT;
 				std::cout << "type is " << type << std::endl;
 				std::cout << "char : " << (char)f << std::endl;
-				std::cout << "float : " << f << "f" << std::endl;
+				std::cout << "float : " << (float)f << "f" << std::endl;
+				std::cout << "int : " << (int)f << std::endl;
+				std::cout << "double : " << f << std::endl;
 			}
 			break;
 		case NO:
-			std::cout << "type is INT or DOUBLE : " << arg << std::endl;
+			if (isHaveDot(arg) == NO) {
+				type = INT;
+				std::cout << "type is " << type << std::endl;
+				std::cout << "char : " << (char)d << std::endl;
+				std::cout << "float : " << (float)d << "f" << std::endl;
+				std::cout << "int : " << (int)d << std::endl;
+				std::cout << "double : " << d << std::endl;
+			} else {
+				type = DOUBLE;
+				std::cout << "type is " << type << std::endl;
+				std::cout << "char : " << (char)d << std::endl;
+				std::cout << "float : " << (float)d << "f" << std::endl;
+				std::cout << "int : " << (int)d << std::endl;
+				std::cout << "double : " << d << std::endl;
+			}
 	}
-//	if (isCharOrFloat(arg) == YES) {
-//		type = CHAR;
-//		c = arg;
-//		std::cout << "type is CHAR or FLOAT : " << arg << std::endl;
-//	}
-//	else {
-//		std::cout << "type is INT or DOUBLE : " << arg << std::endl;
-//	}
 }
