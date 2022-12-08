@@ -1,12 +1,12 @@
 NAME		=	animal
 
 CXX			=	c++
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -vf
 
 HEADER		=	./
 SRC_DIR		=	./
-SRC_LIST	=	main.cpp Animal.cpp Dog.cpp Cat.cpp \
+SRC_LIST	=	main.cpp A_Animal.cpp Dog.cpp Cat.cpp \
 				WrongAnimal.cpp WrongCat.cpp \
 				Brain.cpp
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_LIST))
