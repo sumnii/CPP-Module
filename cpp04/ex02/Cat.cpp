@@ -29,7 +29,7 @@ Cat &Cat::operator=(const Cat &ref) {
 }
 
 void Cat::makeSound() const {
-	std::cout << "Cat sounds 🐱 야옹" << std::endl;
+	std::cout << "🐱 야옹" << std::endl;
 }
 
 Brain &Cat::getBrain() {

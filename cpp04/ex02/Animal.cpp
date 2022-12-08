@@ -23,3 +23,7 @@ Animal &Animal::operator=(const Animal &ref) {
 const std::string &Animal::getType() const {
 	return (_type);
 }
+
+void Animal::makeSound() const {
+	std::cout << "🔕 ..." << std::endl;
+}
