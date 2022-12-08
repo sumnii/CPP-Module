@@ -2,9 +2,9 @@
 #define EX00_DOG_H
 
 
-#include "Animal.h"
+#include "A_Animal.h"
 
-class Dog : public Animal {
+class Dog : public A_Animal {
 private:
 	Brain *brain;
 

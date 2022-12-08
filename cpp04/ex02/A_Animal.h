@@ -5,15 +5,15 @@
 #include "iostream"
 #include "Brain.h"
 
-class Animal {
+class A_Animal {
 protected:
 	std::string _type;
 
 public:
-	Animal();
-	virtual ~Animal();
-	Animal(const Animal &ref);
-	Animal &operator=(const Animal &ref);
+	A_Animal();
+	virtual ~A_Animal();
+	A_Animal(const A_Animal &ref);
+	A_Animal &operator=(const A_Animal &ref);
 
 	const std::string &getType() const;
 	virtual void makeSound() const = 0;

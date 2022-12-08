@@ -2,9 +2,9 @@
 #define EX00_CAT_H
 
 
-#include "Animal.h"
+#include "A_Animal.h"
 
-class Cat : public Animal {
+class Cat : public A_Animal {
 private:
 	Brain *brain;
 
