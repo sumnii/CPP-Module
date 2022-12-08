@@ -20,10 +20,8 @@ Dog::Dog(const Dog &ref) {
 Dog &Dog::operator=(const Dog &ref) {
 	std::cout << "~ Dog copy assignment operator called ~" << std::endl;
 	this->_type = ref._type;
-	if (this->brain != ref.brain) {
-		delete brain;
-		this->brain = new Brain(*ref.brain);
-	}
+	if (this->brain != ref.brain)
+		*this->brain = *ref.brain;
 	return (*this);
 }
 
