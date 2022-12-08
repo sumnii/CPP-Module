@@ -19,5 +19,5 @@ WrongCat &WrongCat::operator=(const WrongCat &ref) {
 }
 
 void WrongCat::makeSound() const {
-	std::cout << "WrongCat sounds 😾 하악" << std::endl;
+	std::cout << "😾 하악" << std::endl;
 }
