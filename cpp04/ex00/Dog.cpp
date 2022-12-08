@@ -19,5 +19,5 @@ Dog &Dog::operator=(const Dog &ref) {
 }
 
 void Dog::makeSound() const {
-	std::cout << "Dog sounds 🐶 월월" << std::endl;
+	std::cout << "🐶 월월" << std::endl;
 }
