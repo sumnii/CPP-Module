@@ -27,6 +27,10 @@ private:
 
 	int isCharOrFloat(const std::string &arg);
 	int isHaveDot(std::string &arg);
+	void stringToChar(std::string &arg);
+	void stringToInt(std::string &arg);
+	void stringToFloat(std::string &arg);
+	void stringToDouble(std::string &arg);
 
 public:
 	Convert();
@@ -35,10 +39,7 @@ public:
 	~Convert();
 
 	void detectTheType(std::string arg);
-//	void printChar();
-//	void printInt();
-//	void printFloat();
-//	void printDouble();
+	void printConvertResult();
 };
 
 

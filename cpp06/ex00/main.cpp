@@ -12,6 +12,7 @@ int main (int argc, char *argv[]) {
 	Convert convert;
 
 	convert.detectTheType(argv[1]);
+	convert.printConvertResult();
 
 //	atexit(leaks);
 }

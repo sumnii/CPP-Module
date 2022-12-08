@@ -1,6 +1,6 @@
 #include "Convert.h"
 
-Convert::Convert() : type(-1), c(0), i(0), f(0), d(0) {}
+Convert::Convert() : type(-1), c(0), i(0), f(0.0), d(0.0) {}
 
 Convert::Convert(Convert &ref)
 		: type(ref.type), c(ref.c), i(ref.i), f(ref.f), d(ref.d) {}
@@ -47,42 +47,78 @@ int Convert::isHaveDot(std::string &arg) {
 	}
 }
 
+void Convert::stringToChar(std::string &arg) {
+	c = arg[0];
+	i = static_cast<int>(c);
+	f = static_cast<float>(c);
+	d = static_cast<double>(c);
+}
+
+void Convert::stringToInt(std::string &arg) {
+	int tmp_i = 0;
+
+	std::stringstream ssInt(arg);
+	ssInt >> tmp_i;
+
+	c = static_cast<char>(tmp_i);
+	i = tmp_i;
+	f = static_cast<float>(tmp_i);
+	d = static_cast<double>(tmp_i);
+}
+
+void Convert::stringToFloat(std::string &arg) {
+	float tmp_f = 0.0;
+
+	arg.resize(arg.length());
+	std::cout << arg << std::endl;
+	std::stringstream ssFloat(arg);
+	ssFloat >> tmp_f;
+
+	c = static_cast<char>(tmp_f);
+	i = static_cast<int>(tmp_f);
+	f = tmp_f;
+	d = static_cast<double>(tmp_f);
+}
+
+void Convert::stringToDouble(std::string &arg) {
+	double tmp_d = 0.0;
+
+	std::stringstream ssDouble(arg);
+	ssDouble >> tmp_d;
+
+	c = static_cast<char>(tmp_d);
+	i = static_cast<int>(tmp_d);
+	f = static_cast<float>(tmp_d);
+	d = tmp_d;
+}
+
 void Convert::detectTheType(std::string arg) {
 	switch (isCharOrFloat(arg)) {
 		case YES:
 			std::cout << " < " << arg << " >" << std::endl;
 			if (isHaveDot(arg) == NO) {
 				type = CHAR;
-				this->c = arg[0];
-				std::cout << "type is " << type << std::endl;
-				std::cout << "char : " << c << std::endl;
-				std::cout << "float : " << (float)c << "f" << std::endl;
-				std::cout << "int : " << (int)c << std::endl;
-				std::cout << "double : " << (double)c << std::endl;
+				stringToChar(arg);
 			} else {
 				type = FLOAT;
-				std::cout << "type is " << type << std::endl;
-				std::cout << "char : " << (char)f << std::endl;
-				std::cout << "float : " << (float)f << "f" << std::endl;
-				std::cout << "int : " << (int)f << std::endl;
-				std::cout << "double : " << f << std::endl;
+				stringToFloat(arg);
 			}
 			break;
 		case NO:
 			if (isHaveDot(arg) == NO) {
 				type = INT;
-				std::cout << "type is " << type << std::endl;
-				std::cout << "char : " << (char)d << std::endl;
-				std::cout << "float : " << (float)d << "f" << std::endl;
-				std::cout << "int : " << (int)d << std::endl;
-				std::cout << "double : " << d << std::endl;
+				stringToInt(arg);
 			} else {
 				type = DOUBLE;
-				std::cout << "type is " << type << std::endl;
-				std::cout << "char : " << (char)d << std::endl;
-				std::cout << "float : " << (float)d << "f" << std::endl;
-				std::cout << "int : " << (int)d << std::endl;
-				std::cout << "double : " << d << std::endl;
+				stringToDouble(arg);
 			}
 	}
+}
+
+void Convert::printConvertResult() {
+	std::cout << "type is " << type << std::endl;
+	std::cout << "char : " << c << std::endl;
+	std::cout << "float : " << f << "f" << std::endl;
+	std::cout << "int : " << i << std::endl;
+	std::cout << "double : " << d << std::endl;
 }
