@@ -74,6 +74,8 @@ void Convert::stringToFloat(std::string &arg) {
 	std::stringstream ssFloat(arg);
 	ssFloat >> tmp_f;
 
+//	ssFloat << tmp_f;
+//	std::cout << ssFloat.str().length() << std::endl;
 	c = static_cast<char>(tmp_f);
 	i = static_cast<int>(tmp_f);
 	f = tmp_f;
@@ -86,6 +88,8 @@ void Convert::stringToDouble(std::string &arg) {
 	std::stringstream ssDouble(arg);
 	ssDouble >> tmp_d;
 
+//	ssDouble << tmp_d;
+//	std::cout << ssDouble.str().length() << std::endl;
 	c = static_cast<char>(tmp_d);
 	i = static_cast<int>(tmp_d);
 	f = static_cast<float>(tmp_d);
@@ -95,7 +99,6 @@ void Convert::stringToDouble(std::string &arg) {
 void Convert::detectTheType(std::string arg) {
 	switch (isCharOrFloat(arg)) {
 		case YES:
-			std::cout << " < " << arg << " >" << std::endl;
 			if (isHaveDot(arg) == NO) {
 				type = CHAR;
 				stringToChar(arg);
@@ -116,9 +119,13 @@ void Convert::detectTheType(std::string arg) {
 }
 
 void Convert::printConvertResult() {
-	std::cout << "type is " << type << std::endl;
-	std::cout << "char : " << c << std::endl;
-	std::cout << "float : " << f << "f" << std::endl;
+//	std::cout << "type is " << type << std::endl;
+	std::cout << "char : '" << c << "'" << std::endl;
 	std::cout << "int : " << i << std::endl;
-	std::cout << "double : " << d << std::endl;
+	std::cout << "float : " << f;
+	if (type == CHAR || type == INT) std::cout << ".0f" << std::endl;
+	else std::cout << "f" << std::endl;
+	std::cout << "double : " << d;
+	if (type == CHAR || type == INT) std::cout << ".0";
+	std::cout << std::endl;
 }
