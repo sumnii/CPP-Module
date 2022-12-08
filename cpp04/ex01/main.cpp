@@ -1,7 +1,6 @@
 #include "Dog.h"
 #include "Cat.h"
 #include "WrongCat.h"
-#include "unistd.h"
 
 void leaks() {
 	std::cout << std::endl << "-------------------[ leaks test ]-------------------" << std::endl;
