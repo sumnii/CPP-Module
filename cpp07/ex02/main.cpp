@@ -3,6 +3,10 @@
 
 #define MAX_VAL 750
 
+void leaks() {
+	std::cout << std::endl << "-------------------[ leaks test ]-------------------" << std::endl;
+	system("leaks template"); }
+
 int main(int, char **) {
 	Array<int> numbers(MAX_VAL);
 	int *mirror = new int[MAX_VAL];
@@ -56,5 +60,7 @@ int main(int, char **) {
 		numbers[i] = rand();
 	}
 	delete[] mirror;
+
+//	atexit(leaks);
 	return 0;
 }
