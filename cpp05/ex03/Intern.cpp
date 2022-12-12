@@ -4,6 +4,16 @@ Intern::Intern() {
 	std::cout << "new Intern !" << std::endl;
 }
 
+Intern::Intern(const Intern &ref) {
+	*this = ref;
+}
+
+Intern &Intern::operator=(const Intern &ref) {
+	if (this == &ref)
+		*this = ref;
+	return (*this);
+}
+
 Intern::~Intern() {
 	std::cout << "bye Intern !" << std::endl;
 }
