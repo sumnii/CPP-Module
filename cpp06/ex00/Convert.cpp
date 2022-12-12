@@ -17,7 +17,16 @@ Convert &Convert::operator=(const Convert &ref) {
 
 Convert::~Convert() {}
 
-int Convert::isCharOrFloat(const std::string &arg) {
+e_bool Convert::isSpecialValue(const std::string &arg) {
+	if (arg == "nan" || arg == "+inf" || arg == "-inf"
+		|| arg == "nanf" || arg == "+inff" || arg == "-inff") {
+		type = SPECIAL;
+		return (YES);
+	}
+	return (NO);
+}
+
+e_bool Convert::isCharOrFloat(const std::string &arg) {
 	double d = 0.0;
 
 	std::stringstream ssDouble(arg);
@@ -28,7 +37,7 @@ int Convert::isCharOrFloat(const std::string &arg) {
 	return (NO);
 }
 
-int Convert::isHaveDot(std::string &arg) {
+e_bool Convert::isHaveDot(std::string &arg) {
 	std::string::size_type i;
 
 	i = arg.find(".");
@@ -103,6 +112,8 @@ void Convert::stringToDouble(std::string &arg) {
 }
 
 void Convert::detectTheType(std::string arg) {
+	if (isSpecialValue(arg) == YES)
+		return ;
 	switch (isCharOrFloat(arg)) {
 		case YES:
 			if (isHaveDot(arg) == NO)
