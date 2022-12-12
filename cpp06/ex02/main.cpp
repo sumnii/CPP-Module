@@ -4,23 +4,25 @@
 #include "time.h"
 
 Base *generate(void) {
-	A *a = NULL;
-	B *b = NULL;
-	C *c = NULL;
 	clock_t time = clock() % 3;
 
 	if (time == 0)
-		return a;
+		return (new A);
 	else if (time == 1)
-		return b;
+		return (new B);
 	else
-		return c;
+		return (new C);
 }
 
-//void identify(Base* p) {
-//
-//}
-//
+void identify(Base* p) {
+	if (dynamic_cast<A*>(p))
+		std::cout << "A" << std::endl;
+	else if (dynamic_cast<B*>(p))
+		std::cout << "B" << std::endl;
+	else if (dynamic_cast<C*>(p))
+		std::cout << "C" << std::endl;
+}
+
 //void identify(Base& p) {
 //
 //}
@@ -28,4 +30,7 @@ Base *generate(void) {
 
 int main() {
 	Base *rand = generate();
+
+	identify(rand);
+	delete rand;
 }
