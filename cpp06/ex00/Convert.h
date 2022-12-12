@@ -3,8 +3,10 @@
 
 #include "iostream"
 #include "sstream"
+#include <string>
 
 enum e_type {
+	NONE,
 	CHAR,
 	INT,
 	FLOAT,
@@ -18,13 +20,19 @@ enum e_bool {
 
 class Convert {
 private:
-	int type;
+	e_type type;
 	char c;
 	int i;
 	float f;
 	double d;
+	e_bool is_point_zero;
 
-	static int isCharOrFloat(const std::string& arg);
+	int isCharOrFloat(const std::string &arg);
+	int isHaveDot(std::string &arg);
+	void stringToChar(std::string &arg);
+	void stringToInt(std::string &arg);
+	void stringToFloat(std::string &arg);
+	void stringToDouble(std::string &arg);
 
 public:
 	Convert();
@@ -33,10 +41,7 @@ public:
 	~Convert();
 
 	void detectTheType(std::string arg);
-//	void printChar();
-//	void printInt();
-//	void printFloat();
-//	void printDouble();
+	void printConvertResult();
 };
 
 

@@ -4,7 +4,7 @@ cpp00/ex02
 cmake-build-debug/
 CMakeLists.txt
 .vscode/
-.DS_Store/
+.DS_Store
 
 # Prerequisites
 *.d
