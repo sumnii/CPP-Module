@@ -5,7 +5,7 @@ template<typename T>
 class Array {
 private:
 	T *array;
-	std::size_t size;
+	size_t _size;
 
 	class outOfIndexException : public std::exception {
 		const char *what() const throw() {
@@ -16,14 +16,14 @@ private:
 public:
 	Array() {};
 
-	Array(unsigned int n) : size(n) { array = new T[n]; };
+	Array(unsigned int n) : _size(n) { array = new T[n]; };
 
 	~Array() { delete[] array; };
 
 	Array(const Array &ref) {
-		array = new T[ref.size];
-		size = ref.size;
-		for (size_t i = 0; i < ref.size; ++i)
+		array = new T[ref._size];
+		_size = ref._size;
+		for (size_t i = 0; i < ref._size; ++i)
 			array[i] = ref.array[i];
 	}
 
@@ -31,24 +31,26 @@ public:
 		if (this == &ref)
 			return (*this);
 		delete[] this->array;
-		array = new T[ref.size];
-		size = ref.size;
-		for (size_t i = 0; i < ref.size; ++i)
+		array = new T[ref._size];
+		_size = ref._size;
+		for (size_t i = 0; i < ref._size; ++i)
 			array[i] = ref.array[i];
 		return (*this);
 	}
 
-	T &operator[](std::size_t i) {
-		if (i > size)
+	T &operator[](size_t i) {
+		if (i > _size)
 			throw outOfIndexException();
 		return (array[i]);
 	}
 
-	const T &operator[](const std::size_t i) const {
-		if (i > size)
+	const T &operator[](const size_t i) const {
+		if (i > _size)
 			throw outOfIndexException();
 		return (array[i]);
 	}
+
+	size_t size() const { return (_size); }
 };
 
 #endif //EX02_ARRAY_H
