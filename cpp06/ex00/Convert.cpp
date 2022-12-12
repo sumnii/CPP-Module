@@ -48,6 +48,8 @@ int Convert::isHaveDot(std::string &arg) {
 }
 
 void Convert::stringToChar(std::string &arg) {
+	type = CHAR;
+
 	c = arg[0];
 	i = static_cast<int>(c);
 	f = static_cast<float>(c);
@@ -55,6 +57,7 @@ void Convert::stringToChar(std::string &arg) {
 }
 
 void Convert::stringToInt(std::string &arg) {
+	type = INT;
 	int tmp_i = 0;
 
 	std::stringstream ssInt(arg);
@@ -67,15 +70,15 @@ void Convert::stringToInt(std::string &arg) {
 }
 
 void Convert::stringToFloat(std::string &arg) {
+	type = FLOAT;
 	float tmp_f = 0.0;
 
 	arg.resize(arg.length());
-	std::cout << arg << std::endl;
 	std::stringstream ssFloat(arg);
 	ssFloat >> tmp_f;
 
-	if (arg.find("0") == arg.length() - 1
-		&& arg.find(".") == arg.length() - 2)
+	if (arg.rfind("0") == arg.length() - 1
+		&& arg.rfind(".") == arg.length() - 2)
 		is_point_zero = YES;
 	c = static_cast<char>(tmp_f);
 	i = static_cast<int>(tmp_f);
@@ -84,13 +87,14 @@ void Convert::stringToFloat(std::string &arg) {
 }
 
 void Convert::stringToDouble(std::string &arg) {
+	type = DOUBLE;
 	double tmp_d = 0.0;
 
 	std::stringstream ssDouble(arg);
 	ssDouble >> tmp_d;
 
-	if (arg.find("0") == arg.length() - 1
-		&& arg.find(".") == arg.length() - 2)
+	if (arg.rfind("0") == arg.length() - 1
+		&& arg.rfind(".") == arg.length() - 2)
 		is_point_zero = YES;
 	c = static_cast<char>(tmp_d);
 	i = static_cast<int>(tmp_d);
@@ -101,26 +105,21 @@ void Convert::stringToDouble(std::string &arg) {
 void Convert::detectTheType(std::string arg) {
 	switch (isCharOrFloat(arg)) {
 		case YES:
-			if (isHaveDot(arg) == NO) {
-				type = CHAR;
+			if (isHaveDot(arg) == NO)
 				stringToChar(arg);
-			} else {
-				type = FLOAT;
+			else
 				stringToFloat(arg);
-			}
 			break;
 		case NO:
-			if (isHaveDot(arg) == NO) {
-				type = INT;
+			if (isHaveDot(arg) == NO)
 				stringToInt(arg);
-			} else {
-				type = DOUBLE;
+			else
 				stringToDouble(arg);
-			}
 	}
 }
 
 void Convert::printConvertResult() {
+	std::cout << "type : " << type << std::endl;
 	std::cout << "char : '" << c << "'" << std::endl;
 	std::cout << "int : " << i << std::endl;
 	std::cout << "float : " << f;
