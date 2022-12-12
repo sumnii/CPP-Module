@@ -8,44 +8,28 @@ void leaks() {
 	system("leaks form"); }
 
 int main() {
-	Bureaucrat sum("👶 sumin", 150);
-	Bureaucrat top_sum("👑 SUMIN", 1);
+	Bureaucrat low_sum("👶 sumin", 150);
+	Bureaucrat high_sum("👑 SUMIN", 1);
 
 	ShrubberyCreationsForm tree("Abies");
 	std::cout << tree << std::endl;
-	try {
-		sum.executeForm(tree);
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-	std::cout << std::endl;
-
-	try {
-		tree.beSigned(sum);
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-	tree.beSigned(top_sum);
-	std::cout << tree << std::endl << std::endl;
-
-	try {
-		sum.executeForm(tree);
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-	top_sum.executeForm(tree);
+	low_sum.executeForm(tree);
+	high_sum.signForm(tree);
+	std::cout << tree << std::endl;
+	low_sum.executeForm(tree);
+	high_sum.executeForm(tree);
 	std::cout << std::endl << std::endl;
 
 	RobotomyRequestForm robo("genie");
-	robo.beSigned(top_sum);
+	high_sum.signForm(robo);
 	std::cout << robo << std::endl;
-	top_sum.executeForm(robo);
+	high_sum.executeForm(robo);
 	std::cout << std::endl << std::endl;
 
 	PresidentialPardonForm pardon("Bad person");
-	pardon.beSigned(top_sum);
+	high_sum.signForm(pardon);
 	std::cout << pardon << std::endl;
-	top_sum.executeForm(pardon);
+	high_sum.executeForm(pardon);
 	std::cout << std::endl;
 
 	atexit(leaks);

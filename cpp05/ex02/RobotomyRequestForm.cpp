@@ -18,9 +18,14 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm &ref) {
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
-	std::cout << executor.getName() << " executed <" << this->getName() << ">" << std::endl;
-	std::cout << "Drrrrrrrrrrrriiiiiiillllllllllll......" << std::endl;
-	this->robotomize();
+	if (this->getIsSigned() == false) {
+		throw IsUnsignedException();
+	} else if (this->getAccessToExecute() < executor.getGrade()) {
+		throw GradeTooLowException();
+	} else {
+		std::cout << "Drrrrrrrrrrrriiiiiiillllllllllll......" << std::endl;
+		this->robotomize();
+	}
 }
 
 void RobotomyRequestForm::robotomize() const {

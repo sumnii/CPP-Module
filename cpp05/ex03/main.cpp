@@ -9,7 +9,7 @@ void leaks() {
 	system("leaks intern"); }
 
 int main() {
-	Bureaucrat top_sum("👑 SUMIN", 1);
+	Bureaucrat high_sum("👑 SUMIN", 1);
 	Intern someRandomIntern;
 	Form* rrf;
 
@@ -20,23 +20,23 @@ int main() {
 	}
 	
 	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	high_sum.signForm(*rrf);
 	std::cout << *rrf << std::endl;
-	rrf->beSigned(top_sum);
-	top_sum.executeForm(*rrf);
+	high_sum.executeForm(*rrf);
 	delete rrf;
 	std::cout << std::endl << std::endl;
 
-	rrf = someRandomIntern.makeForm("shrubbery creations", "Tree");
-	rrf->beSigned(top_sum);
+	rrf = someRandomIntern.makeForm("Shrubbery creations", "Tree");
+	high_sum.signForm(*rrf);
 	std::cout << *rrf << std::endl;
-	top_sum.executeForm(*rrf);
+	high_sum.executeForm(*rrf);
 	delete rrf;
 	std::cout << std::endl << std::endl;
 
-	rrf = someRandomIntern.makeForm("presidential pardon", "Bad person");
-	rrf->beSigned(top_sum);
+	rrf = someRandomIntern.makeForm("Presidential Pardon", "Bad person");
+	high_sum.signForm(*rrf);
 	std::cout << *rrf << std::endl;
-	top_sum.executeForm(*rrf);
+	high_sum.executeForm(*rrf);
 	delete rrf;
 	std::cout << std::endl;
 
