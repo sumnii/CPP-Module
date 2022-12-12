@@ -6,12 +6,18 @@
 Base *generate(void) {
 	clock_t time = clock() % 3;
 
-	if (time == 0)
+	if (time == 0) {
+		std::cout << "A created." << std::endl;
 		return (new A);
-	else if (time == 1)
+	}
+	else if (time == 1) {
+		std::cout << "B created." << std::endl;
 		return (new B);
-	else
+	}
+	else {
+		std::cout << "C created." << std::endl;
 		return (new C);
+	}
 }
 
 void identify(Base* p) {
