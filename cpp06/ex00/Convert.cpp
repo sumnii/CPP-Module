@@ -16,15 +16,28 @@ Convert &Convert::operator=(const Convert &ref) {
 
 Convert::~Convert() {}
 
-e_bool Convert::isSpecialValue(const std::string &arg) {
-	if (arg == "nan" || arg == "+inf" || arg == "-inf"
-		|| arg == "nanf" || arg == "+inff" || arg == "-inff") {
-		type = SPECIAL;
-		return (YES);
+e_bool Convert::isSpecialValue(std::string &arg) {
+	if (arg == "nan" || arg == "+inf" || arg == "-inf") {
+		type = DOUBLE;
+		c = "impossible";
+		i = "impossible";
+		f = arg + "f";
+		d = arg;
+		return YES;
+	}
+	else if (arg == "nanf" || arg == "+inff" || arg == "-inff") {
+		type = FLOAT;
+		c = "impossible";
+		i = "impossible";
+		f = arg;
+		arg.resize(arg.length() - 1);
+		d = arg;
+		return YES;
 	}
 	return (NO);
 }
 
+// f가 있거나 (float) 문자만 있는 경우 (char) Double로의 변환은 fail
 e_bool Convert::isCharOrFloat(const std::string &arg) {
 	double d = 0.0;
 
@@ -36,6 +49,7 @@ e_bool Convert::isCharOrFloat(const std::string &arg) {
 	return (NO);
 }
 
+// 소수점(.)이 있으면 float나 double
 e_bool Convert::isHaveDot(std::string &arg) {
 	std::string::size_type i;
 
@@ -55,13 +69,30 @@ e_bool Convert::isHaveDot(std::string &arg) {
 	}
 }
 
+// char에서 출력할수 없는 범위
 void Convert::checkNonprintable(char c) {
 	if (c < 32)
 		this->c = "Non displayable";
 }
 
+void Convert::fillImpossible() {
+	if (c.size() == 0)
+		c = "impossible";
+	if (i.size() == 0)
+		i = "impossible";
+	if (f.size() == 0)
+		f = "impossible";
+	if (d.size() == 0)
+		d = "impossible";
+}
+
 void Convert::stringToChar(std::string &arg) {
 	type = CHAR;
+	// char(한글자)가 아닌 string이 오는 경우
+	if (arg.size() != 1) {
+		fillImpossible();
+		return ;
+	}
 	char tmp_c = arg[0];
 
 	c = tmp_c;
@@ -78,7 +109,7 @@ void Convert::stringToChar(std::string &arg) {
 	ssDouble << static_cast<double>(tmp_c);
 	d = ssDouble.str() + ".0";
 
-	std::cout << c << " | " << i << " | " << f << " | " << d << std::endl;
+//	std::cout << c << " | " << i << " | " << f << " | " << d << std::endl;
 }
 
 void Convert::stringToInt(std::string &arg) {
@@ -86,6 +117,10 @@ void Convert::stringToInt(std::string &arg) {
 	int tmp_i = 0;
 	std::stringstream ssInt(arg);
 	ssInt >> tmp_i;
+	if (ssInt.fail()) {
+		fillImpossible();
+		return ;
+	}
 
 	c = static_cast<char>(tmp_i);
 	checkNonprintable(static_cast<char>(tmp_i));
@@ -101,7 +136,7 @@ void Convert::stringToInt(std::string &arg) {
 	ssDouble << static_cast<double>(tmp_i);
 	d = ssDouble.str() + ".0";
 
-	std::cout << c << " | " << i << " | " << f << " | " << d << std::endl;
+//	std::cout << c << " | " << i << " | " << f << " | " << d << std::endl;
 }
 
 void Convert::stringToFloat(std::string &arg) {
@@ -111,12 +146,16 @@ void Convert::stringToFloat(std::string &arg) {
 	arg.resize(arg.length());
 	std::stringstream ssFloat(arg);
 	ssFloat >> tmp_f;
+	if (ssFloat.fail()) {
+		fillImpossible();
+		return;
+	}
 
 	c = static_cast<char>(tmp_f);
 	checkNonprintable(static_cast<char>(tmp_f));
 
 	std::stringstream ssInt;
-	ssInt << tmp_f;
+	ssInt << static_cast<int>(tmp_f);
 	i = ssInt.str();
 
 	ssFloat << tmp_f;
@@ -124,7 +163,7 @@ void Convert::stringToFloat(std::string &arg) {
 
 	d = ssFloat.str();
 
-	std::cout << c << " | " << i << " | " << f << " | " << d << std::endl;
+//	std::cout << c << " | " << i << " | " << f << " | " << d << std::endl;
 }
 
 void Convert::stringToDouble(std::string &arg) {
@@ -133,12 +172,16 @@ void Convert::stringToDouble(std::string &arg) {
 
 	std::stringstream ssDouble(arg);
 	ssDouble >> tmp_d;
+	if (ssDouble.fail()) {
+		fillImpossible();
+		return ;
+	}
 
 	c = static_cast<char>(tmp_d);
 	checkNonprintable(static_cast<char>(tmp_d));
 
 	std::stringstream ssInt;
-	ssInt << tmp_d;
+	ssInt << static_cast<int>(tmp_d);
 	i = ssInt.str();
 
 	std::stringstream ssFloat;
@@ -151,7 +194,7 @@ void Convert::stringToDouble(std::string &arg) {
 	ssDouble << static_cast<double>(tmp_d);
 	d = ssDouble.str();
 
-	std::cout << c << " | " << i << " | " << f << " | " << d << std::endl;
+//	std::cout << c << " | " << i << " | " << f << " | " << d << std::endl;
 }
 
 void Convert::detectTheType(std::string arg) {
@@ -173,7 +216,7 @@ void Convert::detectTheType(std::string arg) {
 }
 
 void Convert::printConvertResult() {
-	std::cout << "type : " << type << std::endl;
+//	std::cout << "type : " << type << std::endl;
 	std::cout << "char : ";
 	if (c.length() == 1)
 		std::cout << "'" << c << "'" << std::endl;

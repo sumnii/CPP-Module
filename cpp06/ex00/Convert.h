@@ -10,8 +10,7 @@ enum e_type {
 	CHAR,
 	INT,
 	FLOAT,
-	DOUBLE,
-	SPECIAL
+	DOUBLE
 };
 
 enum e_bool {
@@ -27,11 +26,13 @@ private:
 	std::string f;
 	std::string d;
 
-	e_bool isSpecialValue(const std::string &arg);
+	e_bool isSpecialValue(std::string &arg);
 	e_bool isCharOrFloat(const std::string &arg);
 	e_bool isHaveDot(std::string &arg);
 
 	void checkNonprintable(char c);
+	void fillImpossible();
+
 	void stringToChar(std::string &arg);
 	void stringToInt(std::string &arg);
 	void stringToFloat(std::string &arg);
