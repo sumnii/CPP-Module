@@ -1,4 +1,5 @@
 #include "Bureaucrat.h"
+#include "Form.h"
 
 Bureaucrat::Bureaucrat() : name("Unknown"), grade(1) {}
 
@@ -71,6 +72,15 @@ void Bureaucrat::DecreaseGrade() {
 		--grade;
 		std::cout << name << ", ";
 		throw GradeTooLowException();
+	}
+}
+
+void Bureaucrat::signForm(Form &form) {
+	try {
+		form.beSigned(*this);
+		std::cout << this->name << " signed <" << form.getName() << ">" << std::endl;
+	} catch (std::exception &e) {
+		std::cout << this->name << " couldn't sign <" << form.getName() << "> because " << e.what() << std::endl;
 	}
 }
 
