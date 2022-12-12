@@ -6,6 +6,7 @@
 #include <string>
 
 enum e_type {
+	NONE,
 	CHAR,
 	INT,
 	FLOAT,
@@ -19,11 +20,12 @@ enum e_bool {
 
 class Convert {
 private:
-	int type;
+	e_type type;
 	char c;
 	int i;
 	float f;
 	double d;
+	e_bool is_point_zero;
 
 	int isCharOrFloat(const std::string &arg);
 	int isHaveDot(std::string &arg);

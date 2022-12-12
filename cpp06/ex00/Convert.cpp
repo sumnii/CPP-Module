@@ -1,9 +1,9 @@
 #include "Convert.h"
 
-Convert::Convert() : type(-1), c(0), i(0), f(0.0), d(0.0) {}
+Convert::Convert() : type(NONE), c(0), i(0), f(0.0), d(0.0), is_point_zero(NO) {}
 
 Convert::Convert(Convert &ref)
-		: type(ref.type), c(ref.c), i(ref.i), f(ref.f), d(ref.d) {}
+		: type(ref.type), c(ref.c), i(ref.i), f(ref.f), d(ref.d), is_point_zero(ref.is_point_zero) {}
 
 Convert &Convert::operator=(const Convert &ref) {
 	type = ref.type;
@@ -11,11 +11,11 @@ Convert &Convert::operator=(const Convert &ref) {
 	i = ref.i;
 	f = ref.f;
 	d = ref.d;
+	is_point_zero = ref.is_point_zero;
 	return (*this);
 }
 
 Convert::~Convert() {}
-
 
 int Convert::isCharOrFloat(const std::string &arg) {
 	double d = 0.0;
@@ -74,8 +74,9 @@ void Convert::stringToFloat(std::string &arg) {
 	std::stringstream ssFloat(arg);
 	ssFloat >> tmp_f;
 
-//	ssFloat << tmp_f;
-//	std::cout << ssFloat.str().length() << std::endl;
+	if (arg.find("0") == arg.length() - 1
+		&& arg.find(".") == arg.length() - 2)
+		is_point_zero = YES;
 	c = static_cast<char>(tmp_f);
 	i = static_cast<int>(tmp_f);
 	f = tmp_f;
@@ -88,8 +89,9 @@ void Convert::stringToDouble(std::string &arg) {
 	std::stringstream ssDouble(arg);
 	ssDouble >> tmp_d;
 
-//	ssDouble << tmp_d;
-//	std::cout << ssDouble.str().length() << std::endl;
+	if (arg.find("0") == arg.length() - 1
+		&& arg.find(".") == arg.length() - 2)
+		is_point_zero = YES;
 	c = static_cast<char>(tmp_d);
 	i = static_cast<int>(tmp_d);
 	f = static_cast<float>(tmp_d);
@@ -119,13 +121,12 @@ void Convert::detectTheType(std::string arg) {
 }
 
 void Convert::printConvertResult() {
-//	std::cout << "type is " << type << std::endl;
 	std::cout << "char : '" << c << "'" << std::endl;
 	std::cout << "int : " << i << std::endl;
 	std::cout << "float : " << f;
-	if (type == CHAR || type == INT) std::cout << ".0f" << std::endl;
+	if (type == CHAR || type == INT || is_point_zero == YES) std::cout << ".0f" << std::endl;
 	else std::cout << "f" << std::endl;
 	std::cout << "double : " << d;
-	if (type == CHAR || type == INT) std::cout << ".0";
+	if (type == CHAR || type == INT || is_point_zero == YES) std::cout << ".0";
 	std::cout << std::endl;
 }
