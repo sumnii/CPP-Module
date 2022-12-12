@@ -19,12 +19,11 @@ int main() {
 	Form f2("BUY LAPTOP", 1, 1);
 	std::cout << f2 << std::endl << std::endl;
 
-	try {
-		f2.beSigned(sum);
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-	f2.beSigned(top_sum);
+	sum.signForm(f2);
+	std::cout << f2 << std::endl << std::endl;
+
+	top_sum.signForm(f2);
+	std::cout << f2 << std::endl << std::endl;
 
 	std::cout << std::endl;
 

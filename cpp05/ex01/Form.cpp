@@ -61,13 +61,10 @@ int Form::getAccessToExecute() const {
 }
 
 void Form::beSigned(Bureaucrat &bur) {
-	if (bur.getGrade() <= access_to_sign) {
+	if (bur.getGrade() <= access_to_sign)
 		is_signed = true;
-		std::cout << bur.getName() << " signed <" << this->name << ">" << std::endl;
-	} else {
-		std::cout << bur.getName() << " couldn't sign <" << this->name << "> because ";
+	else
 		throw GradeTooLowException();
-	}
 }
 
 const char *Form::GradeTooHighException::what() const throw() {
