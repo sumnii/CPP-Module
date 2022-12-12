@@ -55,6 +55,11 @@ e_bool Convert::isHaveDot(std::string &arg) {
 	}
 }
 
+void Convert::checkNonprintable(char c) {
+	if (c < 32)
+		this->c = "Non displayable";
+}
+
 void Convert::stringToChar(std::string &arg) {
 	type = CHAR;
 	char tmp_c = arg[0];
@@ -83,6 +88,7 @@ void Convert::stringToInt(std::string &arg) {
 	ssInt >> tmp_i;
 
 	c = static_cast<char>(tmp_i);
+	checkNonprintable(static_cast<char>(tmp_i));
 
 	ssInt << tmp_i;
 	i = ssInt.str();
@@ -107,6 +113,7 @@ void Convert::stringToFloat(std::string &arg) {
 	ssFloat >> tmp_f;
 
 	c = static_cast<char>(tmp_f);
+	checkNonprintable(static_cast<char>(tmp_f));
 
 	std::stringstream ssInt;
 	ssInt << tmp_f;
@@ -128,6 +135,7 @@ void Convert::stringToDouble(std::string &arg) {
 	ssDouble >> tmp_d;
 
 	c = static_cast<char>(tmp_d);
+	checkNonprintable(static_cast<char>(tmp_d));
 
 	std::stringstream ssInt;
 	ssInt << tmp_d;
@@ -166,7 +174,11 @@ void Convert::detectTheType(std::string arg) {
 
 void Convert::printConvertResult() {
 	std::cout << "type : " << type << std::endl;
-	std::cout << "char : '" << c << "'" << std::endl;
+	std::cout << "char : ";
+	if (c.length() == 1)
+		std::cout << "'" << c << "'" << std::endl;
+	else
+		std::cout << c << std::endl;
 	std::cout << "int : " << i << std::endl;
 	std::cout << "float : " << f << std::endl;
 	std::cout << "double : " << d << std::endl;

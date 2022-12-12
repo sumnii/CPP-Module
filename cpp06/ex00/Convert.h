@@ -30,6 +30,8 @@ private:
 	e_bool isSpecialValue(const std::string &arg);
 	e_bool isCharOrFloat(const std::string &arg);
 	e_bool isHaveDot(std::string &arg);
+
+	void checkNonprintable(char c);
 	void stringToChar(std::string &arg);
 	void stringToInt(std::string &arg);
 	void stringToFloat(std::string &arg);
