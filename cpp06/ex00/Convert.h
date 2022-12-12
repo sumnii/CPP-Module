@@ -4,6 +4,7 @@
 #include "iostream"
 #include "sstream"
 #include <string>
+#include <limits>
 
 enum e_type {
 	NONE,

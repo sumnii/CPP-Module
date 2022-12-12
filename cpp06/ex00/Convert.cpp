@@ -118,6 +118,7 @@ void Convert::stringToInt(std::string &arg) {
 	std::stringstream ssInt(arg);
 	ssInt >> tmp_i;
 	if (ssInt.fail()) {
+		std::cout << "int fail" << std::endl;
 		fillImpossible();
 		return ;
 	}
@@ -147,6 +148,7 @@ void Convert::stringToFloat(std::string &arg) {
 	std::stringstream ssFloat(arg);
 	ssFloat >> tmp_f;
 	if (ssFloat.fail()) {
+		std::cout << "float fail" << std::endl;
 		fillImpossible();
 		return;
 	}
@@ -154,9 +156,13 @@ void Convert::stringToFloat(std::string &arg) {
 	c = static_cast<char>(tmp_f);
 	checkNonprintable(static_cast<char>(tmp_f));
 
-	std::stringstream ssInt;
-	ssInt << static_cast<int>(tmp_f);
-	i = ssInt.str();
+	if (tmp_f > INT_MAX || tmp_f < INT_MIN)
+		i = "impossible";
+	else {
+		std::stringstream ssInt;
+		ssInt << static_cast<int>(tmp_f);
+		i = ssInt.str();
+	}
 
 	ssFloat << tmp_f;
 	f = ssFloat.str() + "f";
@@ -173,6 +179,7 @@ void Convert::stringToDouble(std::string &arg) {
 	std::stringstream ssDouble(arg);
 	ssDouble >> tmp_d;
 	if (ssDouble.fail()) {
+		std::cout << "double fail" << std::endl;
 		fillImpossible();
 		return ;
 	}
@@ -180,16 +187,25 @@ void Convert::stringToDouble(std::string &arg) {
 	c = static_cast<char>(tmp_d);
 	checkNonprintable(static_cast<char>(tmp_d));
 
-	std::stringstream ssInt;
-	ssInt << static_cast<int>(tmp_d);
-	i = ssInt.str();
+	if (tmp_d > INT_MAX || tmp_d < INT_MIN)
+		i = "impossible";
+	else {
+		std::stringstream ssInt;
+		ssInt << static_cast<int>(tmp_d);
+		i = ssInt.str();
+	}
 
-	std::stringstream ssFloat;
-	ssFloat << tmp_d;
-	f = ssFloat.str();
-	if (arg.rfind("0") == arg.length() - 1
-		&& arg.rfind(".") == arg.length() - 2)
-		f += ".0f";
+	if (tmp_d > std::numeric_limits<float>::max()
+		|| tmp_d < std::numeric_limits<float>::min())
+		f = "impossible";
+	else {
+		std::stringstream ssFloat;
+		ssFloat << tmp_d;
+		f = ssFloat.str() + "f";
+		if (arg.rfind("0") == arg.length() - 1
+			&& arg.rfind(".") == arg.length() - 2)
+			f += ".0f";
+	}
 
 	ssDouble << static_cast<double>(tmp_d);
 	d = ssDouble.str();
@@ -216,7 +232,7 @@ void Convert::detectTheType(std::string arg) {
 }
 
 void Convert::printConvertResult() {
-//	std::cout << "type : " << type << std::endl;
+	std::cout << "type : " << type << std::endl;
 	std::cout << "char : ";
 	if (c.length() == 1)
 		std::cout << "'" << c << "'" << std::endl;
