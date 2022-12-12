@@ -29,7 +29,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 }
 
 void RobotomyRequestForm::robotomize() const {
-	int rand = time(NULL) % 2;
+	int rand = clock() % 2;
 
 	if (rand)
 		std::cout << target << " has been robotomized successfully!" << std::endl;
