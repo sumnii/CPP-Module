@@ -35,7 +35,7 @@ Form *Intern::makeForm(std::string form_name, std::string form_target) {
 			new_form = new ShrubberyCreationsForm(form_target);
 			break;
 	}
-	std::cout << "Intern creates " << form_name << std::endl;
+	std::cout << "Intern creates <" << form_name << ">" << std::endl;
 	return (new_form);
 }
 

@@ -18,9 +18,14 @@ ShrubberyCreationsForm &ShrubberyCreationsForm::operator=(ShrubberyCreationsForm
 ShrubberyCreationsForm::~ShrubberyCreationsForm() {}
 
 void ShrubberyCreationsForm::execute(Bureaucrat const &executor) const {
-	std::ofstream out(this->target + "_shrubbery", std::ios::trunc);
-	writeAsciiTrees(out);
-	std::cout << executor.getName() << " executed <" << this->getName() << ">" << std::endl;
+	if (this->getIsSigned() == false) {
+		throw IsUnsignedException();
+	} else if (this->getAccessToExecute() < executor.getGrade()) {
+		throw GradeTooLowException();
+	} else {
+		std::ofstream out(this->target + "_shrubbery", std::ios::trunc);
+		writeAsciiTrees(out);
+	}
 }
 
 void ShrubberyCreationsForm::writeAsciiTrees(std::ofstream &out) {

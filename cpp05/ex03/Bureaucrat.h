@@ -31,6 +31,7 @@ public:
 	void increaseGrade();
 	void DecreaseGrade();
 
+	void signForm(Form &form);
 	void executeForm(Form const &form);
 };
 
