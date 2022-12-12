@@ -13,8 +13,8 @@ enum e_form {
 class Intern {
 public:
 	Intern();
-//	Intern(const Intern &ref);
-//	Intern &operator=(const Intern &ref);
+	Intern(const Intern &ref);
+	Intern &operator=(const Intern &ref);
 	~Intern();
 
 	Form *makeForm(std::string form_name, std::string form_target);
