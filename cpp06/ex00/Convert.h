@@ -22,11 +22,10 @@ enum e_bool {
 class Convert {
 private:
 	e_type type;
-	char c;
-	int i;
-	float f;
-	double d;
-	e_bool is_point_zero;
+	std::string c;
+	std::string i;
+	std::string f;
+	std::string d;
 
 	e_bool isSpecialValue(const std::string &arg);
 	e_bool isCharOrFloat(const std::string &arg);
