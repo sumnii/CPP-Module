@@ -1,5 +1,5 @@
-#ifndef EX00_TEMPLATE_H
-#define EX00_TEMPLATE_H
+#ifndef EX00_WHATEVER_H
+#define EX00_WHATEVER_H
 
 #include "iostream"
 
@@ -21,4 +21,4 @@ T max(T &a, T &b) {
 	return (a <= b ? b : a);
 }
 
-#endif //EX00_TEMPLATE_H
+#endif //EX00_WHATEVER_H

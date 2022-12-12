@@ -1,4 +1,4 @@
-#include "template.h"
+#include "whatever.h"
 
 int main() {
 	int a = 2;
