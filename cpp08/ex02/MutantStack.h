@@ -4,6 +4,7 @@
 #include <list>
 #include <stack>
 #include "iostream"
+#include "algorithm"
 
 template<typename T>
 class MutantStack : public std::stack<T> {
@@ -16,12 +17,18 @@ private:
 
 public:
 	MutantStack() {};
-
 	MutantStack(const MutantStack &ref) { *this = ref; };
-
 	~MutantStack() {};
 
-	static typename std::stack<T>::container_type::iterator iterator;
+	typedef typename std::stack<T>::container_type container;
+	typedef typename container::iterator iterator;
+
+	iterator begin() {
+		return (std::stack<T>::c.begin());
+	};
+	iterator end() {
+		return (std::stack<T>::c.end());
+	};
 };
 
 
