@@ -8,10 +8,20 @@
 template<typename T>
 class MutantStack : public std::stack<T> {
 private:
+	MutantStack &operator=(const MutantStack &ref) {
+		if (this != &ref)
+			*this = ref;
+		return (*this);
+	};
 
 public:
-	static typename std::stack<T>::container_type::iterator iterator;
+	MutantStack() {};
 
+	MutantStack(const MutantStack &ref) { *this = ref; };
+
+	~MutantStack() {};
+
+	static typename std::stack<T>::container_type::iterator iterator;
 };
 
 
