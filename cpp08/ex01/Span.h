@@ -10,6 +10,12 @@ private:
 	unsigned int begin;
 	unsigned int end;
 
+	class noSpaceException : public std::exception {
+		const char *what() const throw() {
+			return "No space in Span class!";
+		}
+	};
+
 public:
 	Span(unsigned int N);
 	~Span();

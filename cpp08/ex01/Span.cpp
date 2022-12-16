@@ -30,6 +30,8 @@ Span &Span::operator=(const Span &ref) {
 }
 
 void Span::addNumber(int num) {
+	if (max_count == end)
+		throw noSpaceException();
 	arr[end] = num;
 	++end;
 }
