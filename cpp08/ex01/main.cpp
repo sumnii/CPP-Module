@@ -14,8 +14,8 @@ int main()
 		sp.addNumber(17);
 		sp.addNumber(9);
 		sp.addNumber(11);
+		// N개의 요소가 이미 찼음
 		sp.addNumber(10);
-		sp.addNumber(100);
 	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
