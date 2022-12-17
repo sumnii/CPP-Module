@@ -23,6 +23,20 @@ void Span::addNumber(int num) {
 	arr.push_back(num);
 }
 
+void Span::addNumberBunch() {
+	srand(static_cast<unsigned int>(time(NULL)));
+	while (arr.size() <= max_count) {
+		int num = rand();
+		arr.push_back(num);
+	}
+
+	// arr 내용 출력
+//	std::cout << "\n~ arr 내부 출력 ~" << std::endl;
+//	for (std::vector<int>::iterator iter = arr.begin(); iter != arr.end(); ++iter)
+//		std::cout << *(iter) << " ";
+//	std::cout << std::endl;
+}
+
 int Span::shortestSpan() {
 	if (arr.size() < 2)
 		throw noNumberOrOnlyOneException();

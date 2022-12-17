@@ -4,6 +4,8 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <stdlib.h>
+#include <time.h>
 
 class Span {
 private:
@@ -29,6 +31,8 @@ public:
 	Span &operator=(const Span &ref);
 
 	void addNumber(int num);
+	void addNumberBunch();
+
 	int shortestSpan();
 	int longestSpan();
 };
