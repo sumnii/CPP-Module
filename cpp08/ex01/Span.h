@@ -16,6 +16,12 @@ private:
 		}
 	};
 
+	class noNumberOrOnlyOneException : public std::exception {
+		const char * what() const throw() {
+			return "There are No numbers or only one number!";
+		}
+	};
+
 public:
 	Span(unsigned int N);
 	~Span();
@@ -23,6 +29,8 @@ public:
 	Span &operator=(const Span &ref);
 
 	void addNumber(int num);
+	int shortestSpan();
+	int longestSpan();
 };
 
 

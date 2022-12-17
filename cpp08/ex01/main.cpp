@@ -15,13 +15,17 @@ int main()
 		sp.addNumber(9);
 		sp.addNumber(11);
 		// N개의 요소가 이미 찼음
-		sp.addNumber(10);
+//		sp.addNumber(10);
 	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
 
-//	std::cout << sp.shortestSpan() << std::endl;
-//	std::cout << sp.longestSpan() << std::endl;
+	try {
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
+	} catch (std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
 
 //	atexit(leaks);
 	return 0;
