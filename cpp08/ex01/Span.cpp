@@ -1,37 +1,24 @@
 #include "Span.h"
 
 Span::Span(unsigned int N)
-		: max_count(N), begin(0), end(0) {
-	arr = new int[N];
-}
+		: max_count(N) {}
 
 Span::~Span() {
-	delete[] arr;
 }
 
 Span::Span(const Span &ref)
-		: max_count(ref.max_count), begin(ref.begin), end(ref.end) {
-	arr = new int[ref.max_count];
-	for (size_t i = 0; i < max_count; ++i)
-		arr[i] = ref.arr[i];
-}
+		: arr(ref.arr), max_count(ref.max_count) {}
 
 Span &Span::operator=(const Span &ref) {
-	if (this == &ref)
-		return *this;
-	delete[]arr;
-	arr = new int[ref.max_count];
-	for (size_t i = 0; i < max_count; ++i)
-		arr[i] = ref.arr[i];
-	max_count = ref.max_count;
-	begin = ref.begin;
-	end = ref.end;
+	if (this != &ref) {
+		arr = ref.arr;
+		max_count = ref.max_count;
+	}
 	return *this;
 }
 
 void Span::addNumber(int num) {
-	if (max_count == end)
+	if (max_count == arr.size())
 		throw noSpaceException();
-	arr[end] = num;
-	++end;
+	arr.push_back(num);
 }

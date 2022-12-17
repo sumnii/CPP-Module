@@ -1,14 +1,14 @@
 #ifndef EX01_SPAN_H
 #define EX01_SPAN_H
 
-#include "iostream"
+#include <iostream>
+#include <algorithm>
+#include <vector>
 
 class Span {
 private:
-	int *arr;
+	std::vector<int> arr;
 	unsigned int max_count;
-	unsigned int begin;
-	unsigned int end;
 
 	class noSpaceException : public std::exception {
 		const char *what() const throw() {
