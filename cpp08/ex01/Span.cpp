@@ -26,12 +26,24 @@ void Span::addNumber(int num) {
 int Span::shortestSpan() {
 	if (arr.size() < 2)
 		throw noNumberOrOnlyOneException();
-	return 2;
+
+	std::sort(arr.begin(), arr.end());
+	int distance;
+
+	for (std::vector<int>::iterator iter = arr.begin(); iter + 1 != arr.end(); ++iter) {
+		if (iter == arr.begin())
+			distance = *(iter + 1) - *iter;
+		int tmp = *(iter + 1) - *iter;
+		if (tmp < distance)
+			distance = tmp;
+	}
+	return distance;
 }
 
 int Span::longestSpan() {
 	if (arr.size() < 2)
 		throw noNumberOrOnlyOneException();
+
 	int min = *(std::min_element(arr.begin(), arr.end()));
 	int max = *(std::max_element(arr.begin(), arr.end()));
 	return (max - min);
