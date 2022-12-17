@@ -28,16 +28,14 @@ int Span::shortestSpan() {
 		throw noNumberOrOnlyOneException();
 
 	std::sort(arr.begin(), arr.end());
-	int distance;
+	int shortest = INT_MAX;
 
 	for (std::vector<int>::iterator iter = arr.begin(); iter + 1 != arr.end(); ++iter) {
-		if (iter == arr.begin())
-			distance = *(iter + 1) - *iter;
-		int tmp = *(iter + 1) - *iter;
-		if (tmp < distance)
-			distance = tmp;
+		int diff = *(iter + 1) - *iter;
+		if (diff < shortest)
+			shortest = diff;
 	}
-	return distance;
+	return shortest;
 }
 
 int Span::longestSpan() {
