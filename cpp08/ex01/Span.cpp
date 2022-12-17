@@ -25,7 +25,7 @@ void Span::addNumber(int num) {
 
 void Span::addNumberBunch() {
 	srand(static_cast<unsigned int>(time(NULL)));
-	while (arr.size() <= max_count) {
+	while (arr.size() < max_count) {
 		int num = rand();
 		arr.push_back(num);
 	}
