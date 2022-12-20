@@ -5,6 +5,7 @@ int main (int argc, char *argv[]) {
 		std::cout << "type >> ./convert <target>" << std::endl;
 		return (1);
 	}
+	
 	Convert convert(argv[1]);
 
 	convert.detectTheType(argv[1]);

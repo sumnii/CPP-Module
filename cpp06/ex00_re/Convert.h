@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <sstream>
-// #include <string>
 #include <limits>
 #include <iomanip>
 #include <cmath>
@@ -32,15 +31,20 @@ private:
 
 	Convert();
 
-	void charOrFloatOrNone(std::string arg);
-	e_bool isFloat(std::string arg);
-	void intOrDouble(std::string arg);
+	void	charOrFloatOrNone(std::string arg);
+	e_bool	isFloat(std::string arg);
+	void	intOrDouble(std::string arg);
 
-	e_bool	isNan();
-	e_bool	isInf();
+	e_bool	isNanType();
+	e_bool	isInfType();
 	e_bool	hasDecimalPoint();
-	void	convertChar();
+
+	void	printChar();
+	void	printInt();
+	void	printFloat();
+	void	printDouble();
 	void	convertIntOrFloatOrDouble();
+	void	noConvertType();
 
 public:
 	Convert(std::string arg);
@@ -48,8 +52,8 @@ public:
 	Convert &operator=(const Convert &ref);
 	~Convert();
 
-	void detectTheType(std::string arg);
-	void convertAndPrint();
+	void	detectTheType(std::string arg);
+	void	convertAndPrint();
 };
 
 

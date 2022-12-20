@@ -27,13 +27,16 @@ Convert &Convert::operator=(const Convert &ref) {
 
 Convert::~Convert() {}
 
+
 /*
  *  Detect Function
  */
-void Convert::charOrFloatOrNone(std::string arg) {
+
+void	Convert::charOrFloatOrNone(std::string arg) {
 	if (arg.size() == 1) {
 		type = CHAR;
 		c = arg[0];
+		d = c;
 	} else if (arg.rfind('f') == arg.size() - 1
 				&& isFloat(arg) == YES)
 		type = FLOAT;
@@ -41,7 +44,7 @@ void Convert::charOrFloatOrNone(std::string arg) {
 		type = NONE;
 }
 
-void Convert::intOrDouble(std::string arg) {
+void	Convert::intOrDouble(std::string arg) {
 	if (arg.find('.') != std::string::npos
 		|| d > INT_MAX)
 		type = DOUBLE;
@@ -49,9 +52,8 @@ void Convert::intOrDouble(std::string arg) {
 		type = INT;
 }
 
-e_bool Convert::isFloat(std::string arg) {
-	// f 제거
-	arg.resize(arg.size() - 1);
+e_bool	Convert::isFloat(std::string arg) {
+	arg.resize(arg.size() - 1);	// f 제거
 
 	std::stringstream ssFloat(arg);
 	ssFloat >> f;
@@ -61,31 +63,25 @@ e_bool Convert::isFloat(std::string arg) {
 	return YES;
 }
 
-void Convert::detectTheType(std::string arg) {
-	if (fail == YES) {
-	// char가 들어간 경우 (f가 들어있는 float나, char형)
-		std::cout << "NONE 0 | CHAR 1 | FLOAT 3" << std::endl;
+void	Convert::detectTheType(std::string arg) {
+	if (fail == YES)	// char가 들어간 경우 (f가 들어있는 float나, char형)
 		charOrFloatOrNone(arg);
-	}
-	else {
-	// int, double형
-		std::cout << "INT 2 | DOUBLE 4" << std::endl;
+	else				// int, double형
 		intOrDouble(arg);
-	}
-	std::cout << "type : " << type << std::endl;
 }
+
 
 /*
  *  Convert & Print Function
  */
 
-e_bool Convert::isNan() {
+e_bool	Convert::isNanType() {
 	if (isnan(d))
 		return YES;
 	return NO;
 }
 
-e_bool	Convert::isInf() {
+e_bool	Convert::isInfType() {
 	if (isinf(d))
 		return YES;
 	return NO;
@@ -97,62 +93,60 @@ e_bool	Convert::hasDecimalPoint() {
 	return YES;
 }
 
-void	Convert::convertChar() {
-	if (d < 32)
+void	Convert::printChar() {
+	if (isNanType() == YES || d > CHAR_MAX || d < CHAR_MIN)
+		std::cout << "char : impossible" << std::endl;
+	else if (d < 32)
 		std::cout << "char : Non displayable" << std::endl;
 	else
 		std::cout << "char : '" << static_cast<char>(d) << "'" << std::endl;
-	std::cout << "int : " << static_cast<int>(c) << std::endl;
-	std::cout << std::fixed << std::setprecision(1) << "float : " << static_cast<float>(c) << "f" << std::endl;
-	std::cout << std::fixed << std::setprecision(1) << "double : " << static_cast<double>(c) << std::endl;
 }
 
+void	Convert::printInt() {
+	if (isNanType() == YES || d > INT_MAX || d < INT_MIN)
+		std::cout << "int : impossible" << std::endl;
+	else 
+		std::cout << "int : " << static_cast<int>(d) << std::endl;
+}
 
-void	Convert::convertIntOrFloatOrDouble() {
-	if (isNan() == YES)
-		std::cout << "char : impossible\nint : impossible\nfloat : nanf" << std::endl;
-	else {
-		if (d > CHAR_MAX || d < CHAR_MIN)
-			std::cout << "char : impossible" << std::endl;
-		else if (d < 32)
-			std::cout << "char : Non displayable" << std::endl;
-		else
-			std::cout << "char : '" << static_cast<char>(d) << "'" << std::endl;
+void	Convert::printFloat() {
+	if (isInfType() == YES)
+		std::cout << "float : " << static_cast<float>(d) << "f" << std::endl;
+	else if (d > INT_MAX || d < INT_MIN)
+		std::cout << "float : impossible" << std::endl;
+	else if (hasDecimalPoint() == YES)
+		std::cout << "float : " << static_cast<float>(d) << "f" << std::endl;
+	else
+		std::cout<< "float : " << static_cast<float>(d) << ".0f" << std::endl;
+}
 
-		if (d > INT_MAX || d < INT_MIN)
-			std::cout << "int : impossible" << std::endl;
-		else 
-			std::cout << "int : " << static_cast<int>(d) << std::endl;
-
-		if (isInf() == YES)
-				std::cout << "float : " << static_cast<float>(d) << "f" << std::endl;
-		else if (d > INT_MAX || d < INT_MIN)
-			std::cout << "float : impossible" << std::endl;
-		else if (hasDecimalPoint() == YES)
-			std::cout << "float : " << static_cast<float>(d) << "f" << std::endl;
-		else
-			std::cout<< "float : " << static_cast<float>(d) << ".0f" << std::endl;
-	}
-
+void	Convert::printDouble() {
 	if (hasDecimalPoint() == YES)
 		std::cout << "double : " << d << std::endl;
 	else
 		std::cout << "double : " << d << ".0" << std::endl;
 }
 
-void Convert::convertAndPrint() {
-	switch (type)
-	{
-	case CHAR:
-		convertChar();
-		break;
-	case INT:
-	case FLOAT:
-	case DOUBLE:
-		convertIntOrFloatOrDouble();
-		break;
-	case NONE:
-		// fillImpossible();
-		break;
+void	Convert::convertIntOrFloatOrDouble() {
+	printChar();
+	printInt();
+	printFloat();
+	printDouble();
+}
+
+void	Convert::noConvertType() {
+	std::cout << "char : impossible" << std::endl;
+	std::cout << "int : impossible" << std::endl;
+	std::cout << "float : impossible" << std::endl;
+	std::cout << "double : impossible" << std::endl;
+}
+
+void	Convert::convertAndPrint() {
+	switch (type) {
+		case NONE:
+			noConvertType();
+			break;
+		default:
+			convertIntOrFloatOrDouble();
 	}
 }
