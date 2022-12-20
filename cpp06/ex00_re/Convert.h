@@ -1,10 +1,11 @@
 #ifndef EX00_CONVERT_H
 #define EX00_CONVERT_H
 
-#include "iostream"
-#include "sstream"
-#include <string>
+#include <iostream>
+#include <sstream>
+// #include <string>
 #include <limits>
+#include <iomanip>
 
 enum e_type {
 	NONE,
@@ -30,8 +31,13 @@ private:
 
 	Convert();
 
-	e_bool isChar(std::string arg);
+	void charOrFloatOrNone(std::string arg);
 	e_bool isFloat(std::string arg);
+	void intOrDouble(std::string arg);
+
+	void	convertChar();
+	void	convertIntOrFloatOrDouble();
+	void	convertDouble();
 
 	// e_bool isSpecialValue(std::string &arg);
 	// e_bool isCharOrFloat(const std::string &arg);
@@ -52,6 +58,7 @@ public:
 	~Convert();
 
 	void detectTheType(std::string arg);
+	void convertTheLiteral();
 	void printConvertResult();
 };
 
