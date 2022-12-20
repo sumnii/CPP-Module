@@ -53,10 +53,11 @@ e_bool Convert::isFloat(std::string arg) {
 	// f 제거
 	arg.resize(arg.size() - 1);
 
-	std::stringstream ssDouble(arg);
-	ssDouble >> d;
-	if (ssDouble.fail())
+	std::stringstream ssFloat(arg);
+	ssFloat >> f;
+	if (ssFloat.fail())
 		return NO;
+	d = f;
 	return YES;
 }
 
@@ -75,14 +76,28 @@ void Convert::detectTheType(std::string arg) {
 }
 
 /*
- *  Convert Function
+ *  Convert & Print Function
  */
 
-void	Convert::convertChar() {
-	// i = static_cast<int>(c);
-	// f = static_cast<float>(c);
-	// d = static_cast<double>(c);
+e_bool Convert::isNan() {
+	if (isnan(d))
+		return YES;
+	return NO;
+}
 
+e_bool	Convert::isInf() {
+	if (isinf(d))
+		return YES;
+	return NO;
+}
+
+e_bool	Convert::hasDecimalPoint() {
+	if (d == static_cast<int64_t>(d))
+		return NO;
+	return YES;
+}
+
+void	Convert::convertChar() {
 	if (d < 32)
 		std::cout << "char : Non displayable" << std::endl;
 	else
@@ -92,26 +107,40 @@ void	Convert::convertChar() {
 	std::cout << std::fixed << std::setprecision(1) << "double : " << static_cast<double>(c) << std::endl;
 }
 
-void	Convert::convertIntOrFloatOrDouble() {
-	if (d > CHAR_MAX)
-		std::cout << "char : impossible" << std::endl;
-	else if (d < 32)
-		std::cout << "char : Non displayable" << std::endl;
-	else
-		std::cout << "char : '" << static_cast<char>(d) << "'" << std::endl;
 
-	if (d > INT_MAX) {
-		std::cout << "int : impossible" << std::endl;
-		std::cout << "float : impossible" << std::endl;
-	} else {
-		std::cout << "int : " << static_cast<int>(d) << std::endl;
-		std::cout << std::fixed << std::setprecision(1) << "float : " << static_cast<float>(d) << "f" << std::endl;
+void	Convert::convertIntOrFloatOrDouble() {
+	if (isNan() == YES)
+		std::cout << "char : impossible\nint : impossible\nfloat : nanf" << std::endl;
+	else {
+		if (d > CHAR_MAX || d < CHAR_MIN)
+			std::cout << "char : impossible" << std::endl;
+		else if (d < 32)
+			std::cout << "char : Non displayable" << std::endl;
+		else
+			std::cout << "char : '" << static_cast<char>(d) << "'" << std::endl;
+
+		if (d > INT_MAX || d < INT_MIN)
+			std::cout << "int : impossible" << std::endl;
+		else 
+			std::cout << "int : " << static_cast<int>(d) << std::endl;
+
+		if (isInf() == YES)
+				std::cout << "float : " << static_cast<float>(d) << "f" << std::endl;
+		else if (d > INT_MAX || d < INT_MIN)
+			std::cout << "float : impossible" << std::endl;
+		else if (hasDecimalPoint() == YES)
+			std::cout << "float : " << static_cast<float>(d) << "f" << std::endl;
+		else
+			std::cout<< "float : " << static_cast<float>(d) << ".0f" << std::endl;
 	}
 
-	std::cout << std::fixed << std::setprecision(1) << "double : " << d << std::endl;
+	if (hasDecimalPoint() == YES)
+		std::cout << "double : " << d << std::endl;
+	else
+		std::cout << "double : " << d << ".0" << std::endl;
 }
 
-void Convert::convertTheLiteral() {
+void Convert::convertAndPrint() {
 	switch (type)
 	{
 	case CHAR:
@@ -126,11 +155,4 @@ void Convert::convertTheLiteral() {
 		// fillImpossible();
 		break;
 	}
-}
-
-void Convert::printConvertResult() {
-	std::cout << "char : '" << c << "'" << std::endl;
-	std::cout << "int : " << i << std::endl;
-	std::cout << std::fixed << std::setprecision(1) << "float : " << "f" << f << std::endl;
-	std::cout << std::fixed << std::setprecision(1) << "double : " << d << std::endl;
 }

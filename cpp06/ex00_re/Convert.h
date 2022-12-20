@@ -6,6 +6,7 @@
 // #include <string>
 #include <limits>
 #include <iomanip>
+#include <cmath>
 
 enum e_type {
 	NONE,
@@ -35,21 +36,11 @@ private:
 	e_bool isFloat(std::string arg);
 	void intOrDouble(std::string arg);
 
+	e_bool	isNan();
+	e_bool	isInf();
+	e_bool	hasDecimalPoint();
 	void	convertChar();
 	void	convertIntOrFloatOrDouble();
-	void	convertDouble();
-
-	// e_bool isSpecialValue(std::string &arg);
-	// e_bool isCharOrFloat(const std::string &arg);
-	// e_bool isHaveDot(std::string &arg);
-
-	// void checkNonprintable(char c);
-	// void fillImpossible();
-
-	// void stringToChar(std::string &arg);
-	// void stringToInt(std::string &arg);
-	// void stringToFloat(std::string &arg);
-	// void stringToDouble(std::string &arg);
 
 public:
 	Convert(std::string arg);
@@ -58,8 +49,7 @@ public:
 	~Convert();
 
 	void detectTheType(std::string arg);
-	void convertTheLiteral();
-	void printConvertResult();
+	void convertAndPrint();
 };
 
 
