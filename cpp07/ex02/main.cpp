@@ -27,7 +27,7 @@ int main(int, char **) {
 		std::cout << " assign[0] : " << assign[0] << std::endl;
 		std::cout << "   copy[0] : " << copy[0] << "\n" << std::endl;
 
-		std::cout << "! assign[0]에 10 넣고 copy[0]에 100 넣기 !" << std::endl;
+		std::cout << ">> assign[0]에 10, copy[0]에 100 넣기" << std::endl;
 		assign[0] = 10;
 		copy[0] = 100;
 		std::cout << "numbers[0] : " << numbers[0] << std::endl;
