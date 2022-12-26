@@ -3,8 +3,7 @@
 Span::Span(unsigned int N)
 		: max_count(N) {}
 
-Span::~Span() {
-}
+Span::~Span() {}
 
 Span::Span(const Span &ref)
 		: arr(ref.arr), max_count(ref.max_count) {}

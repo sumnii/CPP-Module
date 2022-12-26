@@ -18,12 +18,14 @@ int main()
 		}
 
 		try {
-			std::cout << sp.shortestSpan() << std::endl;
-			std::cout << sp.longestSpan() << std::endl;
+			std::cout << "가장 짧은 범위 : " << sp.shortestSpan() << std::endl;
+			std::cout << "가장 긴 범위 : " << sp.longestSpan() << std::endl;
 		} catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
 	}
+
+	std::cout << std::endl;
 
 	{ // 10000개 공간의 Span 클래스
 		Span sp = Span(10000);
@@ -31,8 +33,8 @@ int main()
 		sp.addNumberBunch();
 
 		try {
-			std::cout << sp.shortestSpan() << std::endl;
-			std::cout << sp.longestSpan() << std::endl;
+			std::cout << "가장 짧은 범위 : " << sp.shortestSpan() << std::endl;
+			std::cout << "가장 긴 범위 : " << sp.longestSpan() << std::endl;
 		} catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
