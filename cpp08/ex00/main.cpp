@@ -4,10 +4,6 @@
 #include <list>
 #include <deque>
 
-void leaks() {
-	std::cout << std::endl << "-------------------[ leaks test ]-------------------" << std::endl;
-	system("leaks iterator"); }
-
 int main() {
 	std::vector<int> con;
 //	std::list<int> con;
@@ -48,6 +44,5 @@ int main() {
 			std::cerr << "찾는 항목이 컨테이너에 없습니다." << std::endl;
 	}
 
-//	atexit(leaks);
 	return 0;
 }

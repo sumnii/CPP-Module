@@ -2,10 +2,6 @@
 
 class iterator;
 
-void leaks() {
-	std::cout << std::endl << "-------------------[ leaks test ]-------------------" << std::endl;
-	system("leaks mutant"); }
-
 int main() {
 	std::cout << "~ Mutant Stack ~" << std::endl;
 	{	// Mutant Stack
@@ -68,6 +64,5 @@ int main() {
 		}
 	}
 
-//	atexit(leaks);
 	return 0;
 }
