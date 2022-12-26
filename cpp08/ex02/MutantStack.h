@@ -20,8 +20,7 @@ public:
 	MutantStack(const MutantStack &ref) { *this = ref; };
 	~MutantStack() {};
 
-	typedef typename std::stack<T>::container_type container;
-	typedef typename container::iterator iterator;
+	typedef typename std::stack<T>::container_type::iterator iterator;
 
 	iterator begin() {
 		return (std::stack<T>::c.begin());
