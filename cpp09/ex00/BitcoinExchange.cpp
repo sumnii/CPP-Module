@@ -31,12 +31,12 @@ void BitcoinExchange::saveExchangeData() {
 	if (in.is_open()) {
 		getline(in, str);
 	} else {
-		std::cerr << "data.csv 파일을 디렉토리에 추가해주세요." << std::endl;
+		std::cerr << (std::string)"data.csv 파일을 디렉토리에 추가해주세요." << std::endl;
 	}
 
 	while (in) {
 		getline(in, str);
-		saveParsingData(str);
+		saveDataAfterParse(str);
 	}
 
 //	std::map<std::string,float>::iterator it;
@@ -47,17 +47,18 @@ void BitcoinExchange::saveExchangeData() {
 //	}
 }
 
-void BitcoinExchange::saveParsingData(std::string line) {
+void BitcoinExchange::saveDataAfterParse(std::string line) {
 	user_size_t splitPoint = line.find(',');
 
 	if (splitPoint == std::string::npos)
 		return ;
 
-	std::string key = line.substr(0, splitPoint);
-	float value = stof(line.substr(splitPoint + 1));
+	std::string date = line.substr(0, splitPoint);
+	float exchangeRate = stof(line.substr(splitPoint + 1));
 
-	setExchangeData(key, value);
+	setExchangeData(date, exchangeRate);
 }
+
 
 void BitcoinExchange::readBitcoinData(char *fileName) {
 	std::ifstream in(fileName);
@@ -66,16 +67,32 @@ void BitcoinExchange::readBitcoinData(char *fileName) {
 	if (in.is_open()) {
 		getline(in, str);
 	} else {
-		throw "could not open file.";
+		throw (std::string)"could not open file.";
 	}
 
 	while (in) {
 		getline(in, str);
-		std::cout << str << std::endl;
+//		std::cout << str << std::endl;
+		if (str.empty())
+			continue;
 		try {
-//			multiplyParsingBitcoin(str);
-		} catch (const char *errMsg) {
+			multiplyBitcoinAfterParse(str);
+		} catch (std::string errMsg) {
 			std::cout << errMsg << std::endl;
 		}
 	}
+}
+
+void BitcoinExchange::multiplyBitcoinAfterParse(std::string line) {
+	user_size_t splitPoint = line.find('|');
+
+	if (splitPoint == std::string::npos)
+		throw (std::string)"bad input => " + line ;
+
+	std::string date = line.substr(0, splitPoint - 1);
+	// date validate
+	float value = stof(line.substr(splitPoint + 2));
+	// value validate
+
+	std::cout << date << " : " << value << std::endl;
 }

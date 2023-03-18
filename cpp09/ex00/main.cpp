@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 
 	try {
 		program.readBitcoinData(argv[1]);
-	} catch (const char *errMsg) {
+	} catch (std::string errMsg) {
 		return err_exit(errMsg);
 	}
 
