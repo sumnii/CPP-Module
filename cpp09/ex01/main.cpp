@@ -13,11 +13,16 @@ int err_exit(std::string err) {
 int main(int argc, char *argv[]) {
 	if (argc != 2)
 		return err_exit("type > ./RPN \"expression\"");
-	(void)argv;
 
 	RPN program;
 	program.setExpression(argv[1]);
 	program.calculate();
+	try {
+		int result = program.getResult();
+		std::cout << result << std::endl;
+	} catch (const char *err) {
+		std::cerr << err << std::endl;
+	}
 
 //	atexit(leaks);
 	return 0;

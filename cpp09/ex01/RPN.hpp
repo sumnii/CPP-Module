@@ -19,10 +19,11 @@ public:
 
 	void setExpression(std::string expression);
 	void calculate();
+	int getResult();
 
 	bool isNumber(std::string num);
 	void putNumber(std::string num);
+	void putToken(std::string token);
 };
-
 
 #endif //EX01_RPN_HPP
