@@ -17,15 +17,19 @@ public:
 	BitcoinExchange(const BitcoinExchange &ref);
 	BitcoinExchange &operator=(const BitcoinExchange &ref);
 
-	void setExchangeData(const std::string key, float value);
-	float getExchangeValue(const std::string key);
+	void setExchangeData(const std::string &key, float value);
+	float getExchangeRate(const std::string &key);
+	float getClosestDateDate(std::string &key);
 
 	void saveExchangeData();
-	void saveDataAfterParse(std::string line);
+	void saveDataAfterParse(std::string &line);
 
 	void readBitcoinData(char *fileName);
-	void multiplyBitcoinAfterParse(std::string line);
-	bool isValidateDate(std::string date);
+	void multiplyBitcoinAfterParse(std::string &line);
+	bool isValidateDate(std::string &date);
+	std::string getYear(std::string &date);
+	std::string getMonth(std::string &date);
+	std::string getDay(std::string &date);
 };
 
 

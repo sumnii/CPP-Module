@@ -15,12 +15,33 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &ref) {
 }
 
 
-void BitcoinExchange::setExchangeData(const std::string key, float value) {
+void BitcoinExchange::setExchangeData(const std::string &key, float value) {
 	_exchangeData[key] = value;
 }
 
-float BitcoinExchange::getExchangeValue(const std::string key) {
-	return (_exchangeData[key]);
+float BitcoinExchange::getExchangeRate(const std::string &key) {
+	if (_exchangeData.count(key) == 1)
+		return (_exchangeData[key]);
+	return (-1);
+}
+
+float BitcoinExchange::getClosestDateDate(std::string &key) {
+	std::string year = getYear(key);
+	std::string month = getMonth(key);
+	std::string day = getDay(key);
+
+	std::map<std::string, float>::iterator itr = _exchangeData.begin();
+	while (true) {
+		std::string itrDate = itr->first;
+		std::string itrNextDate = (++itr)->first;
+		if (getYear(itrDate) <= year
+			&& getMonth(itrDate) <= month
+			&& getDay(itrDate) < day
+			&& year <= getYear(itrNextDate)
+			&& month <= getMonth(itrNextDate)
+			&& day < getDay(itrNextDate))
+			return (--itr)->second;
+	}
 }
 
 
@@ -38,16 +59,9 @@ void BitcoinExchange::saveExchangeData() {
 		getline(in, str);
 		saveDataAfterParse(str);
 	}
-
-//	std::map<std::string,float>::iterator it;
-//	it = _exchangeData.begin();
-//	while (it != _exchangeData.end()) {
-//		std::cout << it->first << " | " << it->second << std::endl;
-//		++it;
-//	}
 }
 
-void BitcoinExchange::saveDataAfterParse(std::string line) {
+void BitcoinExchange::saveDataAfterParse(std::string &line) {
 	user_size_t splitComma = line.find(',');
 
 	if (splitComma == std::string::npos)
@@ -72,7 +86,6 @@ void BitcoinExchange::readBitcoinData(char *fileName) {
 
 	while (in) {
 		getline(in, str);
-//		std::cout << str << std::endl;
 		if (str.empty())
 			continue;
 		try {
@@ -83,7 +96,7 @@ void BitcoinExchange::readBitcoinData(char *fileName) {
 	}
 }
 
-void BitcoinExchange::multiplyBitcoinAfterParse(std::string line) {
+void BitcoinExchange::multiplyBitcoinAfterParse(std::string &line) {
 	user_size_t splitBar = line.find('|');
 
 	if (splitBar == std::string::npos)
@@ -92,37 +105,55 @@ void BitcoinExchange::multiplyBitcoinAfterParse(std::string line) {
 	std::string date = line.substr(0, splitBar - 1);
 	if (!isValidateDate(date))
 		throw (std::string)"bad input => " + line ;
+
 	float value = stof(line.substr(splitBar + 2));
 	if (value < 0)
 		throw (std::string)"not a positive number.";
 	if (value > 1000)
 		throw (std::string)"too large a number.";
 
-	std::cout << date << " : " << value << std::endl;
+	float exchangeRate = getExchangeRate(date);
+	if (exchangeRate == -1)
+		exchangeRate = getClosestDateDate(date);
+	std::cout << date << " => " << value << " = " << value*exchangeRate << std::endl;
 }
 
-bool BitcoinExchange::isValidateDate(std::string date) {
-	user_size_t firstSplitDash = date.find('-');
-	if (firstSplitDash == std::string::npos)
-		return false;
-
-	int year = stoi(date.substr(0, firstSplitDash));
+bool BitcoinExchange::isValidateDate(std::string &date) {
+	int year = stoi(getYear(date));
 	if (year <= 0)
 		return false;
 
-	std::string monthAndDay = date.substr(firstSplitDash + 1);
-
-	user_size_t secondSplitDash = monthAndDay.find('-');
-	if (secondSplitDash == std::string::npos)
+	int month = stoi(getMonth(date));
+	if (month <= 0 || month > 12)
 		return false;
 
-	int month = stoi(monthAndDay.substr(0, secondSplitDash));
-	if (month <= 0 || 12 < month)
-		return false;
-
-	int day = stoi(monthAndDay.substr(secondSplitDash + 1));
-	if (day <= 0 || 31 < day)
+	int day = stoi(getDay(date));
+	if (day <= 0 || day > 31)
 		return false;
 
 	return true;
+}
+
+std::string BitcoinExchange::getYear(std::string &date) {
+	user_size_t firstSplitDash = date.find('-');
+	if (firstSplitDash == std::string::npos)
+		return NULL;
+
+	return date.substr(0, firstSplitDash);
+}
+
+std::string BitcoinExchange::getMonth(std::string &date) {
+	user_size_t SecondSplitDash = date.rfind('-');
+	if (SecondSplitDash == std::string::npos)
+		return NULL;
+
+	return date.substr(SecondSplitDash - 2, SecondSplitDash);
+}
+
+std::string BitcoinExchange::getDay(std::string &date) {
+	user_size_t SecondSplitDash = date.rfind('-');
+	if (SecondSplitDash == std::string::npos)
+		return NULL;
+
+	return date.substr(SecondSplitDash + 1);
 }
