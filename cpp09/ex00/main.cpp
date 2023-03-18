@@ -6,7 +6,7 @@ void leaks() {
 }
 
 int main() {
-
+	BitcoinExchange::saveExchangeData();
 
 //	atexit(leaks);
 	return 0;
