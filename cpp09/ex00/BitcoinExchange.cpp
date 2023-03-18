@@ -36,7 +36,6 @@ void BitcoinExchange::saveExchangeData() {
 
 	while (in) {
 		getline(in, str);
-//		std::cout << str << std::endl;
 		parseData(str);
 	}
 

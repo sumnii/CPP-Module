@@ -5,7 +5,16 @@ void leaks() {
 	system("leaks btc");
 }
 
-int main() {
+int err_exit(std::string err) {
+	std::cerr << "Error: " << err << std::endl;
+	return 1;
+}
+
+int main(int argc, char *argv[]) {
+	if (argc != 2)
+		return err_exit("could not open file.");
+	(void)argv;
+
 	BitcoinExchange exchange;
 	exchange.saveExchangeData();
 
