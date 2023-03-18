@@ -4,12 +4,13 @@
 #include <iostream>
 #include <string>
 #include <stack>
-#include <vector>
+#include <queue>
+// #include <vector>
 
 class RPN {
 private:
 	std::stack<int> _calculator;
-	std::vector<std::string> _expression;
+	std::queue<std::string> _expression;
 
 public:
 	RPN();

@@ -25,40 +25,31 @@ void RPN::setExpression(std::string expression) {
 	user_size_t whiteSpace = splitTarget.find(' ');
 
 	while (whiteSpace != std::string::npos) {
-		_expression.push_back(splitTarget.substr(0, whiteSpace));
+		_expression.push(splitTarget.substr(0, whiteSpace));
 		splitTarget = splitTarget.substr(whiteSpace + 1);
 		whiteSpace = splitTarget.find(' ');
 	}
 	if (!splitTarget.empty())
-		_expression.push_back(splitTarget);
-
-	// for print expression vector
-//	std::vector<std::string>::iterator itr = _expression.begin();
-//	while (itr != _expression.end()) {
-//		std::cout << *itr << "/";
-//		++itr;
-//	}
-//	std::cout << std::endl;
+		_expression.push(splitTarget);
 }
 
 void RPN::calculate() {
-	std::vector<std::string>::iterator itr = _expression.begin();
-
-	while (itr != _expression.end()) {
-		if (isNumber(*itr)) {
+	while (!_expression.empty()) {
+		std::string data = _expression.front();
+		if (isNumber(data)) {
 			try {
-				putNumber(*itr);
+				putNumber(data);
 			} catch (const char *err) {
 				throw err;
 			}
 		} else {
 			try {
-				putToken(*itr);
+				putToken(data);
 			} catch (const char *err) {
 				throw err;
 			}
 		}
-		++itr;
+		_expression.pop();
 	}
 }
 
