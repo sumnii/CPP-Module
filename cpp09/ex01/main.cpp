@@ -15,6 +15,9 @@ int main(int argc, char *argv[]) {
 		return err_exit("type > ./RPN \"expression\"");
 	(void)argv;
 
+	RPN program;
+	program.setExpression(argv[1]);
+
 //	atexit(leaks);
 	return 0;
 }
