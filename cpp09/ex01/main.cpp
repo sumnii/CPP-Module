@@ -6,7 +6,7 @@ void leaks() {
 }
 
 int err_exit(std::string err) {
-	std::cerr << "Error: " << err << std::endl;
+	std::cerr << err << std::endl;
 	return 1;
 }
 
@@ -15,13 +15,20 @@ int main(int argc, char *argv[]) {
 		return err_exit("type > ./RPN \"expression\"");
 
 	RPN program;
+
 	program.setExpression(argv[1]);
-	program.calculate();
+
+	try {
+		program.calculate();
+	} catch (const char *err) {
+		return err_exit(err);
+	}
+
 	try {
 		int result = program.getResult();
 		std::cout << result << std::endl;
 	} catch (const char *err) {
-		std::cerr << err << std::endl;
+		return err_exit(err);
 	}
 
 //	atexit(leaks);

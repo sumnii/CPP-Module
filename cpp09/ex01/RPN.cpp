@@ -49,13 +49,13 @@ void RPN::calculate() {
 			try {
 				putNumber(*itr);
 			} catch (const char *err) {
-				std::cerr << err << std::endl;
+				throw err;
 			}
 		} else {
 			try {
 				putToken(*itr);
 			} catch (const char *err) {
-				std::cerr << err << std::endl;
+				throw err;
 			}
 		}
 		++itr;
