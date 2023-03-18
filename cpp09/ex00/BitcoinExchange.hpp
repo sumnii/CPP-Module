@@ -26,7 +26,6 @@ public:
 	void readBitcoinData(char *fileName);
 	void multiplyBitcoinAfterParse(std::string line);
 	bool isValidateDate(std::string date);
-//	bool isValidateValue(float bitcoinValue);
 };
 
 

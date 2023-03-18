@@ -78,7 +78,7 @@ void BitcoinExchange::readBitcoinData(char *fileName) {
 		try {
 			multiplyBitcoinAfterParse(str);
 		} catch (std::string errMsg) {
-			std::cout << errMsg << std::endl;
+			std::cout << "Error: " << errMsg << std::endl;
 		}
 	}
 }
@@ -93,7 +93,10 @@ void BitcoinExchange::multiplyBitcoinAfterParse(std::string line) {
 	if (!isValidateDate(date))
 		throw (std::string)"bad input => " + line ;
 	float value = stof(line.substr(splitBar + 2));
-	// value validate
+	if (value < 0)
+		throw (std::string)"not a positive number.";
+	if (value > 1000)
+		throw (std::string)"too large a number.";
 
 	std::cout << date << " : " << value << std::endl;
 }
