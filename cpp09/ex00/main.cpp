@@ -15,8 +15,14 @@ int main(int argc, char *argv[]) {
 		return err_exit("could not open file.");
 	(void)argv;
 
-	BitcoinExchange exchange;
-	exchange.saveExchangeData();
+	BitcoinExchange program;
+	program.saveExchangeData();
+
+	try {
+		program.readBitcoinData(argv[1]);
+	} catch (const char *errMsg) {
+		return err_exit(errMsg);
+	}
 
 //	atexit(leaks);
 	return 0;

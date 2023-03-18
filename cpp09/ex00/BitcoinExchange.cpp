@@ -39,12 +39,12 @@ void BitcoinExchange::saveExchangeData() {
 		parseData(str);
 	}
 
-	std::map<std::string,float>::iterator it;
-	it = _exchangeData.begin();
-	while (it != _exchangeData.end()) {
-		std::cout << it->first << " | " << it->second << std::endl;
-		++it;
-	}
+//	std::map<std::string,float>::iterator it;
+//	it = _exchangeData.begin();
+//	while (it != _exchangeData.end()) {
+//		std::cout << it->first << " | " << it->second << std::endl;
+//		++it;
+//	}
 }
 
 void BitcoinExchange::parseData(std::string line) {
@@ -57,4 +57,25 @@ void BitcoinExchange::parseData(std::string line) {
 	float value = stof(line.substr(splitPoint + 1));
 
 	setExchangeData(key, value);
+}
+
+void BitcoinExchange::readBitcoinData(char *fileName) {
+	std::ifstream in(fileName);
+	std::string str;
+
+	if (in.is_open()) {
+		getline(in, str);
+	} else {
+		throw "could not open file.";
+	}
+
+	while (in) {
+		getline(in, str);
+		std::cout << str << std::endl;
+		try {
+//			multiplyBitcoin(str);
+		} catch (const char *errMsg) {
+			std::cout << errMsg << std::endl;
+		}
+	}
 }

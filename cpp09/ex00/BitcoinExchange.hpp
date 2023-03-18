@@ -22,6 +22,8 @@ public:
 
 	void saveExchangeData();
 	void parseData(std::string line);
+
+	void readBitcoinData(char *fileName);
 };
 
 
