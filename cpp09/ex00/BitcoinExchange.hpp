@@ -21,7 +21,7 @@ public:
 	float getExchangeValue(const std::string key);
 
 	void saveExchangeData();
-	void parseData(std::string line);
+	void saveParsingData(std::string line);
 
 	void readBitcoinData(char *fileName);
 };

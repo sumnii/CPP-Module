@@ -36,7 +36,7 @@ void BitcoinExchange::saveExchangeData() {
 
 	while (in) {
 		getline(in, str);
-		parseData(str);
+		saveParsingData(str);
 	}
 
 //	std::map<std::string,float>::iterator it;
@@ -47,7 +47,7 @@ void BitcoinExchange::saveExchangeData() {
 //	}
 }
 
-void BitcoinExchange::parseData(std::string line) {
+void BitcoinExchange::saveParsingData(std::string line) {
 	user_size_t splitPoint = line.find(',');
 
 	if (splitPoint == std::string::npos)
@@ -73,7 +73,7 @@ void BitcoinExchange::readBitcoinData(char *fileName) {
 		getline(in, str);
 		std::cout << str << std::endl;
 		try {
-//			multiplyBitcoin(str);
+//			multiplyParsingBitcoin(str);
 		} catch (const char *errMsg) {
 			std::cout << errMsg << std::endl;
 		}
