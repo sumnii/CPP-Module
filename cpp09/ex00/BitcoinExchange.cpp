@@ -48,13 +48,13 @@ void BitcoinExchange::saveExchangeData() {
 }
 
 void BitcoinExchange::saveDataAfterParse(std::string line) {
-	user_size_t splitPoint = line.find(',');
+	user_size_t splitComma = line.find(',');
 
-	if (splitPoint == std::string::npos)
+	if (splitComma == std::string::npos)
 		return ;
 
-	std::string date = line.substr(0, splitPoint);
-	float exchangeRate = stof(line.substr(splitPoint + 1));
+	std::string date = line.substr(0, splitComma);
+	float exchangeRate = stof(line.substr(splitComma + 1));
 
 	setExchangeData(date, exchangeRate);
 }
@@ -84,15 +84,42 @@ void BitcoinExchange::readBitcoinData(char *fileName) {
 }
 
 void BitcoinExchange::multiplyBitcoinAfterParse(std::string line) {
-	user_size_t splitPoint = line.find('|');
+	user_size_t splitBar = line.find('|');
 
-	if (splitPoint == std::string::npos)
+	if (splitBar == std::string::npos)
 		throw (std::string)"bad input => " + line ;
 
-	std::string date = line.substr(0, splitPoint - 1);
-	// date validate
-	float value = stof(line.substr(splitPoint + 2));
+	std::string date = line.substr(0, splitBar - 1);
+	if (!isValidateDate(date))
+		throw (std::string)"bad input => " + line ;
+	float value = stof(line.substr(splitBar + 2));
 	// value validate
 
 	std::cout << date << " : " << value << std::endl;
+}
+
+bool BitcoinExchange::isValidateDate(std::string date) {
+	user_size_t firstSplitDash = date.find('-');
+	if (firstSplitDash == std::string::npos)
+		return false;
+
+	int year = stoi(date.substr(0, firstSplitDash));
+	if (year <= 0)
+		return false;
+
+	std::string monthAndDay = date.substr(firstSplitDash + 1);
+
+	user_size_t secondSplitDash = monthAndDay.find('-');
+	if (secondSplitDash == std::string::npos)
+		return false;
+
+	int month = stoi(monthAndDay.substr(0, secondSplitDash));
+	if (month <= 0 || 12 < month)
+		return false;
+
+	int day = stoi(monthAndDay.substr(secondSplitDash + 1));
+	if (day <= 0 || 31 < day)
+		return false;
+
+	return true;
 }
