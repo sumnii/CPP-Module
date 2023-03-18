@@ -41,15 +41,40 @@ void RPN::setExpression(std::string expression) {
 	std::cout << std::endl;
 }
 
+void RPN::calculate() {
+	std::vector<std::string>::iterator itr = _expression.begin();
 
-void RPN::putNumber(std::string num) {
-	if (isValidNumber(num))
-		_calculator.push(stoi(num));
-	throw "Error";
+	while (itr != _expression.end()) {
+		if (isNumber(*itr)) {
+			try {
+				putNumber(*itr);
+			} catch (const char *errMsg) {
+				std::cerr << errMsg << std::endl;
+			}
+		} else {
+			// token 계산
+		}
+		++itr;
+	}
 }
 
-bool RPN::isValidNumber(std::string num) {
-	if (num.size() != 1)
+bool RPN::isNumber(std::string num) {
+	if (num == "+" || num == "-" || num == "/" || num == "*")
 		return false;
 	return true;
+}
+
+
+
+void RPN::putNumber(std::string sNum) {
+	int num;
+
+	try {
+		num = stoi(sNum);
+		if (num >= 10)
+			throw "Error";
+		_calculator.push(num);
+	} catch(std::exception &e) {
+		throw "Error";
+	}
 }

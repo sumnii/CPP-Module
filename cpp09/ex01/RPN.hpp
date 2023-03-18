@@ -18,9 +18,10 @@ public:
 	RPN &operator=(const RPN &ref);
 
 	void setExpression(std::string expression);
+	void calculate();
 
+	bool isNumber(std::string num);
 	void putNumber(std::string num);
-	bool isValidNumber(std::string num);
 };
 
 

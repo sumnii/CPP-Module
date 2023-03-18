@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
 
 	RPN program;
 	program.setExpression(argv[1]);
+	program.calculate();
 
 //	atexit(leaks);
 	return 0;
