@@ -6,7 +6,7 @@
 
 class RPN {
 private:
-	std::stack<int> calculator;
+	std::stack<int> _calculator;
 
 public:
 	RPN();
