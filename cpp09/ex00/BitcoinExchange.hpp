@@ -3,11 +3,13 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <iomanip>
 #include <map>
 
 class BitcoinExchange {
 private:
-	static std::map<std::string, float> _exchangeData;
+	std::map<std::string, float> _exchangeData;
 
 public:
 	BitcoinExchange();
@@ -15,8 +17,11 @@ public:
 	BitcoinExchange(const BitcoinExchange &ref);
 	BitcoinExchange &operator=(const BitcoinExchange &ref);
 
-	static void saveExchangeData();
-	static void parseData(std::string line);
+	void setExchangeData(const std::string key, float value);
+	float getExchangeValue(const std::string key);
+
+	void saveExchangeData();
+	void parseData(std::string line);
 };
 
 

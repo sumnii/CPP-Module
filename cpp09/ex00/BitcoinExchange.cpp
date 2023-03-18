@@ -14,6 +14,16 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &ref) {
 	return *this;
 }
 
+
+void BitcoinExchange::setExchangeData(const std::string key, float value) {
+	_exchangeData[key] = value;
+}
+
+float BitcoinExchange::getExchangeValue(const std::string key) {
+	return (_exchangeData[key]);
+}
+
+
 void BitcoinExchange::saveExchangeData() {
 	std::ifstream in("data.csv");
 	std::string str;
@@ -26,14 +36,26 @@ void BitcoinExchange::saveExchangeData() {
 
 	while (in) {
 		getline(in, str);
+//		std::cout << str << std::endl;
 		parseData(str);
 	}
+
+	std::map<std::string,float>::iterator it;
+	it = _exchangeData.begin();
+	while (it != _exchangeData.end()) {
+		std::cout << it->first << " | " << it->second << std::endl;
+		++it;
+	}
 }
+
 void BitcoinExchange::parseData(std::string line) {
 	user_size_t splitPoint = line.find(',');
+
 	if (splitPoint == std::string::npos)
 		return ;
-	std::string key = line.substr(0, splitPoint - 1);
-	std::string value = line.substr(splitPoint + 1);
-	std::cout << key << " | " << value << std::endl;
+
+	std::string key = line.substr(0, splitPoint);
+	float value = stof(line.substr(splitPoint + 1));
+
+	setExchangeData(key, value);
 }
