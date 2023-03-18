@@ -16,6 +16,7 @@ public:
 	BitcoinExchange &operator=(const BitcoinExchange &ref);
 
 	static void saveExchangeData();
+	static void parseData(std::string line);
 };
 
 

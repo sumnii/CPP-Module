@@ -26,7 +26,14 @@ void BitcoinExchange::saveExchangeData() {
 
 	while (in) {
 		getline(in, str);
-		// save a data line
-		std::cout << ">" << str << std::endl;
+		parseData(str);
 	}
+}
+void BitcoinExchange::parseData(std::string line) {
+	user_size_t splitPoint = line.find(',');
+	if (splitPoint == std::string::npos)
+		return ;
+	std::string key = line.substr(0, splitPoint - 1);
+	std::string value = line.substr(splitPoint + 1);
+	std::cout << key << " | " << value << std::endl;
 }
