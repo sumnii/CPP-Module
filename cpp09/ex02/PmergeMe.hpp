@@ -15,6 +15,11 @@ public:
 	~PmergeMe();
 	PmergeMe(const PmergeMe &ref);
 	const PmergeMe &operator=(const PmergeMe &ref);
+
+	void pushArgIntoContainer(int argc, char *argv[]);
+
+//	void MergeInsertionSortWithVector();
+//	void MergeInsertionSortWithList();
 };
 
 
