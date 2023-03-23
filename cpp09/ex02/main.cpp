@@ -15,7 +15,10 @@ int main(int argc, char *argv[]) {
 		return err_exit("type > ./PMergeMe .. a positive integer sequence ...");
 
 	PmergeMe program;
+
 	program.pushArgIntoContainer(argc, argv);
+	program.mergeInsertionSort();
+
 //	atexit(leaks);
 	return 0;
 }

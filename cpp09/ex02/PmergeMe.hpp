@@ -9,6 +9,14 @@ class PmergeMe {
 private:
 	std::vector<int> _vector;
 	std::list<int> _list;
+	int _k;
+
+	void printVector();
+	void printList();
+
+	void vectorMergeInsertion(int begin, int end);
+	void vectorInsertionSort(int begin, int end);
+	void vectorMergeSort(int begin, int middle, int end);
 
 public:
 	PmergeMe();
@@ -17,9 +25,7 @@ public:
 	const PmergeMe &operator=(const PmergeMe &ref);
 
 	void pushArgIntoContainer(int argc, char *argv[]);
-
-//	void MergeInsertionSortWithVector();
-//	void MergeInsertionSortWithList();
+	void mergeInsertionSort();
 };
 
 
