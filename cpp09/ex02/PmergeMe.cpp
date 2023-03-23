@@ -1,11 +1,12 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() {}
+PmergeMe::PmergeMe() : _k(3) {}
 
 PmergeMe::~PmergeMe() {}
 
 PmergeMe::PmergeMe(const PmergeMe &ref) {
 	if (this != &ref) {
+		_k = ref._k;
 		_vector = ref._vector;
 		_list = ref._list;
 	}
@@ -13,6 +14,7 @@ PmergeMe::PmergeMe(const PmergeMe &ref) {
 
 const PmergeMe &PmergeMe::operator=(const PmergeMe &ref) {
 	if (this != &ref) {
+		_k = ref._k;
 		_vector = ref._vector;
 		_list = ref._list;
 	}
@@ -21,9 +23,9 @@ const PmergeMe &PmergeMe::operator=(const PmergeMe &ref) {
 
 
 void PmergeMe::printVector() {
-	std::vector<int>::iterator v_it = _vector.begin();
-	for(; v_it != _vector.end(); ++v_it) {
-		std::cout << *v_it << " ";
+	std::vector<int>::iterator it = _vector.begin();
+	for(; it != _vector.end(); ++it) {
+		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
 }
@@ -46,9 +48,10 @@ void PmergeMe::pushArgIntoContainer(int argc, char *argv[]) {
 }
 
 void PmergeMe::mergeInsertionSort() {
-	printVector();
+	std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
 	vectorMergeInsertion(0, _vector.size() - 1);
-	printVector();
+	std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
+	_vectorCalTime = end - start;
 }
 
 void PmergeMe::vectorMergeInsertion(int begin, int end) {
@@ -88,7 +91,7 @@ void PmergeMe::vectorMergeSort(int begin, int middle, int end) {
 	int pointer2 = middle + 1;
 	std::vector<int> sortedArr;
 
-	while (pointer1 <= middle || pointer2 <= end) {
+	while (pointer1 <= middle && pointer2 <= end) {
 		if (_vector[pointer1] < _vector[pointer2]) {
 			sortedArr.push_back(_vector[pointer1]);
 			++pointer1;
@@ -115,4 +118,18 @@ void PmergeMe::vectorMergeSort(int begin, int middle, int end) {
 	}
 
 	_vector = sortedArr;
+}
+
+
+void PmergeMe::printResult(int argc, char *argv[]) {
+	std::cout << "Before: ";
+	for (int i = 1; i < argc; ++i)
+		std::cout << argv[i] << " ";
+	std::cout << std::endl;
+
+	std::cout << "After: ";
+	printVector();
+
+	std::cout << "Time to process a range of " << argc - 1
+	<< " elements with std::vector : " << _vectorCalTime.count() << " ns" << std::endl;
 }

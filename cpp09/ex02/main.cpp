@@ -18,6 +18,7 @@ int main(int argc, char *argv[]) {
 
 	program.pushArgIntoContainer(argc, argv);
 	program.mergeInsertionSort();
+	program.printResult(argc, argv);
 
 //	atexit(leaks);
 	return 0;
