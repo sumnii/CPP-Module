@@ -9,6 +9,8 @@ PmergeMe::PmergeMe(const PmergeMe &ref) {
 		_k = ref._k;
 		_vector = ref._vector;
 		_list = ref._list;
+		_vectorCalTime = ref._vectorCalTime;
+		_listCalTime = ref._listCalTime;
 	}
 }
 
@@ -17,6 +19,8 @@ const PmergeMe &PmergeMe::operator=(const PmergeMe &ref) {
 		_k = ref._k;
 		_vector = ref._vector;
 		_list = ref._list;
+		_vectorCalTime = ref._vectorCalTime;
+		_listCalTime = ref._listCalTime;
 	}
 	return *this;
 }
