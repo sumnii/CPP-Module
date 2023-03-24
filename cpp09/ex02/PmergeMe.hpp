@@ -17,13 +17,13 @@ private:
 	void printVector();
 	void printList();
 
-	void vectorMergeInsertion(int begin, int end);
+	void vectorMergeInsertionSort(int begin, int end);
 	void vectorInsertionSort(int begin, int end);
 	void vectorMergeSort(int begin, int middle, int end);
 
-	void listMergeInsertion(int begin, int end);
-	void listInsertionSort(int begin, int end);
-	void listMergeSort(int begin, int middle, int end);
+	void listMergeInsertionSort(std::list<int>::iterator begin, std::list<int>::iterator end);
+	void listInsertionSort(std::list<int>::iterator begin, std::list<int>::iterator end);
+	void listMergeSort(std::list<int>::iterator begin, std::list<int>::iterator middle, std::list<int>::iterator end);
 
 public:
 	PmergeMe();
