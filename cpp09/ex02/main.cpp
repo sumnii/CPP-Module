@@ -2,7 +2,7 @@
 
 void leaks() {
 	std::cout << std::endl << "-------------------[ leaks test ]-------------------" << std::endl;
-	system("leaks RPN");
+	system("leaks PmergeMe");
 }
 
 int err_exit(std::string err) {
@@ -16,7 +16,11 @@ int main(int argc, char *argv[]) {
 
 	PmergeMe program;
 
-	program.pushArgIntoContainer(argc, argv);
+	try {
+		program.pushArgIntoContainer(argc, argv);
+	} catch (const char *err) {
+		return err_exit(err);
+	}
 	program.mergeInsertionSort();
 	program.printResult(argc, argv);
 

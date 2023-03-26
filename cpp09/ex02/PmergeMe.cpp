@@ -35,9 +35,9 @@ void PmergeMe::printVector() {
 }
 
 void PmergeMe::printList() {
-	std::list<int>::iterator l_it = _list.begin();
-	for(; l_it != _list.end(); ++l_it) {
-		std::cout << *l_it << " ";
+	std::list<int>::iterator it = _list.begin();
+	for (; it != _list.end(); ++it) {
+		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
 }
@@ -46,6 +46,8 @@ void PmergeMe::printList() {
 void PmergeMe::pushArgIntoContainer(int argc, char *argv[]) {
 	for (int i = 1; i < argc; ++i) {
 		int n = atoi(argv[i]);
+		if (n < 0)
+			throw "Error";
 		_vector.push_back(n);
 		_list.push_back(n);
 	}
@@ -126,13 +128,14 @@ void PmergeMe::vectorMergeSort(int begin, int middle, int end) {
 		++pointer2;
 	}
 
-	_vector = sortedArr;
+	for (unsigned long i = 0; i < sortedArr.size(); ++i)
+		_vector[begin++] = sortedArr[i];
 }
 
 void PmergeMe::listMergeInsertionSort(std::list<int>::iterator begin,
 									  std::list<int>::iterator end) {
 	int partSize = std::distance(begin, end);
-//	std::cout << "[" << partSize << "] " << *begin << " " << *std::prev(end) << std::endl;
+
 	if (partSize <= _k) {
 		listInsertionSort(begin, end);
 		return ;
@@ -143,7 +146,6 @@ void PmergeMe::listMergeInsertionSort(std::list<int>::iterator begin,
 
 	listMergeInsertionSort(begin, middle);
 	listMergeInsertionSort(middle, end);
-
 	listMergeSort(begin, middle, end);
 }
 
@@ -152,16 +154,14 @@ void PmergeMe::listInsertionSort(std::list<int>::iterator begin,
 	std::list<int>::iterator itKey = std::next(begin);
 	for (; itKey != end; ++itKey) {
 		int key = *itKey;
-		std::list<int>::iterator itLow = std::prev(itKey);
+		std::list<int>::iterator itLow = itKey;
 
 		while (itLow != begin) {
-			if (*itLow < key)
+			if (*std::prev(itLow) < key)
 				break ;
-			*std::next(itLow) = *itLow;
+			*itLow = *std::prev(itLow);
 			--itLow;
 		}
-		if (*itLow > key)
-			*std::next(itLow) = *itLow;
 		*itLow = key;
 	}
 }
@@ -199,7 +199,10 @@ void PmergeMe::listMergeSort(std::list<int>::iterator begin,
 		++pointer2;
 	}
 
-	_list = sortedArr;
+	for (; begin != end; ++begin) {
+		*begin = sortedArr.front();
+		sortedArr.pop_front();
+	}
 }
 
 
