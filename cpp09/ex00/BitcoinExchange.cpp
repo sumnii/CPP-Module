@@ -52,7 +52,7 @@ void BitcoinExchange::saveExchangeData() {
 	if (in.is_open()) {
 		getline(in, str);
 	} else {
-		std::cerr << (std::string)"data.csv 파일을 디렉토리에 추가해주세요." << std::endl;
+		throw (std::string)"data.csv 파일을 디렉토리에 추가해주세요.";
 	}
 
 	while (in) {

@@ -13,10 +13,13 @@ int err_exit(std::string err) {
 int main(int argc, char *argv[]) {
 	if (argc != 2)
 		return err_exit("could not open file.");
-	(void)argv;
 
 	BitcoinExchange program;
-	program.saveExchangeData();
+	try {
+		program.saveExchangeData();
+	} catch (std::string errMsg) {
+		return err_exit(errMsg);
+	}
 
 	try {
 		program.readBitcoinData(argv[1]);
