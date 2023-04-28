@@ -5,12 +5,12 @@ BitcoinExchange::BitcoinExchange() {}
 BitcoinExchange::~BitcoinExchange() {}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &ref) {
-	*this = ref;
+	_exchangeData = ref._exchangeData;
 }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &ref) {
 	if (this != &ref)
-		*this = ref;
+		_exchangeData = ref._exchangeData;
 	return *this;
 }
 
@@ -25,7 +25,7 @@ float BitcoinExchange::getExchangeRate(const std::string &key) {
 	return (-1);
 }
 
-float BitcoinExchange::getClosestDateDate(std::string &key) {
+float BitcoinExchange::getClosestDate(std::string &key) {
 	std::string year = getYear(key);
 	std::string month = getMonth(key);
 	std::string day = getDay(key);
@@ -84,7 +84,7 @@ void BitcoinExchange::readBitcoinData(char *fileName) {
 		throw (std::string)"could not open file.";
 	}
 
-	while (in) {
+	while (!in.eof()) {
 		getline(in, str);
 		if (str.empty())
 			continue;
@@ -103,7 +103,7 @@ void BitcoinExchange::multiplyBitcoinAfterParse(std::string &line) {
 		throw (std::string)"bad input => " + line ;
 
 	std::string date = line.substr(0, splitBar - 1);
-	if (!isValidateDate(date))
+	if (!isValidDate(date))
 		throw (std::string)"bad input => " + line ;
 
 	float value = stof(line.substr(splitBar + 2));
@@ -114,11 +114,11 @@ void BitcoinExchange::multiplyBitcoinAfterParse(std::string &line) {
 
 	float exchangeRate = getExchangeRate(date);
 	if (exchangeRate == -1)
-		exchangeRate = getClosestDateDate(date);
+		exchangeRate = getClosestDate(date);
 	std::cout << date << " => " << value << " = " << value*exchangeRate << std::endl;
 }
 
-bool BitcoinExchange::isValidateDate(std::string &date) {
+bool BitcoinExchange::isValidDate(std::string &date) {
 	int year = stoi(getYear(date));
 	if (year <= 0)
 		return false;

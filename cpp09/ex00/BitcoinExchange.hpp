@@ -13,12 +13,12 @@ private:
 
 	void setExchangeData(const std::string &key, float value);
 	float getExchangeRate(const std::string &key);
-	float getClosestDateDate(std::string &key);
+	float getClosestDate(std::string &key);
 
 	void saveDataAfterParse(std::string &line);
 
 	void multiplyBitcoinAfterParse(std::string &line);
-	bool isValidateDate(std::string &date);
+	bool isValidDate(std::string &date);
 	std::string getYear(std::string &date);
 	std::string getMonth(std::string &date);
 	std::string getDay(std::string &date);
