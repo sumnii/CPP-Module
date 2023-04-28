@@ -217,9 +217,9 @@ void PmergeMe::printResult(int argc, char *argv[]) {
 
 	std::cout << "Time to process a range of " << argc - 1
 			  << " elements with std::vector : "
-			  << _vectorCalTime.count() << " ns" << std::endl;
+			  << _vectorCalTime.count() / 1000 << " us" << std::endl;
 
 	std::cout << "Time to process a range of " << argc - 1
 			  << " elements with std::list : "
-			  << _listCalTime.count() << " ns" << std::endl;
+			  << _listCalTime.count() / 1000 << " us" << std::endl;
 }
