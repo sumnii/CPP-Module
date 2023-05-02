@@ -112,7 +112,14 @@ void BitcoinExchange::multiplyBitcoinAfterParse(std::string &line) {
 	float exchangeRate = getExchangeRate(date);
 	if (exchangeRate == -1)
 		exchangeRate = getClosestDate(date);
-	std::cout << date << " => " << value << " = " << value*exchangeRate << std::endl;
+	float result = value * exchangeRate;
+	if (std::abs(result - std::round(result)) < 0.001) {
+		std::cout << date << " => " << value << " = " <<
+	  	std::fixed << std::setprecision(0) << result << std::endl;
+	} else {
+	std::cout << date << " => " << value << " = " <<
+	std::fixed << std::setprecision(2) << result << std::endl;
+	}
 }
 
 bool BitcoinExchange::isValidDate(std::string &date) {
