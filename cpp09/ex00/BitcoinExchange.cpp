@@ -26,22 +26,19 @@ float BitcoinExchange::getExchangeRate(const std::string &key) {
 }
 
 float BitcoinExchange::getClosestDate(std::string &key) {
-	std::string year = getYear(key);
-	std::string month = getMonth(key);
-	std::string day = getDay(key);
+	int key_date = dateToNumber(key);
 
 	std::map<std::string, float>::iterator itr = _exchangeData.begin();
-	while (true) {
-		std::string itrDate = itr->first;
-		std::string itrNextDate = (++itr)->first;
-		if (getYear(itrDate) <= year
-			&& getMonth(itrDate) <= month
-			&& getDay(itrDate) < day
-			&& year <= getYear(itrNextDate)
-			&& month <= getMonth(itrNextDate)
-			&& day < getDay(itrNextDate))
+	while (itr != _exchangeData.end()) {
+		int itrDate = dateToNumber(const_cast<std::string &>(itr->first));
+		if (++itr == _exchangeData.end())
+			break;
+		int itrNextDate = dateToNumber(const_cast<std::string &>(itr->first));
+
+		if (itrDate <= key_date && key_date <= itrNextDate)
 			return (--itr)->second;
 	}
+	return (--itr)->second;
 }
 
 
@@ -156,4 +153,11 @@ std::string BitcoinExchange::getDay(std::string &date) {
 		return NULL;
 
 	return date.substr(SecondSplitDash + 1);
+}
+
+int BitcoinExchange::dateToNumber(std::string &date) {
+	std::string copied_date = date.substr();
+	copied_date.erase(std::remove(copied_date.begin(), copied_date.end(), '-'), copied_date.end());
+
+	return std::stoi(copied_date);
 }

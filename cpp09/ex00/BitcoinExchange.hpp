@@ -6,6 +6,7 @@
 #include <sstream>
 #include <iomanip>
 #include <map>
+#include <string>
 
 class BitcoinExchange {
 private:
@@ -22,6 +23,7 @@ private:
 	std::string getYear(std::string &date);
 	std::string getMonth(std::string &date);
 	std::string getDay(std::string &date);
+	int dateToNumber(std::string &date);
 
 public:
 	BitcoinExchange();
