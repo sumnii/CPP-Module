@@ -100,6 +100,8 @@ void RPN::putToken(std::string token) {
 					_calculator.push(firstNum - secondNum);
 					return ;
 				case 2:
+					if (secondNum == 0)
+						throw "Error";
 					_calculator.push(firstNum / secondNum);
 					return ;
 				case 3:;
