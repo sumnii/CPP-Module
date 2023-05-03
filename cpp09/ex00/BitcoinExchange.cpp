@@ -30,7 +30,7 @@ float BitcoinExchange::getClosestDate(std::string &key) {
 
 	std::map<std::string, float>::iterator itr = _exchangeData.begin();
 	int first_date = dateToNumber(const_cast<std::string &>(itr->first));
-	if (key_date < first_date) return itr->second;
+	if (key_date < first_date) return 0;
 
 	while (++itr != _exchangeData.end()) {
 		int itrDate = dateToNumber(const_cast<std::string &>(itr->first));
@@ -116,13 +116,7 @@ void BitcoinExchange::multiplyBitcoinAfterParse(std::string &line) {
 	if (exchangeRate == -1)
 		exchangeRate = getClosestDate(date);
 	float result = value * exchangeRate;
-	if (std::abs(result - std::round(result)) < 0.001) {
-		std::cout << date << " => " << value << " = " <<
-	  	std::fixed << std::setprecision(0) << result << std::endl;
-	} else {
-	std::cout << date << " => " << value << " = " <<
-	std::fixed << std::setprecision(2) << result << std::endl;
-	}
+	std::cout << date << " => " << value << " = " << result << std::endl;
 }
 
 bool BitcoinExchange::isValidDate(std::string &date) {
