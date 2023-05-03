@@ -29,13 +29,16 @@ float BitcoinExchange::getClosestDate(std::string &key) {
 	int key_date = dateToNumber(key);
 
 	std::map<std::string, float>::iterator itr = _exchangeData.begin();
-	while (itr != _exchangeData.end()) {
+	int first_date = dateToNumber(const_cast<std::string &>(itr->first));
+	if (key_date < first_date) return itr->second;
+
+	while (++itr != _exchangeData.end()) {
 		int itrDate = dateToNumber(const_cast<std::string &>(itr->first));
 		if (++itr == _exchangeData.end())
 			break;
 		int itrNextDate = dateToNumber(const_cast<std::string &>(itr->first));
 
-		if (itrDate <= key_date && key_date <= itrNextDate)
+		if (itrDate < key_date && key_date < itrNextDate)
 			return (--itr)->second;
 	}
 	return (--itr)->second;
